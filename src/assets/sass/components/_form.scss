@@ -1,0 +1,12 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+.form {
+  @include divCenter;
+  &--paragraph {
+    color: $color-white;
+  }
+
+  &--title {
+    color: $color-orange;
+  }
+}
