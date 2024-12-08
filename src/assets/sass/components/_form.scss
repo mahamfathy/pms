@@ -2,11 +2,12 @@
 // @import "abstracts/mixins";
 .form {
   @include divCenter;
-  &--paragraph {
+  &__paragraph {
     color: $color-white;
   }
 
-  &--title {
+  &__title {
     color: $color-orange;
+    
   }
 }
