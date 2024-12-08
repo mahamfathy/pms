@@ -13,7 +13,7 @@ export class LoginComponent {
     private _AuthService: AuthService,
     private _ToastrService: ToastrService
   ) {}
-  passwordShow: boolean = false;
+  hide: boolean = false;
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
