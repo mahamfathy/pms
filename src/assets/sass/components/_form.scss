@@ -1,12 +1,79 @@
-@import "abstracts/variables";
-@import "abstracts/mixins";
-.form {
-  @include divCenter;
-  &--paragraph {
-    color: $color-white;
-  }
+// @import "abstracts/variables";
+// @import "abstracts/mixins";
 
-  &--title {
-    color: $color-orange;
+.auth-form {
+  background-color: $light-green-bg;
+  width: 100%;
+  padding: 4rem;
+  .form__header {
+    &-paragraph {
+      color: $color-white;
+      font-size: 0.81rem;
+      font-weight: 500;
+      letter-spacing: -0.4000000059604645px;
+      margin: 0;
+    }
+
+    &-title {
+      color: $color-orange;
+      position: relative;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 2.87rem;
+      letter-spacing: -0.4000000059604645px;
+
+      .underline-text {
+        &::after {
+          content: "";
+          position: absolute;
+          background-color: $color-orange;
+          bottom: 0px;
+          left: 0px;
+          width: 1rem;
+          height: 0.25rem;
+        }
+      }
+    }
+  }
+  .form__wrapper {
+    mat-form-field {
+      width: 100%;
+      mat-label {
+        color: $color-white;
+      }
+
+      &:focus {
+        border-bottom: 1px solid $color-white !important;
+      }
+    }
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+      background-color: transparent;
+    }
+  }
+  .form__links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    a.link {
+      text-decoration: none;
+      color: $color-white;
+    }
+  }
+  .form__actions {
+    margin: 0 auto;
+    .orange-btn {
+      width: 100%;
+      font-size: 1em;
+      font-weight: 500;
+      line-height: 2.87rem;
+      letter-spacing: -0.4000000059604645px;
+      border-radius: 1.87rem;
+      border: none;
+      background-color: $color-orange;
+      color: $color-white;
+      &:hover {
+        box-shadow: 1px 1px 5px 1px $color-white;
+      }
+    }
   }
 }

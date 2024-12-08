@@ -44,4 +44,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-@import "./assets/sass/main.scss";
+@import "assets/sass/main.scss";
+html {
+  --mdc-filled-text-field-focus-active-indicator-color: white !important;
+}
