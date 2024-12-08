@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-md-7">
-      <div class="form">
-        <div class="form--header">
-          <p class="form--paragraph">welcome</p>
+      <div class="auth-form">
+        <div class="form__header">
+          <p class="form__header-paragraph">Welcome to PMS</p>
 
-          <h1 class="form--title">h<span class="underline-text">i</span></h1>
+          <h1 class="form__header-title">
+            <span class="underline-text">F</span>orget password
+          </h1>
         </div>
-        <div class="form-wrapper">
+        <div class="form__wrapper">
           <form class="example-form form">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="custom-field">
               <mat-label class="form--label">Email</mat-label>
               <input
                 class="form-input"
@@ -17,14 +19,11 @@
                 placeholder="Enter your email"
               />
             </mat-form-field>
+
+            <div class="form__actions col-md-11">
+              <button class="orange-btn">login</button>
+            </div>
           </form>
-          <div class="form--links">
-            <a href="" class="link"></a>
-            <a href="" class="link"></a>
-          </div>
-        </div>
-        <div class="col-md-11">
-          <button class="orange-btn">login</button>
         </div>
       </div>
     </div>

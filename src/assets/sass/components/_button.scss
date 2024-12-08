@@ -1,2 +1,10 @@
+// @import url('../abstracts/_variables');
 .orange-btn {
+border-radius:  $border-radius-btn;
+background-color: $color-orange;
+color: #fff;
+font-weight: 700;
+font-size: 2rem;
+padding: 0.5rem;
+
 }

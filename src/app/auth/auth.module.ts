@@ -7,9 +7,10 @@ import { ResetRequestComponent } from './components/reset-request/reset-request.
 import { RegisterComponent } from './components/register/register.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [ResetRequestComponent, RegisterComponent],
+  declarations: [ResetRequestComponent, RegisterComponent,LoginComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -17,5 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgxDropzoneModule,
     ReactiveFormsModule,
   ],
+
 })
 export class AuthModule {}

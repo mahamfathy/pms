@@ -13,7 +13,9 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
+
+    ToastrModule.forRoot()
+
   ],
   providers: [],
   bootstrap: [AppComponent],
