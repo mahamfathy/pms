@@ -19,8 +19,11 @@ export class RegisterComponent {
   hideEye2: boolean = true;
 
   registerForm: FormGroup = this._FormBuilder.group({
-    userName: ['', [Validators.required]],
-    email: ['', [Validators.required]],
+    userName: [
+      '',
+      [Validators.required, Validators.pattern(/^[A-Za-z]+[0-9]+$/)],
+    ],
+    email: ['', [Validators.required, Validators.email]],
     country: ['', [Validators.required]],
     phoneNumber: ['', [Validators.required]],
     password: ['', [Validators.required]],
@@ -42,14 +45,14 @@ export class RegisterComponent {
   }
 
   sendData() {
+    let entries = Object.entries(this.registerForm.value);
+
     let myData = new FormData();
 
-    myData.append('userName', this.registerForm.value.userName);
-    myData.append('email', this.registerForm.value.email);
-    myData.append('country', this.registerForm.value.country);
-    myData.append('phoneNumber', this.registerForm.value.phoneNumber);
-    myData.append('password', this.registerForm.value.password);
-    myData.append('confirmPassword', this.registerForm.value.confirmPassword);
+    entries.forEach((entry) => {
+      myData.append(`${entry[0]}`, `${entry[1]}`);
+    });
+
     myData.append('profileImage', this.imgSrc);
 
     this._AuthService.onRegister(myData).subscribe({
@@ -59,7 +62,18 @@ export class RegisterComponent {
       },
       error: (err) => {
         console.log(err);
-        this._ToastrService.error(err.message, 'Error');
+
+        if (err.error.additionalInfo?.errors) {
+          let mapErrors = new Map(
+            Object.entries(err.error.additionalInfo?.errors)
+          );
+
+          for (const [msg, val] of mapErrors) {
+            this._ToastrService.error(`${val}`, `${msg} Error`);
+          }
+        } else {
+          this._ToastrService.error(err.error.message, 'Error');
+        }
       },
     });
   }
