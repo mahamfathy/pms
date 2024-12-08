@@ -11,4 +11,7 @@ export class AuthService {
   onLogin(loginForm: ILogin): Observable<any> {
     return this._HttpClient.post('Users/Login', loginForm);
   }
+  onRegister(registerForm: FormData): Observable<any> {
+    return this._HttpClient.post('Users/Register', registerForm);
+  }
 }
