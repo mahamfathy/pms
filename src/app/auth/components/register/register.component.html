@@ -30,108 +30,201 @@
                 </ngx-dropzone-image-preview>
               </ngx-dropzone>
 
-              <div class="row g-3">
-                <div class="col-md-6 left-side">
-                  <div class="">
-                    <div>
-                      <mat-form-field class="example-full-width w-100">
-                        <mat-label class="form--label">User Name</mat-label>
-                        <input
-                          class="form-input"
-                          matInput
-                          type="text"
-                          placeholder="Enter your name"
-                          formControlName="userName"
-                        />
-                      </mat-form-field>
-                    </div>
+              <div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width w-100">
+                      <mat-label class="form--label">User Name</mat-label>
+                      <input
+                        class="form-input"
+                        matInput
+                        type="text"
+                        placeholder="Enter your name"
+                        formControlName="userName"
+                      />
+                    </mat-form-field>
+                  </div>
 
-                    <div>
-                      <mat-form-field class="example-full-width w-100">
-                        <mat-label class="form--label">Country</mat-label>
-                        <input
-                          type="text"
-                          class="form-input"
-                          matInput
-                          placeholder="Enter your country"
-                          formControlName="country"
-                        />
-                      </mat-form-field>
-                    </div>
-                    <div class="position-relative">
-                      <mat-form-field class="example-full-width w-100">
-                        <mat-label class="form--label">Password</mat-label>
-                        <input
-                          [type]="hideEye1 ? 'password' : 'text'"
-                          class="form-input"
-                          matInput
-                          placeholder="Enter your password"
-                          formControlName="password"
-                        />
-                      </mat-form-field>
-                      <span
-                        (click)="hideEye1 = !hideEye1"
-                        [ngClass]="{
-                          'fa-eye': hideEye1,
-                          'fa-eye-slash': !hideEye1
-                        }"
-                        class="eye"
-                        ><i class="fa-regular"></i
-                      ></span>
-                    </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width w-100">
+                      <mat-label class="form--label">E-mail</mat-label>
+                      <input
+                        type="email"
+                        class="form-input"
+                        matInput
+                        placeholder="Enter your e-mail"
+                        formControlName="email"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-error
+                      class=""
+                      *ngIf="
+                        registerForm.get('userName')?.getError('pattern') &&
+                        !registerForm.get('userName')?.getError('required')
+                      "
+                    >
+                      Please enter userName must contain characters and end with
+                      numbers without spaces.
+                    </mat-error>
+
+                    <mat-error
+                      class=""
+                      *ngIf="
+                        registerForm.get('userName')?.getError('required') &&
+                        (registerForm.get('userName')?.touched ||
+                          registerForm.get('userName')?.dirty)
+                      "
+                    >
+                      User Name is <strong>required</strong>
+                    </mat-error>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-error
+                      class=""
+                      *ngIf="
+                        registerForm.get('email')?.getError('email') &&
+                        !registerForm.get('email')?.getError('required')
+                      "
+                    >
+                      Please enter valid email
+                    </mat-error>
+
+                    <mat-error
+                      class=""
+                      *ngIf="
+                        registerForm.get('email')?.getError('required') &&
+                        (registerForm.get('email')?.touched ||
+                          registerForm.get('email')?.dirty)
+                      "
+                    >
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width w-100">
+                      <mat-label class="form--label">Country</mat-label>
+                      <input
+                        type="text"
+                        class="form-input"
+                        matInput
+                        placeholder="Enter your country"
+                        formControlName="country"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width w-100">
+                      <mat-label class="form--label">Phone Number</mat-label>
+                      <input
+                        type="text"
+                        formControlName="phoneNumber"
+                        class="form-input"
+                        matInput
+                        placeholder="Enter your phone number"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-error
+                      class=""
+                      *ngIf="
+                        registerForm.get('country')?.getError('required') &&
+                        (registerForm.get('country')?.touched ||
+                          registerForm.get('country')?.dirty)
+                      "
+                    >
+                      Country is <strong>required</strong>
+                    </mat-error>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-error
+                      class=""
+                      *ngIf="
+                        registerForm.get('phoneNumber')?.getError('required') &&
+                        (registerForm.get('phoneNumber')?.touched ||
+                          registerForm.get('phoneNumber')?.dirty)
+                      "
+                    >
+                      Phone Number is <strong>required</strong>
+                    </mat-error>
                   </div>
                 </div>
 
-                <div class="col-md-6 right-side">
-                  <div class="">
-                    <div>
-                      <mat-form-field class="example-full-width w-100">
-                        <mat-label class="form--label">E-mail</mat-label>
-                        <input
-                          type="email"
-                          class="form-input"
-                          matInput
-                          placeholder="Enter your e-mail"
-                          formControlName="email"
-                        />
-                      </mat-form-field>
-                    </div>
-                    <div>
-                      <mat-form-field class="example-full-width w-100">
-                        <mat-label class="form--label">Phone Number</mat-label>
-                        <input
-                          type="text"
-                          formControlName="phoneNumber"
-                          class="form-input"
-                          matInput
-                          placeholder="Enter your phone number"
-                        />
-                      </mat-form-field>
-                    </div>
-                    <div class="position-relative">
-                      <mat-form-field class="example-full-width w-100">
-                        <mat-label class="form--label"
-                          >Confirm Password</mat-label
-                        >
+                <div class="row">
+                  <div class="col-md-6 position-relative">
+                    <mat-form-field class="example-full-width w-100">
+                      <mat-label class="form--label">Password</mat-label>
+                      <input
+                        [type]="hideEye1 ? 'password' : 'text'"
+                        class="form-input"
+                        matInput
+                        placeholder="Enter your password"
+                        formControlName="password"
+                      />
+                    </mat-form-field>
+                    <span
+                      (click)="hideEye1 = !hideEye1"
+                      [ngClass]="{
+                        'fa-eye': hideEye1,
+                        'fa-eye-slash': !hideEye1
+                      }"
+                      class="eye"
+                      ><i class="fa-regular"></i
+                    ></span>
+                  </div>
+                  <div class="col-md-6 position-relative">
+                    <mat-form-field class="example-full-width w-100">
+                      <mat-label class="form--label"
+                        >Confirm Password</mat-label
+                      >
 
-                        <input
-                          [type]="hideEye2 ? 'password' : 'text'"
-                          formControlName="confirmPassword"
-                          class="form-input"
-                          matInput
-                          placeholder="Confirm your password"
-                        />
-                      </mat-form-field>
-                      <span
-                        (click)="hideEye2 = !hideEye2"
-                        [ngClass]="{
-                          'fa-eye': hideEye2,
-                          'fa-eye-slash': !hideEye2
-                        }"
-                        class="eye"
-                        ><i class="fa-regular"></i
-                      ></span>
-                    </div>
+                      <input
+                        [type]="hideEye2 ? 'password' : 'text'"
+                        formControlName="confirmPassword"
+                        class="form-input"
+                        matInput
+                        placeholder="Confirm your password"
+                      />
+                    </mat-form-field>
+                    <span
+                      (click)="hideEye2 = !hideEye2"
+                      [ngClass]="{
+                        'fa-eye': hideEye2,
+                        'fa-eye-slash': !hideEye2
+                      }"
+                      class="eye"
+                      ><i class="fa-regular"></i
+                    ></span>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-error
+                      class=""
+                      *ngIf="
+                        registerForm.get('password')?.getError('required') &&
+                        (registerForm.get('password')?.touched ||
+                          registerForm.get('password')?.dirty)
+                      "
+                    >
+                      Password is <strong>required</strong>
+                    </mat-error>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-error
+                      class=""
+                      *ngIf="
+                        registerForm
+                          .get('confirmPassword')
+                          ?.getError('required') &&
+                        (registerForm.get('confirmPassword')?.touched ||
+                          registerForm.get('confirmPassword')?.dirty)
+                      "
+                    >
+                      Confirm Password is <strong>required</strong>
+                    </mat-error>
                   </div>
                 </div>
               </div>
@@ -143,7 +236,13 @@
               </div>
 
               <div class="form__actions col-md-11">
-                <button type="submit" class="orange-btn">Register</button>
+                <button
+                  [disabled]="registerForm.invalid"
+                  type="submit"
+                  class="orange-btn"
+                >
+                  Register
+                </button>
               </div>
             </form>
           </div>
