@@ -1,10 +1,10 @@
 <section class="auth-section">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-7 mx-auto">
-        <div class="auth-form bg-secondary p-3">
-          <div class="form__header text-start">
-            <p class="form__header-paragraph">PMS</p>
+      <div class="col-md-10">
+        <div class="auth-form">
+          <div class="form__header">
+            <p class="form__header-paragraph">Welcome to PMS</p>
 
             <h1 class="form__header-title">
               C<span class="underline-text">reate New Account</span>
@@ -100,7 +100,7 @@
                       <mat-form-field class="example-full-width w-100">
                         <mat-label class="form--label">Phone Number</mat-label>
                         <input
-                          type="number"
+                          type="text"
                           formControlName="phoneNumber"
                           class="form-input"
                           matInput
@@ -137,20 +137,13 @@
               </div>
 
               <div
-                class="form__links d-flex justify-content-between align-items-center mb-3"
+                class="form__links d-flex justify-content-end align-items-center mb-3"
               >
-                <a href="" class="link text-decoration-none">Verfiy email</a>
                 <a href="" class="link text-decoration-none">Login Now</a>
               </div>
 
-              <div class="fotm__actions col-md-8 bg-success mx-auto">
-                <!-- [disabled]="registerForm.valid" -->
-                <button
-                  class="orange-btn w-100 p-2 rounded-3 border-0"
-                  type="submit"
-                >
-                  Register
-                </button>
+              <div class="form__actions col-md-11">
+                <button type="submit" class="orange-btn">Register</button>
               </div>
             </form>
           </div>

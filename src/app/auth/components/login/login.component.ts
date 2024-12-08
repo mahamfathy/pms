@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -7,7 +12,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   constructor(
@@ -31,11 +36,12 @@ export class LoginComponent {
     return this.loginForm.controls;
   }
   login(data: FormGroup): void {
-    if (this.loginForm.valid) {
+    if (data.valid) {
       this._AuthService.onLogin(data.value).subscribe({
         next: (res) => {
           console.log(res);
           localStorage.setItem('userToken', res.token)
+          this._AuthService.getProfile();
         },
         error: (err) => {
           console.log(err);
@@ -44,6 +50,7 @@ export class LoginComponent {
           this._ToastrService.success('You have been successfully loged in')
           this._Router.navigate(['/dashboard'])
         }
+       
       });
     }
   }
