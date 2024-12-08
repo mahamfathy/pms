@@ -18,4 +18,7 @@ export class AuthService {
   onVerify(verifyForm: IVerify): Observable<any> {
     return this._HttpClient.post('Users/Verify', verifyForm);
   }
+  onResetRequest(resetReq: any): Observable<any> {
+    return this._HttpClient.post('Users/Reset/Request', resetReq);
+  }
 }
