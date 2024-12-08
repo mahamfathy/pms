@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ILogin } from '../interfaces/ILogin';
+import { IResetPassword } from '../interfaces/IResetPassword';
 import { IVerify } from '../interfaces/IVerify';
 
 @Injectable({
@@ -20,5 +21,8 @@ export class AuthService {
   }
   onResetRequest(resetReq: any): Observable<any> {
     return this._HttpClient.post('Users/Reset/Request', resetReq);
+  }
+  onResetPassword(resetPassForm: IResetPassword): Observable<any> {
+    return this._HttpClient.post('Users/Reset', resetPassForm);
   }
 }
