@@ -18,8 +18,8 @@ export class AuthService {
   onRegister(registerForm: FormData): Observable<any> {
     return this._HttpClient.post('Users/Register', registerForm);
   }
-  onVerify(verifyForm: IVerify): Observable<any> {
-    return this._HttpClient.post('Users/Verify', verifyForm);
+  onVerify(verifyForm: any): Observable<any> {
+    return this._HttpClient.put('Users/verify', verifyForm);
   }
   onResetRequest(resetReq: any): Observable<any> {
     return this._HttpClient.post('Users/Reset/Request', resetReq);
