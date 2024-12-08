@@ -62,8 +62,9 @@
                 <mat-error
                   class=""
                   *ngIf="
-                    verifyForm.get('email')?.getError('email') &&
-                    !verifyForm.get('email')?.getError('required')
+                    verifyForm.get('code')?.getError('required') &&
+                    (verifyForm.get('code')?.touched ||
+                      verifyForm.get('code')?.dirty)
                   "
                 >
                   Please enter code
@@ -71,7 +72,13 @@
               </div>
 
               <div class="form__actions col-md-11">
-                <button type="submit" class="orange-btn">verify</button>
+                <button
+                  [disabled]="verifyForm.invalid"
+                  type="submit"
+                  class="orange-btn"
+                >
+                  verify
+                </button>
               </div>
             </form>
           </div>

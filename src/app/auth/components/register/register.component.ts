@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,7 @@ export class RegisterComponent {
   constructor(
     private _AuthService: AuthService,
     private _FormBuilder: FormBuilder,
+    private _Router: Router,
     private _ToastrService: ToastrService
   ) {}
 
@@ -59,6 +61,7 @@ export class RegisterComponent {
       next: (res) => {
         console.log(res);
         this._ToastrService.success(res.message, 'Successfully');
+        this._Router.navigate(['/auth/verify']);
       },
       error: (err) => {
         console.log(err);
