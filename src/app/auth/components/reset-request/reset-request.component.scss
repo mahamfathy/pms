@@ -1,4 +1,6 @@
+
 @import "../../../../assets/sass/abstracts/mixins";
+
 .container-fluid {
   background-image: url("./../../../../assets/images/reset-req-bg.jpg");
   background-size: cover;
@@ -12,4 +14,5 @@
       @include divCenter;
     }
   }
-}
+
+
