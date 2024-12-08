@@ -15,6 +15,9 @@ export class RegisterComponent {
     private _ToastrService: ToastrService
   ) {}
 
+  hideEye1: boolean = true;
+  hideEye2: boolean = true;
+
   registerForm: FormGroup = this._FormBuilder.group({
     userName: ['', [Validators.required]],
     email: ['', [Validators.required]],
