@@ -1,0 +1,82 @@
+<section class="auth-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="auth-form">
+          <div class="form__header">
+            <p class="form__header-paragraph">Welcome to PMS</p>
+
+            <h1 class="form__header-title">
+              <span class="underline-text">V</span>erify Password
+            </h1>
+          </div>
+          <div class="form__wrapper">
+            <form
+              class="example-form form"
+              [formGroup]="verifyForm"
+              (ngSubmit)="sendData()"
+            >
+              <mat-form-field class="custom-field">
+                <mat-label class="form--label">Email</mat-label>
+                <input
+                  class="form-input"
+                  type="email"
+                  matInput
+                  placeholder="Enter your email"
+                  formControlName="email"
+                />
+              </mat-form-field>
+              <div class="w-100">
+                <mat-error
+                  class=""
+                  *ngIf="
+                    verifyForm.get('email')?.getError('email') &&
+                    !verifyForm.get('email')?.getError('required')
+                  "
+                >
+                  Please enter valid email
+                </mat-error>
+
+                <mat-error
+                  class=""
+                  *ngIf="
+                    verifyForm.get('email')?.getError('required') &&
+                    (verifyForm.get('email')?.touched ||
+                      verifyForm.get('email')?.dirty)
+                  "
+                >
+                  Email is <strong>required</strong>
+                </mat-error>
+              </div>
+              <mat-form-field class="custom-field">
+                <mat-label class="form--label">OTP Verification</mat-label>
+                <input
+                  class="form-input"
+                  type="email"
+                  matInput
+                  placeholder="Enter Verification"
+                  formControlName="code"
+                />
+              </mat-form-field>
+              <div class="w-100">
+                <mat-error
+                  class=""
+                  *ngIf="
+                    verifyForm.get('email')?.getError('email') &&
+                    !verifyForm.get('email')?.getError('required')
+                  "
+                >
+                  Please enter code
+                </mat-error>
+              </div>
+
+              <div class="form__actions col-md-11">
+                <button type="submit" class="orange-btn">verify</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
