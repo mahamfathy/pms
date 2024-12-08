@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   constructor(
@@ -29,18 +34,19 @@ export class LoginComponent {
     return this.loginForm.controls;
   }
   login(data: FormGroup): void {
-    if (this.loginForm.valid) {
+    if (data.valid) {
       this._AuthService.onLogin(data.value).subscribe({
         next: (res) => {
           console.log(res);
-          // localStorage.setItem('userToken', res.token)
+          localStorage.setItem('userToken', res.token);
         },
         error: (err) => {
           console.log(err);
-          this._ToastrService.error(err.error.message)
-        },complete:()=>{
-          this._ToastrService.success('You have been successfully loged in')
-        }
+          this._ToastrService.error(err.error.message);
+        },
+        complete: () => {
+          this._ToastrService.success('You have been successfully loged in');
+        },
       });
     }
   }
