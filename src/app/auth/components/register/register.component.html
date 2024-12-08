@@ -1,0 +1,135 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 mx-auto">
+        <div class="form bg-secondary p-4">
+          <div class="form__header text-start">
+            <p class="form__header-paragraph m-0">PMS</p>
+
+            <h1 class="fform__header-title m-0">
+              C<span class="underline-text">reate New Account</span>
+            </h1>
+          </div>
+
+          <div class="form__wrapper">
+            <ngx-dropzone class="my-3" (change)="onSelect($event)">
+              <ngx-dropzone-label>Upload photo!</ngx-dropzone-label>
+
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files"
+                [file]="f"
+                [removable]="true"
+                (removed)="onRemove(f)"
+              >
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+
+            <form
+              class="example-form form"
+              [formGroup]="registerForm"
+              (ngSubmit)="sendData()"
+            >
+              <div class="row g-3">
+                <div class="col-md-6 left-side">
+                  <div class="">
+                    <div>
+                      <mat-form-field class="example-full-width w-100">
+                        <mat-label class="form--label">User Name</mat-label>
+                        <input
+                          class="form-input"
+                          matInput
+                          placeholder="Enter your name"
+                          formControlName="userName"
+                        />
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field class="example-full-width w-100">
+                        <mat-label class="form--label">Country</mat-label>
+                        <input
+                          class="form-input"
+                          matInput
+                          placeholder="Enter your country"
+                          formControlName="country"
+                        />
+                      </mat-form-field>
+                    </div>
+                    <div class="">
+                      <mat-form-field class="example-full-width w-100">
+                        <mat-label class="form--label">Password</mat-label>
+                        <input
+                          class="form-input"
+                          matInput
+                          placeholder="Enter your password"
+                          formControlName="password"
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 right-side">
+                  <div class="">
+                    <div>
+                      <mat-form-field class="example-full-width w-100">
+                        <mat-label class="form--label">E-mail</mat-label>
+                        <input
+                          class="form-input"
+                          matInput
+                          placeholder="Enter your e-mail"
+                          formControlName="email"
+                        />
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field class="example-full-width w-100">
+                        <mat-label class="form--label">Phone Number</mat-label>
+                        <input
+                          formControlName="phoneNumber"
+                          class="form-input"
+                          matInput
+                          placeholder="Enter your phone number"
+                        />
+                      </mat-form-field>
+                    </div>
+                    <div class="">
+                      <mat-form-field class="example-full-width w-100">
+                        <mat-label class="form--label"
+                          >Confirm Password</mat-label
+                        >
+                        <input
+                          formControlName="confirmPassword"
+                          class="form-input"
+                          matInput
+                          placeholder="Confirm your password"
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="form__links d-flex justify-content-between align-items-center mb-3"
+              >
+                <a href="" class="link text-decoration-none">Verfiy email</a>
+                <a href="" class="link text-decoration-none">Login Now</a>
+              </div>
+
+              <div class="fotm__actions col-md-8 bg-success mx-auto">
+                <!-- [disabled]="registerForm.valid" -->
+                <button
+                  class="orange-btn w-100 p-2 rounded-3 border-0"
+                  type="submit"
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
