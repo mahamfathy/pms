@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +17,10 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
   constructor(
     private _AuthService: AuthService,
-    private _ToastrService: ToastrService
+    private _ToastrService: ToastrService,
+    private _Router : Router
   ) {}
-  passwordShow: boolean = false;
+  hide: boolean = true;
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -38,15 +40,17 @@ export class LoginComponent {
       this._AuthService.onLogin(data.value).subscribe({
         next: (res) => {
           console.log(res);
-          localStorage.setItem('userToken', res.token);
+          localStorage.setItem('userToken', res.token)
+          this._AuthService.getProfile();
         },
         error: (err) => {
           console.log(err);
-          this._ToastrService.error(err.error.message);
-        },
-        complete: () => {
-          this._ToastrService.success('You have been successfully loged in');
-        },
+          this._ToastrService.error(err.error.message)
+        },complete:()=>{
+          this._ToastrService.success('You have been successfully loged in')
+          this._Router.navigate(['/dashboard'])
+        }
+       
       });
     }
   }

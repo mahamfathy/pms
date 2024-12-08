@@ -1,5 +1,5 @@
 <section class="auth-section">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row justify-content-center mb-4">
       <div class="col-md-3">
         <img src="assets/images/logo.svg" class="w-100" alt="logo" />
@@ -34,74 +34,73 @@
                       formControlName="email"
                     />
                   </mat-form-field>
-                  <ng-container
+                  <div
                     *ngIf="
                       formData['email'].errors &&
                       (formData['email'].touched || formData['email'].dirty)
                     "
-                    class="bg-warning"
+                    class="w-75 mx-auto mb-2 bg-danger-subtle px-2"
                   >
-                    <div class="row">
+                    <div class="row align-items-center">
                       <div class="col-1">
-                        <i class="fa-solid fa-circle-info text-danger"></i>
+                        <i class="fa-solid fa-circle-info"></i>
                       </div>
                       <div class="col-10">
                         <p
-                          class="text-danger mx-auto w-100 p-1 mb-0"
+                          class="mx-auto  p-1 mb-0"
                           *ngIf="formData['email'].getError('required')"
                         >
                           Email is required
                         </p>
                         <p
-                          class="text-danger mx-auto p-1 mb-0"
+                          class="mx-auto p-1 mb-0"
                           *ngIf="formData['email'].getError('email')"
                         >
                           Email invalid format
                         </p>
                       </div>
                     </div>
-                  </ng-container>
+                  </div>
                   <mat-form-field class="example-full-width w-100">
-                    <mat-label>Password</mat-label>
-                    <input
-                      matInput
-                      placeholder="Enter your password"
-                      class="form-input"
-                      formControlName="password"
-                    />
+                    <mat-label>Enter your password</mat-label>
+                    <input  formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
                   </mat-form-field>
-                  <ng-container
+
+
+                  <div
                     *ngIf="
                       formData['password'].errors &&
                       (formData['password'].touched ||
                         formData['password'].dirty)
                     "
+                     class="w-75 mx-auto mb-2 bg-danger-subtle px-2"
                   >
-                    <div class="row">
+                    <div class="row align-items-center">
                       <div class="col-1">
-                        <i class="fa-solid fa-circle-info text-danger"></i>
+                        <i class="fa-solid fa-circle-info "></i>
                       </div>
                       <div class="col-10">
                         <p
-                          class="text-danger mx-auto p-1 mb-0"
+                          class=" mx-auto p-1 mb-0"
                           *ngIf="formData['password'].getError('required')"
                         >
                           Password is required
                         </p>
                         <p
-                          class="text-danger mx-auto p-1 mb-0"
+                          class=" mx-auto p-1 mb-0"
                           *ngIf="formData['password'].getError('pattern')"
                         >
-                          Password Invalid Format: it must be at least 6 chars,
-                          contains at least one small letter, one capital
-                          letter, and one special caracter
+                          Password Invalid Format
                         </p>
                       </div>
                     </div>
-                  </ng-container>
-                </form>
-                <div
-                  class="form__links d-flex justify-content-between align-items-center mb-4"
+                  </div>
+
+                  <div
+                  class="form__links d-flex justify-content-between align-items-center mb-4 w-100"
                 >
                   <a
                     routerLink="/auth/register"
@@ -114,13 +113,14 @@
                     >Forgot Password ?</a
                   >
                 </div>
+                <div class="col-md-9 form__actions">
+                  <button class="orange-btn w-100 border-0" type='submit'>Login</button>
+                </div>
+                </form>
+               
               </div>
             </div>
-            <div class="col-md-9 form__actions">
-              <button class="orange-btn w-100 border-0" type="submit">
-                Login
-              </button>
-            </div>
+
           </div>
         </div>
       </div>
