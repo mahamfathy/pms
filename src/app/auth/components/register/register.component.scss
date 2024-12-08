@@ -1,11 +1,23 @@
-.auth-section {
-  height: 100vh;
-  background-image: url("../../../../assets/WhatsApp Image 2024-12-08 at 4.30.14 PM.jpeg");
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@import "../../../../assets/sass/abstracts/variables";
+@import "../../../../assets/sass/abstracts/mixins";
+section.auth-section {
+  @include auth-bg("../../../../assets/images/register-bg.jpeg");
+  .container-fluid {
+    & > .row {
+      height: 100vh;
+    }
+    .row {
+      @include divCenter;
+      flex-direction: row;
+      .col-md-10 {
+        @include divCenter;
+        .auth-form {
+          padding: 2rem 4rem;
+          background-color: $light-grey;
+        }
+      }
+    }
+  }
 }
 
 ngx-dropzone {
