@@ -48,16 +48,12 @@
         border-bottom: 1px solid $color-white !important;
       }
 
-      ::placeholder {
-        color: $color-white;
-
-        .mat-mdc-form-field-error-wrapper.ng-tns-c1205077789-0.ng-trigger.ng-trigger-transitionMessages {
-          padding: 0 !important;
-        }
-      }
       .mdc-text-field--filled:not(.mdc-text-field--disabled) {
         background-color: transparent;
-      }
+     ::placeholder {
+        color: $color-white !important;
+      .mat-mdc-form-field-error-wrapper.ng-tns-c1205077789-0.ng-trigger.ng-trigger-transitionMessages {
+        padding: 0 !important;
     }
     .form__links {
       display: flex;
@@ -86,4 +82,5 @@
       }
     }
   }
+}
 }

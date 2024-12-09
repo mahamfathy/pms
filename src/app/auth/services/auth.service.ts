@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ILogin } from '../interfaces/ILogin';
 import { IResetPassword } from '../interfaces/IResetPassword';
 import { IVerify } from '../interfaces/IVerify';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -30,11 +31,6 @@ export class AuthService {
     return this._HttpClient.post('Users/Reset', resetPassForm);
   }
 
-  onLogout(): void {
-    localStorage.clear();
-    this._Router.navigate(['/auth']);
-  }
-
   getProfile(): void {
     const userToken: any = localStorage.getItem('userToken');
     let decoded: any = jwtDecode(userToken);
@@ -50,5 +46,9 @@ export class AuthService {
       this.role = localStorage.getItem('role');
     }
     return this.role;
+  }
+  onLogout(): void {
+    localStorage.clear();
+    this._Router.navigate(['/auth']);
   }
 }
