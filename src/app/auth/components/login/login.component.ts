@@ -3,6 +3,7 @@ import {
   AbstractControl,
   FormControl,
   FormGroup,
+  Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -55,7 +56,6 @@ export class LoginComponent {
             this._Router.navigate(['/dashboard/employee']);
           }
         },
-
       });
     }
   }

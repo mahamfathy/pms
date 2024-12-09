@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { ILogin } from '../interfaces/ILogin';
 import { IResetPassword } from '../interfaces/IResetPassword';
 import { IVerify } from '../interfaces/IVerify';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
