@@ -2,10 +2,7 @@
   <div class="container-fluid">
     <div class="row justify-content-center mb-4">
       <div class="col-md-3">
-        <img
-          src="./assets/images/logo.svg"
-          class="w-100"
-          alt="logo"
+        <img src="./assets/images/logo.svg" class="w-100" alt="logo" />
       </div>
     </div>
     <div class="row justify-content-center">
@@ -26,7 +23,7 @@
                   [formGroup]="loginForm"
                   (ngSubmit)="login(loginForm)"
                 >
-                  <mat-form-field class="example-full-width ">
+                  <mat-form-field class="example-full-width">
                     <mat-label class="form--label">Email</mat-label>
                     <input
                       matInput
@@ -50,7 +47,7 @@
                       </div>
                       <div class="col-10">
                         <p
-                          class="mx-auto  p-1 mb-0"
+                          class="mx-auto p-1 mb-0"
                           *ngIf="formData['email'].getError('required')"
                         >
                           Email is required
@@ -64,14 +61,26 @@
                       </div>
                     </div>
                   </div>
-                  <mat-form-field class="example-full-width ">
+                  <mat-form-field class="example-full-width">
                     <mat-label>Password</mat-label>
-                    <input placeholder="Enter your password"  formControlName="password" matInput [type]="hide ? 'password' : 'text'">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <input
+                      placeholder="Enter your password"
+                      formControlName="password"
+                      matInput
+                      [type]="hide ? 'password' : 'text'"
+                    />
+                    <button
+                      mat-icon-button
+                      matSuffix
+                      (click)="hide = !hide"
+                      [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide"
+                    >
+                      <mat-icon>{{
+                        hide ? "visibility_off" : "visibility"
+                      }}</mat-icon>
                     </button>
                   </mat-form-field>
-
 
                   <div
                     *ngIf="
@@ -79,21 +88,21 @@
                       (formData['password'].touched ||
                         formData['password'].dirty)
                     "
-                     class="w-75 mx-auto mb-2 bg-danger-subtle px-2"
+                    class="w-75 mx-auto mb-2 bg-danger-subtle px-2"
                   >
                     <div class="row align-items-center">
                       <div class="col-1">
-                        <i class="fa-solid fa-circle-info "></i>
+                        <i class="fa-solid fa-circle-info"></i>
                       </div>
                       <div class="col-10">
                         <p
-                          class=" mx-auto p-1 mb-0"
+                          class="mx-auto p-1 mb-0"
                           *ngIf="formData['password'].getError('required')"
                         >
                           Password is required
                         </p>
                         <p
-                          class=" mx-auto p-1 mb-0"
+                          class="mx-auto p-1 mb-0"
                           *ngIf="formData['password'].getError('pattern')"
                         >
                           Password Invalid Format
@@ -103,27 +112,27 @@
                   </div>
 
                   <div
-                  class="form__links d-flex justify-content-between align-items-center mb-4 w-100"
-                >
-                  <a
-                    routerLink="/auth/register"
-                    class="link form__paragraph text-decoration-none"
-                    >Register now ?</a
+                    class="form__links d-flex justify-content-between align-items-center mb-4 w-100"
                   >
-                  <a
-                    routerLink="/auth/reset-request"
-                    class="link form__paragraph text-decoration-none"
-                    >Forgot Password ?</a
-                  >
-                </div>
-                <div class="col-md-9 form__actions">
-                  <button class="orange-btn w-100 border-0" type='submit'>Login</button>
-                </div>
+                    <a
+                      routerLink="/auth/register"
+                      class="link form__paragraph text-decoration-none"
+                      >Register now ?</a
+                    >
+                    <a
+                      routerLink="/auth/reset-request"
+                      class="link form__paragraph text-decoration-none"
+                      >Forgot Password ?</a
+                    >
+                  </div>
+                  <div class="col-md-9 form__actions">
+                    <button class="orange-btn w-100 border-0" type="submit">
+                      Login
+                    </button>
+                  </div>
                 </form>
-
               </div>
             </div>
-
           </div>
         </div>
       </div>
