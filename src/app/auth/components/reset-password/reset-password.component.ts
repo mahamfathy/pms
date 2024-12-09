@@ -39,8 +39,8 @@ export class ResetPasswordComponent implements OnInit {
     private _Router: Router
   ) {}
   ngOnInit(): void {
-    const userEmail = localStorage.getItem('userEmail');
-    this.resetPasswordForm.get('email')!.setValue(userEmail || '');
+    const email = localStorage.getItem('email');
+    this.resetPasswordForm.get('email')!.setValue(email || '');
   }
   public get formData(): {
     [key: string]: AbstractControl<any, any>;

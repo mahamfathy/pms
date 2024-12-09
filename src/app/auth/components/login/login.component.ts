@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
     ]),
   });
   ngOnInit(): void {
-    const userEmail = localStorage.getItem('userEmail');
-    if (userEmail) {
-      this.loginForm.get('userEmail')!.setValue(userEmail || '');
+    const email = localStorage.getItem('email');
+    if (email) {
+      this.loginForm.get('email')!.setValue(email || '');
     }
   }
   public get formData(): {
@@ -42,40 +42,38 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
   login(data: FormGroup) {
-    if (data.invalid) {
-      this._ToastrService.error('Invalid login details!', 'Error');
-      return;
-    }
-    this._AuthService.onLogin(data.value).subscribe({
-      next: (res) => {
-        // console.log(res);
-        localStorage.setItem('userToken', res.token);
-        this._AuthService.getProfile();
-      },
-      error: (err) => {
-        const errors = err.error.errors;
-        if (errors) {
-          if (errors.email) {
-            this._ToastrService.error(errors.email, 'Email Error');
-          } else if (errors.password) {
-            this._ToastrService.error(errors.password, 'Password Error');
+    if (data.valid) {
+      this._AuthService.onLogin(data.value).subscribe({
+        next: (res) => {
+          // console.log(res);
+          localStorage.setItem('userToken', res.token);
+          this._AuthService.getProfile();
+        },
+        error: (err) => {
+          const errors = err.error.errors;
+          if (errors) {
+            if (errors.email) {
+              this._ToastrService.error(errors.email, 'Email Error');
+            } else if (errors.password) {
+              this._ToastrService.error(errors.password, 'Password Error');
+            }
+          } else {
+            this._ToastrService.error(
+              err.error.message || 'An unexpected error occurred',
+              'Error'
+            );
           }
-        } else {
-          this._ToastrService.error(
-            err.error.message || 'An unexpected error occurred',
-            'Error'
-          );
-        }
-      },
-      complete: () => {
-        this._ToastrService.success('Login successful!', 'Success');
-        if (this._AuthService.userGroup === 'Manager') {
-          this._Router.navigate(['/dashboard/manager']);
-        } else {
-          this._Router.navigate(['/dashboard/employee']);
-        }
-      },
-    });
-    // loginForm.reset();
+        },
+        complete: () => {
+          this._ToastrService.success('Login successful!', 'Success');
+          if (this._AuthService.role === 'Manager') {
+            this._Router.navigate(['/dashboard/manager']);
+          } else {
+            this._Router.navigate(['/dashboard/employee']);
+          }
+        },
+      });
+      // loginForm.reset();
+    }
   }
 }
