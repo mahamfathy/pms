@@ -16,8 +16,9 @@ import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 @NgModule({
-  declarations: [ChangePasswordComponent, NavbarComponent],
+  declarations: [ChangePasswordComponent, NavbarComponent, SidebarComponent],
   imports: [
     CommonModule,
     RouterModule,
