@@ -42,7 +42,7 @@ export class LoginComponent {
         next: (res) => {
           // console.log(res);
           localStorage.setItem('userToken', res.token);
-          this._AuthService.onGetProfile();
+          this._AuthService.getProfile();
         },
         error: (err) => {
           // console.log(err);
@@ -51,7 +51,7 @@ export class LoginComponent {
         complete: () => {
           this._ToastrService.success('You have been successfully loged in');
           this._Router.navigate(['/dashboard']);
-          if (this._AuthService.onGetRole() === 'manager') {
+          if (this._AuthService.getRole() === 'manager') {
             this._Router.navigate(['/dashboard/manager']);
           }else {
             this._Router.navigate(['/dashboard/employee']);
