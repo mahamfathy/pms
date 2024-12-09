@@ -6,9 +6,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ChangePasswordComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { ILogin } from '../interfaces/ILogin';
 import { IResetPassword } from '../interfaces/IResetPassword';
 import { IVerify } from '../interfaces/IVerify';
+import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -12,14 +14,15 @@ import { IVerify } from '../interfaces/IVerify';
 export class AuthService {
   role: string | null = '';
   constructor(private _HttpClient: HttpClient) {}
+
   onLogin(loginForm: ILogin): Observable<any> {
     return this._HttpClient.post('Users/Login', loginForm);
   }
   onRegister(registerForm: FormData): Observable<any> {
     return this._HttpClient.post('Users/Register', registerForm);
   }
-  onVerify(verifyForm: IVerify): Observable<any> {
-    return this._HttpClient.post('Users/Verify', verifyForm);
+  onVerify(verifyForm: any): Observable<any> {
+    return this._HttpClient.put('Users/verify', verifyForm);
   }
   onResetRequest(resetReq: any): Observable<any> {
     return this._HttpClient.post('Users/Reset/Request', resetReq);
@@ -27,6 +30,10 @@ export class AuthService {
   onResetPassword(resetPassForm: IResetPassword): Observable<any> {
     return this._HttpClient.post('Users/Reset', resetPassForm);
   }
+
+  onLogout(): void {
+    localStorage.clear();
+    this._Router.navigate(['/auth']);
 
   getProfile(): void {
     const userToken: any = localStorage.getItem('userToken');
