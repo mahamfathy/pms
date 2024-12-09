@@ -15,11 +15,10 @@ export class ResetPasswordComponent {
     private _ToastrService: ToastrService,
     private _Router : Router,
     private _FormBuilder :  FormBuilder
-    
+
   ) {}
   hidePassword: boolean = true;
   hideConfirmPassword: boolean = true;
-
   resetPasswordForm: FormGroup = this._FormBuilder.group({
     email: new FormControl('', [Validators.required, Validators.email]),
     seed: new FormControl('', [Validators.required]),

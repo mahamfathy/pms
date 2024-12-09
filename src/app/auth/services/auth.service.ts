@@ -11,7 +11,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root',
 })
 export class AuthService {
-  userGroup: string | null = '';
+  role: string | null = '';
   constructor(private _HttpClient: HttpClient, private _Router: Router) {}
   onLogin(loginForm: ILogin): Observable<any> {
     return this._HttpClient.post('Users/Login', loginForm);
@@ -28,20 +28,21 @@ export class AuthService {
   onResetPassword(resetPassForm: IResetPassword): Observable<any> {
     return this._HttpClient.post('Users/Reset', resetPassForm);
   }
-  onGetProfile() {
-    let token: any = localStorage.getItem('userToken');
-    let decodedToken: any = jwtDecode(token);
-    localStorage.setItem('userGroup', decodedToken.userGroup);
-    this.onGetRole();
+  getProfile(): void {
+    const userToken: any = localStorage.getItem('userToken');
+    let decoded: any = jwtDecode(userToken);
+    localStorage.setItem('email', decoded.email);
+    localStorage.setItem('role', decoded.role);
+    this.getRole();
   }
-  onGetRole() {
+  getRole() {
     if (
       localStorage.getItem('userToken') !== null &&
-      localStorage.getItem('userGroup') !== null
+      localStorage.getItem('role') !== null
     ) {
-      this.userGroup = localStorage.getItem('userGroup');
+      this.role = localStorage.getItem('role');
     }
-    return this.userGroup;
+    return this.role;
   }
   onLogout(): void {
     localStorage.clear();
