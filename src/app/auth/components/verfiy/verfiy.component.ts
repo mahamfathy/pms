@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
@@ -10,40 +10,38 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./verfiy.component.scss'],
 })
 export class VerfiyComponent {
+  resMessage: string = '';
+  verifyAccountForm = new FormGroup({
+    email: new FormControl('', [Validators.email, Validators.required]),
+    code: new FormControl('', [Validators.required]),
+  });
   constructor(
     private _AuthService: AuthService,
-    private _FormBuilder: FormBuilder,
     private _ToastrService: ToastrService,
     private _Router: Router
   ) {}
+  ngOnInit(): void {
+    const userEmail = localStorage.getItem('userEmail');
+    this.verifyAccountForm.get('email')!.setValue(userEmail || '');
+  }
 
-  verifyForm = this._FormBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    code: ['', [Validators.required]],
-  });
-
-  sendData() {
-    this._AuthService.onVerify(this.verifyForm.value).subscribe({
-      next: (res) => {
-        console.log(res);
-        this._ToastrService.success(res.message, 'Successfully');
-        this._Router.navigate(['/auth/login']);
-      },
-      error: (err) => {
-        console.log(err);
-
-        if (err.error.additionalInfo?.errors) {
-          let mapErrors = new Map(
-            Object.entries(err.error.additionalInfo?.errors)
+  onVerify(verifyAccountForm: FormGroup): void {
+    if (verifyAccountForm.valid) {
+      this._AuthService.onVerify(verifyAccountForm.value).subscribe({
+        next: (res) => {
+          this.resMessage = res.message;
+        },
+        error: (err) => {
+          this._ToastrService.error(
+            err.message || 'An unexpected error occurred',
+            'Error'
           );
-
-          for (const [msg, val] of mapErrors) {
-            this._ToastrService.error(`${val}`, `${msg} Error`);
-          }
-        } else {
-          this._ToastrService.error(err.error.message, 'Error');
-        }
-      },
-    });
+        },
+        complete: () => {
+          this._ToastrService.success(this.resMessage, 'Account Verified');
+          this._Router.navigateByUrl('/auth/login');
+        },
+      });
+    }
   }
 }

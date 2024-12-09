@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  FormBuilder,
   FormControl,
   FormControlOptions,
   FormGroup,
@@ -19,7 +18,8 @@ import { AuthService } from '../../services/auth.service';
 export class ResetPasswordComponent implements OnInit {
   hidePassword: boolean = true;
   hideConfirmPassword: boolean = true;
-  resetPasswordForm: FormGroup = this._FormBuilder.group(
+  resMessage: string = '';
+  resetPasswordForm: FormGroup = new FormGroup(
     {
       email: new FormControl('', [Validators.required, Validators.email]),
       seed: new FormControl('', [Validators.required]),
@@ -36,12 +36,11 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     private _AuthService: AuthService,
     private _ToastrService: ToastrService,
-    private _Router: Router,
-    private _FormBuilder: FormBuilder
+    private _Router: Router
   ) {}
   ngOnInit(): void {
     const userEmail = localStorage.getItem('userEmail');
-    this.resetPasswordForm.get('email')?.setValue(userEmail || '');
+    this.resetPasswordForm.get('email')!.setValue(userEmail || '');
   }
   public get formData(): {
     [key: string]: AbstractControl<any, any>;
@@ -61,16 +60,27 @@ export class ResetPasswordComponent implements OnInit {
     if (this.resetPasswordForm.valid) {
       this._AuthService.onResetPassword(data.value).subscribe({
         next: (res) => {
-          console.log(res);
-          localStorage.setItem('userToken', res.token);
+          this.resMessage = res.message;
         },
         error: (err) => {
           console.log(err);
-          this._ToastrService.error(err.error.message);
+          const errors = err.error.errors;
+          if (errors) {
+            if (errors.email) {
+              this._ToastrService.error(errors.email, 'Email Error');
+            } else if (errors.password) {
+              this._ToastrService.error(errors.password, 'Password Error');
+            }
+          } else {
+            this._ToastrService.error(
+              err.error.message || 'An unexpected error occurred',
+              'Error'
+            );
+          }
         },
         complete: () => {
-          this._ToastrService.success('You have been successfully loged in');
-          this._Router.navigate(['/dashboard']);
+          this._ToastrService.success(this.resMessage, 'Reset Password');
+          this._Router.navigate(['/auth/login']);
         },
       });
     }
