@@ -4,9 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { ILogin } from '../interfaces/ILogin';
 import { IResetPassword } from '../interfaces/IResetPassword';
-import { IVerify } from '../interfaces/IVerify';
 import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',

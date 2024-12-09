@@ -4,7 +4,6 @@ import {
   Validators,
   AbstractControl,
   FormGroup,
-  Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
@@ -57,7 +56,7 @@ export class LoginComponent {
             this._Router.navigate(['/dashboard/employee']);
           }
         },
-       
+
       });
     }
   }
