@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   } {
     return this.loginForm.controls;
   }
-  login(data: FormGroup): void {
+  
     if (data.invalid) {
       this._ToastrService.error('Invalid login details!', 'Error');
       return;
