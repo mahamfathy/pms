@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
+  Validators,
+  AbstractControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -18,7 +19,7 @@ export class LoginComponent {
   constructor(
     private _AuthService: AuthService,
     private _ToastrService: ToastrService,
-    private _Router : Router
+    private _Router: Router
   ) {}
   hide: boolean = true;
   loginForm: FormGroup = new FormGroup({
@@ -39,17 +40,23 @@ export class LoginComponent {
     if (data.valid) {
       this._AuthService.onLogin(data.value).subscribe({
         next: (res) => {
-          console.log(res);
-          localStorage.setItem('userToken', res.token)
-          this._AuthService.getProfile();
+          // console.log(res);
+          localStorage.setItem('userToken', res.token);
+          this._AuthService.onGetProfile();
         },
         error: (err) => {
-          console.log(err);
-          this._ToastrService.error(err.error.message)
-        },complete:()=>{
-          this._ToastrService.success('You have been successfully loged in')
-          this._Router.navigate(['/dashboard'])
-        }
+          // console.log(err);
+          this._ToastrService.error(err.error.message);
+        },
+        complete: () => {
+          this._ToastrService.success('You have been successfully loged in');
+          this._Router.navigate(['/dashboard']);
+          if (this._AuthService.onGetRole() === 'manager') {
+            this._Router.navigate(['/dashboard/manager']);
+          }else {
+            this._Router.navigate(['/dashboard/employee']);
+          }
+        },
        
       });
     }

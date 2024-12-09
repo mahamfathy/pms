@@ -1,23 +1,9 @@
 @import "../../../../assets/sass/abstracts/mixins";
-@import "../../../../assets/sass/abstracts/variables";
-@import "../../../../assets/sass/components/button";
-@import "../../../../assets/sass/components/form";
-
 .auth-section {
   @include divCenter;
   @include auth-bg("../../../../assets/images/bg-auth.svg");
   .form {
     @include divCenter;
     border-radius: $border-radius-form;
-
-    // .form--header {
-    //   h1 {
-    //     color: $color-orange;
-    //     .form__title {
-    //       @include line-under-title;
-    //       width: fit-content;
-    //     }
-    //   }
-    // }
   }
 }
