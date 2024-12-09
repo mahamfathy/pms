@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import {
-  FormControl,
-  Validators,
   AbstractControl,
+  FormControl,
   FormGroup,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +51,7 @@ export class LoginComponent {
           this._Router.navigate(['/dashboard']);
           if (this._AuthService.getRole() === 'manager') {
             this._Router.navigate(['/dashboard/manager']);
-          }else {
+          } else {
             this._Router.navigate(['/dashboard/employee']);
           }
         },
