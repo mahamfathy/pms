@@ -21,13 +21,13 @@ export class VerfiyComponent {
     private _Router: Router
   ) {}
   ngOnInit(): void {
-    const userEmail = localStorage.getItem('userEmail');
-    this.verifyAccountForm.get('email')!.setValue(userEmail || '');
+    const email = localStorage.getItem('email');
+    this.verifyAccountForm.get('email')!.setValue(email || '');
   }
 
   onVerify(verifyAccountForm: FormGroup): void {
     if (verifyAccountForm.valid) {
-      this._AuthService.onVerify(verifyAccountForm.value).subscribe({
+      this._AuthService.onVerifyAccount(verifyAccountForm.value).subscribe({
         next: (res) => {
           this.resMessage = res.message;
         },

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
@@ -12,37 +12,40 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent {
   hideEye1: boolean = true;
   hideEye2: boolean = true;
-  resMessage: string = '';
-
-  registerForm: FormGroup = this._FormBuilder.group({
-    userName: [
-      '',
-      [Validators.required, Validators.pattern(/^[A-Za-z]+[0-9]+$/)],
-    ],
-    email: ['', [Validators.required, Validators.email]],
-    country: ['', [Validators.required]],
-    phoneNumber: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    confirmPassword: ['', [Validators.required]],
-  });
-
-  files: File[] = [];
   imgSrc: any;
+  files: File[] = [];
+  registerForm = new FormGroup({
+    userName: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    phoneNumber: new FormControl(null, Validators.required),
+    country: new FormControl(null, Validators.required),
+    password: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(
+        '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
+      ),
+    ]),
+    confirmPassword: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(
+        '^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()-__+.]){1,}).{8,}$'
+      ),
+    ]),
+    profileImage: new FormControl(null),
+  });
+  resMessage: string = '';
   constructor(
     private _AuthService: AuthService,
-    private _FormBuilder: FormBuilder,
-    private _Router: Router,
-    private _ToastrService: ToastrService
+    private _ToastrService: ToastrService,
+    private _Router: Router
   ) {}
 
   onSelect(event: any) {
-    console.log(event);
     this.files.push(...event.addedFiles);
-    this.imgSrc = event.addedFiles[0];
+    this.imgSrc = this.files[0];
   }
 
   onRemove(event: any) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
@@ -58,8 +61,8 @@ export class RegisterComponent {
     this._AuthService.onRegister(myData).subscribe({
       next: (res) => {
         this.resMessage = res.message;
-        const userEmail = data.value.email;
-        localStorage.setItem('userEmail', userEmail);
+        const email = data.value.email;
+        localStorage.setItem('email', email);
       },
       error: (err) => {
         if (err.error.message && !err.error.additionalInfo) {

@@ -23,7 +23,7 @@ export class ResetRequestComponent {
       this._AuthService.onResetRequest(formData).subscribe({
         next: (res) => {
           this.resMsg = res.message;
-          localStorage.setItem('userEmail', formData.userEmail);
+          localStorage.setItem('email', formData.email);
         },
         error: (err) => {
           this.resMsg = err.error.message;
