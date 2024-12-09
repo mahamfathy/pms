@@ -1,4 +1,5 @@
 @import "../../../../assets/sass/abstracts/mixins";
+@import "../../../../assets/sass/abstracts/variables";
 .auth-section {
   @include divCenter;
   @include auth-bg("../../../../assets/images/bg-auth.svg");
