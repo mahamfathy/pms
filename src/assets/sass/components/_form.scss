@@ -5,6 +5,8 @@
   background-color: $light-green-bg;
   width: 100%;
   padding: 4rem;
+  border-radius: 2rem;
+  font-family: $font-inter;
   .form__header {
     &-paragraph {
       color: $color-white;
@@ -27,8 +29,8 @@
           content: "";
           position: absolute;
           background-color: $color-orange;
-          bottom: 0px;
-          left: 0px;
+          bottom: 0;
+          left: 0;
           width: 1rem;
           height: 0.25rem;
         }
@@ -38,14 +40,18 @@
   .form__wrapper {
     mat-form-field {
       width: 100%;
+      margin-bottom: 1rem;
       mat-label {
         color: $color-orange;
       }
       &:focus {
         border-bottom: 1px solid $color-white !important;
       }
+
      ::placeholder {
         color: $color-white !important;
+      .mat-mdc-form-field-error-wrapper.ng-tns-c1205077789-0.ng-trigger.ng-trigger-transitionMessages {
+        padding: 0 !important;
       }
     }
     .mdc-text-field--filled:not(.mdc-text-field--disabled) {

@@ -16,3 +16,10 @@
     background-color: $color-orange;
   }
 }
+@mixin auth-bg($background-url) {
+  height: 100%;
+  background-image: url($background-url);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
