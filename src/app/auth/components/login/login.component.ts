@@ -49,8 +49,8 @@ export class LoginComponent {
         },
         complete: () => {
           this._ToastrService.success('You have been successfully loged in');
-          this._Router.navigate(['/dashboard']);
-          if (this._AuthService.getRole() === 'manager') {
+          // this._Router.navigate(['/dashboard']);
+          if (this._AuthService.getRole() === 'Manager') {
             this._Router.navigate(['/dashboard/manager']);
           } else {
             this._Router.navigate(['/dashboard/employee']);

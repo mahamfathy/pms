@@ -32,8 +32,8 @@ export class AuthService {
   getProfile(): void {
     const userToken: any = localStorage.getItem('userToken');
     let decoded: any = jwtDecode(userToken);
-    localStorage.setItem('email', decoded.email);
-    localStorage.setItem('role', decoded.role);
+    localStorage.setItem('email', decoded.userEmail);
+    localStorage.setItem('role', decoded.userGroup);
     this.getRole();
   }
   getRole() {
