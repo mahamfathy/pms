@@ -47,7 +47,9 @@
       &:focus {
         border-bottom: 1px solid $color-white !important;
       }
-
+      .mdc-text-field__input {
+        color: $color-white !important;
+      }
       ::placeholder {
         color: $color-white !important;
         .mat-mdc-form-field-error-wrapper.ng-tns-c1205077789-0.ng-trigger.ng-trigger-transitionMessages {
@@ -56,6 +58,9 @@
       }
       .mdc-text-field--filled:not(.mdc-text-field--disabled) {
         background-color: transparent;
+      }
+      mat-icon {
+        color: white;
       }
     }
     .form__links {
