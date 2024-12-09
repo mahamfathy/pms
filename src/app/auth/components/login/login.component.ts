@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -7,13 +12,13 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   constructor(
     private _AuthService: AuthService,
     private _ToastrService: ToastrService,
-    private _Router : Router
+    private _Router: Router
   ) {}
   hide: boolean = true;
   loginForm: FormGroup = new FormGroup({
@@ -34,16 +39,23 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this._AuthService.onLogin(data.value).subscribe({
         next: (res) => {
-          console.log(res);
-          localStorage.setItem('userToken', res.token)
+          // console.log(res);
+          localStorage.setItem('userToken', res.token);
+          this._AuthService.onGetProfile();
         },
         error: (err) => {
-          console.log(err);
-          this._ToastrService.error(err.error.message)
-        },complete:()=>{
-          this._ToastrService.success('You have been successfully loged in')
-          this._Router.navigate(['/dashboard'])
-        }
+          // console.log(err);
+          this._ToastrService.error(err.error.message);
+        },
+        complete: () => {
+          this._ToastrService.success('You have been successfully loged in');
+          this._Router.navigate(['/dashboard']);
+          if (this._AuthService.onGetRole() === 'manager') {
+            this._Router.navigate(['dashboard/manager']);
+          }else {
+            this._Router.navigate(['dashboard/employee']);
+          }
+        },
       });
     }
   }

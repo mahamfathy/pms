@@ -1,8 +1,4 @@
 @import "../../../../assets/sass/abstracts/mixins";
-@import "../../../../assets/sass/abstracts/variables";
-@import "../../../../assets/sass/components/button";
-@import "../../../../assets/sass/components/form";
-
 .auth-section {
   @include divCenter;
   height: 100vh;
@@ -10,18 +6,4 @@
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  .form {
-    @include divCenter;
-    border-radius: $border-radius-form;
-    background-color: $bg-form;
-    .form--header {
-      h1 {
-        color: $color-orange;
-        .form__title {
-          @include line-under-title;
-          width: fit-content;
-        }
-      }
-    }
-  }
 }
