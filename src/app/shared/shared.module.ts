@@ -15,8 +15,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 @NgModule({
-  declarations: [ChangePasswordComponent],
+  declarations: [ChangePasswordComponent, NavbarComponent],
   imports: [
     CommonModule,
     RouterModule,
