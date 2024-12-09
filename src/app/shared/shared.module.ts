@@ -11,10 +11,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-
 @NgModule({
   declarations: [ChangePasswordComponent],
   imports: [
@@ -33,6 +33,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     ReactiveFormsModule,
     NgxDropzoneModule,
     MatProgressSpinnerModule,
+    MatToolbarModule,
   ],
   exports: [
     MatInputModule,
@@ -48,6 +49,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     MatSelectModule,
     NgxDropzoneModule,
     MatProgressSpinnerModule,
+    MatToolbarModule,
   ],
 })
 export class SharedModule {}

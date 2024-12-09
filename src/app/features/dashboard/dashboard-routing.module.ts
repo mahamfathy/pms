@@ -4,6 +4,7 @@ import { employeeGuard } from 'src/app/core/guards/employee.guard';
 import { managerGuard } from 'src/app/core/guards/manager.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'manager',
     canActivate: [managerGuard],
