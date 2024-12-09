@@ -39,12 +39,15 @@
     mat-form-field {
       width: 100%;
       mat-label {
-        color: $color-white;
+        color: $color-orange;
       }
-
       &:focus {
         border-bottom: 1px solid $color-white !important;
       }
+input::placeholder {
+  color:$color-white;
+}
+
     }
     .mdc-text-field--filled:not(.mdc-text-field--disabled) {
       background-color: transparent;
