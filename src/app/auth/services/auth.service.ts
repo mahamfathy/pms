@@ -5,7 +5,6 @@ import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { ILogin } from '../interfaces/ILogin';
 import { IResetPassword } from '../interfaces/IResetPassword';
-import { IVerify } from '../interfaces/IVerify';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +19,7 @@ export class AuthService {
   onRegister(registerForm: FormData): Observable<any> {
     return this._HttpClient.post('Users/Register', registerForm);
   }
-  onVerify(verifyForm: IVerify): Observable<any> {
+  onVerify(verifyForm: any): Observable<any> {
     return this._HttpClient.put('Users/verify', verifyForm);
   }
   onResetRequest(resetReq: any): Observable<any> {
