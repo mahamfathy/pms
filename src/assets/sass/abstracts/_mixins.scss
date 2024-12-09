@@ -17,7 +17,7 @@
   }
 }
 @mixin auth-bg($background-url) {
-  height: 100vh;
+  height: 100%;
   background-image: url($background-url);
   background-position: center center;
   background-size: cover;
