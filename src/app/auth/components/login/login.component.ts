@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import {
-  FormGroup,
   FormControl,
   Validators,
   AbstractControl,
+  FormGroup,
+  Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
@@ -36,7 +37,7 @@ export class LoginComponent {
     return this.loginForm.controls;
   }
   login(data: FormGroup): void {
-    if (this.loginForm.valid) {
+    if (data.valid) {
       this._AuthService.onLogin(data.value).subscribe({
         next: (res) => {
           // console.log(res);
@@ -51,11 +52,12 @@ export class LoginComponent {
           this._ToastrService.success('You have been successfully loged in');
           this._Router.navigate(['/dashboard']);
           if (this._AuthService.onGetRole() === 'manager') {
-            this._Router.navigate(['dashboard/manager']);
+            this._Router.navigate(['/dashboard/manager']);
           }else {
-            this._Router.navigate(['dashboard/employee']);
+            this._Router.navigate(['/dashboard/employee']);
           }
         },
+       
       });
     }
   }
