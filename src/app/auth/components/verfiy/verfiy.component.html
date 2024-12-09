@@ -13,8 +13,8 @@
           <div class="form__wrapper">
             <form
               class="example-form form"
-              [formGroup]="verifyForm"
-              (ngSubmit)="sendData()"
+              [formGroup]="verifyAccountForm"
+              (ngSubmit)="onVerify(verifyAccountForm)"
             >
               <mat-form-field class="custom-field">
                 <mat-label class="form--label">Email</mat-label>
@@ -30,8 +30,8 @@
                 <mat-error
                   class=""
                   *ngIf="
-                    verifyForm.get('email')?.getError('email') &&
-                    !verifyForm.get('email')?.getError('required')
+                    verifyAccountForm.get('email')?.getError('email') &&
+                    !verifyAccountForm.get('email')?.getError('required')
                   "
                 >
                   Please enter valid email
@@ -40,9 +40,9 @@
                 <mat-error
                   class=""
                   *ngIf="
-                    verifyForm.get('email')?.getError('required') &&
-                    (verifyForm.get('email')?.touched ||
-                      verifyForm.get('email')?.dirty)
+                    verifyAccountForm.get('email')?.getError('required') &&
+                    (verifyAccountForm.get('email')?.touched ||
+                      verifyAccountForm.get('email')?.dirty)
                   "
                 >
                   Email is <strong>required</strong>
@@ -62,9 +62,9 @@
                 <mat-error
                   class=""
                   *ngIf="
-                    verifyForm.get('code')?.getError('required') &&
-                    (verifyForm.get('code')?.touched ||
-                      verifyForm.get('code')?.dirty)
+                    verifyAccountForm.get('code')?.getError('required') &&
+                    (verifyAccountForm.get('code')?.touched ||
+                      verifyAccountForm.get('code')?.dirty)
                   "
                 >
                   Please enter code
@@ -73,7 +73,7 @@
 
               <div class="form__actions col-md-11">
                 <button
-                  [disabled]="verifyForm.invalid"
+                  [disabled]="verifyAccountForm.invalid"
                   type="submit"
                   class="orange-btn"
                 >

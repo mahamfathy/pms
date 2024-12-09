@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,15 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  constructor(
-    private _AuthService: AuthService,
-    private _FormBuilder: FormBuilder,
-    private _Router: Router,
-    private _ToastrService: ToastrService
-  ) {}
-
   hideEye1: boolean = true;
   hideEye2: boolean = true;
+  resMessage: string = '';
 
   registerForm: FormGroup = this._FormBuilder.group({
     userName: [
@@ -34,6 +28,12 @@ export class RegisterComponent {
 
   files: File[] = [];
   imgSrc: any;
+  constructor(
+    private _AuthService: AuthService,
+    private _FormBuilder: FormBuilder,
+    private _Router: Router,
+    private _ToastrService: ToastrService
+  ) {}
 
   onSelect(event: any) {
     console.log(event);
@@ -46,37 +46,34 @@ export class RegisterComponent {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  sendData() {
-    let entries = Object.entries(this.registerForm.value);
-
+  onRegister(data: FormGroup): void {
     let myData = new FormData();
-
-    entries.forEach((entry) => {
-      myData.append(`${entry[0]}`, `${entry[1]}`);
+    Object.keys(data.value).forEach((key) => {
+      myData.append(key, data.value[key]);
     });
-
-    myData.append('profileImage', this.imgSrc);
+    if (this.files.length > 0) {
+      myData.append('profileImage', this.files[0]);
+    }
 
     this._AuthService.onRegister(myData).subscribe({
       next: (res) => {
-        console.log(res);
-        this._ToastrService.success(res.message, 'Successfully');
-        this._Router.navigate(['/auth/verify']);
+        this.resMessage = res.message;
+        const userEmail = data.value.email;
+        localStorage.setItem('userEmail', userEmail);
       },
       error: (err) => {
-        console.log(err);
-
-        if (err.error.additionalInfo?.errors) {
-          let mapErrors = new Map(
-            Object.entries(err.error.additionalInfo?.errors)
-          );
-
-          for (const [msg, val] of mapErrors) {
-            this._ToastrService.error(`${val}`, `${msg} Error`);
-          }
-        } else {
+        if (err.error.message && !err.error.additionalInfo) {
           this._ToastrService.error(err.error.message, 'Error');
+        } else {
+          const map = new Map(Object.entries(err.error.additionalInfo.errors));
+          for (let [msg, val] of map) {
+            this._ToastrService.error(JSON.stringify(val), msg);
+          }
         }
+      },
+      complete: () => {
+        this._ToastrService.success(this.resMessage, 'Success');
+        this._Router.navigateByUrl('/auth/verify-account');
       },
     });
   }

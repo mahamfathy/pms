@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -14,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   constructor(
     private _AuthService: AuthService,
     private _ToastrService: ToastrService,
@@ -30,33 +30,52 @@ export class LoginComponent {
       ),
     ]),
   });
+  ngOnInit(): void {
+    const userEmail = localStorage.getItem('userEmail');
+    if (userEmail) {
+      this.loginForm.get('userEmail')!.setValue(userEmail || '');
+    }
+  }
   public get formData(): {
     [key: string]: AbstractControl<any, any>;
   } {
     return this.loginForm.controls;
   }
-  login(data: FormGroup): void {
-    if (data.valid) {
-      this._AuthService.onLogin(data.value).subscribe({
-        next: (res) => {
-          // console.log(res);
-          localStorage.setItem('userToken', res.token);
-          this._AuthService.getProfile();
-        },
-        error: (err) => {
-          // console.log(err);
-          this._ToastrService.error(err.error.message);
-        },
-        complete: () => {
-          this._ToastrService.success('You have been successfully loged in');
-          // this._Router.navigate(['/dashboard']);
-          if (this._AuthService.getRole() === 'Manager') {
-            this._Router.navigate(['/dashboard/manager']);
-          } else {
-            this._Router.navigate(['/dashboard/employee']);
-          }
-        },
-      });
+  
+    if (data.invalid) {
+      this._ToastrService.error('Invalid login details!', 'Error');
+      return;
     }
+    this._AuthService.onLogin(data.value).subscribe({
+      next: (res) => {
+        // console.log(res);
+        localStorage.setItem('userToken', res.token);
+        this._AuthService.getProfile();
+      },
+      error: (err) => {
+        const errors = err.error.errors;
+        if (errors) {
+          if (errors.email) {
+            this._ToastrService.error(errors.email, 'Email Error');
+          } else if (errors.password) {
+            this._ToastrService.error(errors.password, 'Password Error');
+          }
+        } else {
+          this._ToastrService.error(
+            err.error.message || 'An unexpected error occurred',
+            'Error'
+          );
+        }
+      },
+      complete: () => {
+        this._ToastrService.success('Login successful!', 'Success');
+        if (this._AuthService.userGroup === 'Manager') {
+          this._Router.navigate(['/dashboard/manager']);
+        } else {
+          this._Router.navigate(['/dashboard/employee']);
+        }
+      },
+    });
+    // loginForm.reset();
   }
 }

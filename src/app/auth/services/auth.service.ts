@@ -10,7 +10,7 @@ import { IResetPassword } from '../interfaces/IResetPassword';
   providedIn: 'root',
 })
 export class AuthService {
-  role: string | null = '';
+  userGroup: string | null = '';
   constructor(private _HttpClient: HttpClient, private _Router: Router) {}
 
   onLogin(loginForm: ILogin): Observable<any> {
@@ -32,18 +32,18 @@ export class AuthService {
   getProfile(): void {
     const userToken: any = localStorage.getItem('userToken');
     let decoded: any = jwtDecode(userToken);
-    localStorage.setItem('email', decoded.userEmail);
-    localStorage.setItem('role', decoded.userGroup);
-    this.getRole();
+    localStorage.setItem('userEmail', decoded.userEmail);
+    localStorage.setItem('userGroup', decoded.userGroup);
+    this.getUserGroup();
   }
-  getRole() {
+  getUserGroup() {
     if (
       localStorage.getItem('userToken') !== null &&
-      localStorage.getItem('role') !== null
+      localStorage.getItem('userGroup') !== null
     ) {
-      this.role = localStorage.getItem('role');
+      this.userGroup = localStorage.getItem('userGroup');
     }
-    return this.role;
+    return this.userGroup;
   }
   onLogout(): void {
     localStorage.clear();

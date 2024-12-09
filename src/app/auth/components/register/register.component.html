@@ -15,7 +15,7 @@
             <form
               class="example-form form"
               [formGroup]="registerForm"
-              (ngSubmit)="sendData()"
+              (ngSubmit)="onRegister(registerForm)"
             >
               <ngx-dropzone class="my-3" (change)="onSelect($event)">
                 <ngx-dropzone-label>Upload photo!</ngx-dropzone-label>
