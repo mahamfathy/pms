@@ -3,6 +3,8 @@
 .auth-section {
   @include divCenter;
   @include auth-bg("../../../../assets/images/bg-auth.svg");
+  height: 100vh;
+
   .form {
     @include divCenter;
     border-radius: $border-radius-form;
