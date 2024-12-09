@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import {
-  FormControl,
-  Validators,
   AbstractControl,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -42,7 +41,7 @@ export class LoginComponent {
         next: (res) => {
           // console.log(res);
           localStorage.setItem('userToken', res.token);
-          this._AuthService.onGetProfile();
+          this._AuthService.getProfile();
         },
         error: (err) => {
           // console.log(err);
@@ -51,13 +50,12 @@ export class LoginComponent {
         complete: () => {
           this._ToastrService.success('You have been successfully loged in');
           this._Router.navigate(['/dashboard']);
-          if (this._AuthService.onGetRole() === 'manager') {
+          if (this._AuthService.getRole() === 'manager') {
             this._Router.navigate(['/dashboard/manager']);
-          }else {
+          } else {
             this._Router.navigate(['/dashboard/employee']);
           }
         },
-       
       });
     }
   }
