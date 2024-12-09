@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { ILogin } from '../interfaces/ILogin';
@@ -20,7 +21,7 @@ export class AuthService {
   onRegister(registerForm: FormData): Observable<any> {
     return this._HttpClient.post('Users/Register', registerForm);
   }
-  onVerify(verifyForm: any): Observable<any> {
+  onVerify(verifyForm: IVerify): Observable<any> {
     return this._HttpClient.put('Users/verify', verifyForm);
   }
   onResetRequest(resetReq: any): Observable<any> {
