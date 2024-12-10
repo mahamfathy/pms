@@ -1,17 +1,24 @@
-<div class="contaier-fluid">
-  <div class="row">
-    <nav>
-      <app-navbar></app-navbar>
-    </nav>
-    <div class="row">
-      <div class="col-md-2">
-        <aside>
-          <app-sidebar></app-sidebar>
-        </aside>
-      </div>
-      <div class="col-md-10">
-        <router-outlet></router-outlet>
-      </div>
+<div class="contaier-fluid h-100">
+  <nav>
+    <app-navbar></app-navbar>
+  </nav>
+  <div class="row w-100">
+    <div
+      [ngClass]="{
+        'col-md-2': isSidebarExpanded,
+        'col-md-1': !isSidebarExpanded
+      }"
+    >
+      <aside>
+        <app-sidebar (toggle)="isSidebarExpanded = $event"></app-sidebar>
+      </aside>
     </div>
+    <div
+      [ngClass]="{
+        'col-md-10': isSidebarExpanded,
+        'col-md-11': !isSidebarExpanded
+      }"
+    ></div>
+    <router-outlet></router-outlet>
   </div>
 </div>
