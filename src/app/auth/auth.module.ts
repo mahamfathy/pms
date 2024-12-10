@@ -16,6 +16,6 @@ import { VerfiyComponent } from './components/verfiy/verfiy.component';
     ResetPasswordComponent,
     VerfiyComponent,
   ],
-  imports: [CommonModule, AuthRoutingModule, SharedModule],
+  imports: [CommonModule, AuthRoutingModule, SharedModule ],
 })
 export class AuthModule {}
