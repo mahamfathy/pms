@@ -52,6 +52,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NgxDropzoneModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
+    NavbarComponent,
+    SidebarComponent,
   ],
 })
 export class SharedModule {}
