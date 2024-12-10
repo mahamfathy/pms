@@ -7,16 +7,20 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 @NgModule({
-  declarations: [ChangePasswordComponent],
+  declarations: [ChangePasswordComponent, NavbarComponent, SidebarComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -33,6 +37,9 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     ReactiveFormsModule,
     NgxDropzoneModule,
     MatProgressSpinnerModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   exports: [
     MatInputModule,
@@ -48,6 +55,11 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     MatSelectModule,
     NgxDropzoneModule,
     MatProgressSpinnerModule,
+    MatToolbarModule,
+    NavbarComponent,
+    SidebarComponent,
+    MatSidenavModule,
+    MatSidenav,
   ],
 })
 export class SharedModule {}

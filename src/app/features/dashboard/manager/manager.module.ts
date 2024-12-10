@@ -1,8 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ManagerRoutingModule } from './manager-routing.module';
 import { ManagerComponent } from './manager.component';
 
+import { ManagerProjectsComponent } from './components/manager-projects/manager-projects.component';
 
 @NgModule({
   declarations: [
@@ -10,7 +13,8 @@ import { ManagerComponent } from './manager.component';
   ],
   imports: [
     CommonModule,
-    ManagerRoutingModule
+    ManagerRoutingModule,SharedModule
   ]
+ 
 })
-export class ManagerModule { }
+export class ManagerModule {}
