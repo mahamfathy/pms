@@ -32,11 +32,6 @@ export class ChangePasswordComponent {
     },
     { validator: [this.checkPassword] } as FormControlOptions
   );
-
-  // ngOnInit(): void {
-  //   const email = localStorage.getItem('email');
-  //   this.changePasswordForm.get('email')!.setValue(email || '');
-  // }
   public get formData(): {
     [key: string]: AbstractControl<any, any>;
   } {
@@ -53,7 +48,6 @@ export class ChangePasswordComponent {
   }
   changePassword(data: FormGroup): void {
     console.log(data.value);
-
     if (this.changePasswordForm.valid) {
       this._AuthService.onChangePassword(data.value).subscribe({
         next: (res) => {
