@@ -20,29 +20,29 @@ export class SidebarComponent {
     {
       name: 'Home',
       icon: 'home',
-      route: 'dashboard/home',
+      route: '/dashboard/home',
       isActive: this.isEmployee() || this.isManager(),
     },
     {
       name: 'Users',
       icon: 'people',
-      route: 'dashboard/manager/users',
+      route: '/dashboard/manager/users',
       isActive: this.isManager(),
     },
     {
       name: 'Tasks',
       icon: 'task',
       route: this.isManager()
-        ? 'dashboard/manager/tasks'
-        : 'dashboard/employee/tasks',
+        ? '/dashboard/manager/tasks'
+        : '/dashboard/employee/tasks',
       isActive: this.isManager() || this.isEmployee(),
     },
     {
       name: 'Projects',
       icon: 'work',
       route: this.isManager()
-        ? 'dashboard/manager/projects'
-        : 'dashboard/employee/projects',
+        ? '/dashboard/manager/manager-projects'
+        : '/dashboard/employee/projects',
       isActive: this.isEmployee() || this.isManager(),
     },
     {
