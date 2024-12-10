@@ -10,7 +10,6 @@ import { ManagerProjectsComponent } from './components/manager-projects/manager-
 @NgModule({
   declarations: [
     ManagerComponent,
-    ManagerProjectsComponent
   ],
   imports: [
     CommonModule,
