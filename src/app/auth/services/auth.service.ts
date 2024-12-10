@@ -50,9 +50,6 @@ export class AuthService {
   onVerifyAccount(verifyForm: IVerify): Observable<any> {
     return this._HttpClient.put('Users/verify', verifyForm);
   }
-  onChangePassword(changePasswordForm: IChangepassword): Observable<any> {
-    return this._HttpClient.put('Users/ChangePassword', changePasswordForm);
-  }
   onLogout(): void {
     localStorage.clear();
     this._Router.navigate(['/auth']);

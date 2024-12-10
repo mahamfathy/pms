@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IChangepassword } from 'src/app/auth/interfaces/ichangepassword';
 
 @Injectable({
   providedIn: 'root',
@@ -12,5 +13,8 @@ export class HelperService {
   }
   onGetAllProjects(data: any): Observable<any> {
     return this._HttpClient.get('Project', data);
+  }
+  onChangePassword(changePasswordForm: IChangepassword): Observable<any> {
+    return this._HttpClient.put('Users/ChangePassword', changePasswordForm);
   }
 }
