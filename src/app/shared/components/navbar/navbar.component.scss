@@ -1,0 +1,27 @@
+@import "../../../../assets/sass/abstracts/variables";
+.profile-wrapper {
+  column-gap: 0.75rem;
+  justify-content: space-between;
+  mat-icon {
+    color: $color-orange;
+  }
+  .profile-image {
+    width: 2.5rem;
+    border-radius: 50%;
+  }
+  .profile-details {
+    .user-info {
+      font-family: Montserrat;
+      justify-content: center;
+      .username {
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      .email {
+        color: #0000005e;
+        font-size: 12px;
+      }
+    }
+  }
+}
