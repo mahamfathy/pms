@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -16,6 +17,9 @@ const routes: Routes = [
         (m) => m.DashboardModule
       ),
   },
+  {
+    path:'change', component: ChangePasswordComponent
+  }
 ];
 
 @NgModule({

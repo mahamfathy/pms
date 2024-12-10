@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ILogin } from '../interfaces/ILogin';
 import { IResetPassword } from '../interfaces/IResetPassword';
 import { IVerify } from '../interfaces/IVerify';
+import { IChangepassword } from '../interfaces/ichangepassword';
 
 @Injectable({
   providedIn: 'root',
@@ -49,7 +50,9 @@ export class AuthService {
   onVerifyAccount(verifyForm: IVerify): Observable<any> {
     return this._HttpClient.put('Users/verify', verifyForm);
   }
-
+  onChangePassword(changePasswordForm: IChangepassword): Observable<any> {
+    return this._HttpClient.put('Users/ChangePassword', changePasswordForm);
+  }
   onLogout(): void {
     localStorage.clear();
     this._Router.navigate(['/auth']);
