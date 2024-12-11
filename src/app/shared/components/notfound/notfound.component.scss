@@ -1,0 +1,21 @@
+@import "../../../../assets/sass/abstracts/mixins";
+@import "../../../../assets/sass/abstracts/variables";
+
+section {
+  @include auth-bg("../../../../assets/images/Rectangle 97.png");
+  min-height: 100vh;
+}
+
+h1 {
+  color: $color-orange;
+}
+
+.notfound-img {
+  width: 90%;
+}
+
+button {
+  margin-top: 1rem;
+  padding-inline: 2rem;
+  border: none;
+}
