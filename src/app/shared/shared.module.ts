@@ -16,11 +16,11 @@ import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 @NgModule({
-  declarations: [ChangePasswordComponent, NavbarComponent, SidebarComponent],
+  declarations: [ChangePasswordComponent, NavbarComponent, SidebarComponent,NotfoundComponent],
   imports: [
     CommonModule,
     RouterModule,

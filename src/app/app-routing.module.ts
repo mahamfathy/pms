@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
+import { NotfoundComponent } from './shared/components/notfound/notfound.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -18,8 +19,13 @@ const routes: Routes = [
       ),
   },
   {
-    path:'change', component: ChangePasswordComponent
-  }
+    path: 'change',
+    component: ChangePasswordComponent,
+  },
+  {
+    path: '**',
+    component: NotfoundComponent,
+  },
 ];
 
 @NgModule({
