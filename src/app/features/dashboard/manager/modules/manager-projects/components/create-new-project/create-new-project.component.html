@@ -10,7 +10,7 @@
   </div>
   <div class="container">
     <div class="row mt-5 p-5 shadow-sm p-3 mb-5 bg-body-tertiary">
-      <form  >
+      <form  [formGroup]="createNewProjectForm" (ngSubmit)="createNewProject(createNewProjectForm)">
         <div class="mb-3 p-3">
           <label for="exampleFormControlInput1" class="form-label">Title</label>
           <input formControlName="title" class="form-control form-control-lg rounded-3" type="text" placeholder="Name" aria-label=".form-control-lg example" >
@@ -20,7 +20,7 @@
           <textarea formControlName="description" class="form-control form-control-lg rounded-3" placeholder="Description" rows="5" ></textarea>
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn-main" >Save</button>
+          <button type="submit" class="btn-main" >Save</button>
         </div>
       </form>
     </div>
