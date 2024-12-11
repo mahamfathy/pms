@@ -5,16 +5,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ManagerRoutingModule } from './manager-routing.module';
 import { ManagerComponent } from './manager.component';
 
-import { ManagerProjectsComponent } from './components/manager-projects/manager-projects.component';
-
 @NgModule({
-  declarations: [
-    ManagerComponent,
-  ],
-  imports: [
-    CommonModule,
-    ManagerRoutingModule,SharedModule
-  ]
- 
+  declarations: [ManagerComponent],
+  imports: [CommonModule, ManagerRoutingModule, SharedModule],
 })
 export class ManagerModule {}
