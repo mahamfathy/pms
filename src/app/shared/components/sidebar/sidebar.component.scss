@@ -1,0 +1,98 @@
+@import "../../../../assets/sass/abstracts/variables";
+
+.sidebar {
+  width: 200px;
+  transition: width 0.3s ease;
+  background-color: $dark-green-bg;
+  height: 100%;
+  position: fixed;
+  color: $color-white;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17.07px;
+  &.collapsed {
+    width: 70px;
+  }
+
+  .toggle-btn {
+    background-color: $color-orange;
+    color: $color-white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    width: fit-content;
+    right: 0;
+    height: 3rem;
+    top: 9%;
+    border-radius: 0.5rem 0 0 0.5rem;
+    mat-icon {
+      vertical-align: middle;
+      width: 18px;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1.5rem;
+  }
+
+  li {
+    line-height: 2rem;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover,
+    &:active {
+      color: $color-orange;
+      a {
+        background-color: $orange-gradient;
+      }
+      .material-icons,
+      .nav-text {
+        color: $color-orange;
+      }
+    }
+  }
+
+  a {
+    padding: 0.3rem 0;
+    border-radius: 0.5rem;
+    width: 95%;
+    display: flex;
+    column-gap: 0.5rem;
+    text-decoration: none;
+    color: $color-white;
+    align-items: center;
+    &.active {
+      color: $color-orange;
+    }
+    .material-icons {
+      margin-right: 0.5rem;
+      transition: margin-right 0.3s ease;
+    }
+
+    .nav-text {
+      transition: opacity 0.3s ease, margin-left 0.3s ease;
+      margin-left: 10px;
+
+      .sidebar.collapsed & {
+        opacity: 0;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.content {
+  margin-left: 200px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+
+  .sidebar.collapsed + & {
+    margin-left: 70px;
+  }
+}
