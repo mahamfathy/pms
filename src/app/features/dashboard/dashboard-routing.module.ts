@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { employeeGuard } from 'src/app/core/guards/employee.guard';
 import { managerGuard } from 'src/app/core/guards/manager.guard';
 import { DashboardComponent } from './dashboard.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -20,7 +19,7 @@ const routes: Routes = [
         canActivate: [employeeGuard],
         loadChildren: () =>
           import('./employee/employee.module').then((m) => m.EmployeeModule),
-      },
+      }
     ],
   },
 ];
