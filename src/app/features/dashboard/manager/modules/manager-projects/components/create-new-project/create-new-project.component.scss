@@ -1,0 +1,13 @@
+@import "../../../../../../../../assets/sass/abstracts/mixins";
+
+section {
+  .container {
+    .create-project-form {
+      .form__wrapper {
+        .form__actions {
+         @include flex-between;
+        }
+      }
+    }
+  }
+}

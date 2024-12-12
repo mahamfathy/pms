@@ -33,7 +33,7 @@ export class CreateNewProjectComponent {
         },
         complete: () => {
           this._ToastrService.success('project added successfully')
-          this._Router.navigate(['../'])
+          this._Router.navigateByUrl('/dashboard/manager/manager-projects')
         },
       });
   }
