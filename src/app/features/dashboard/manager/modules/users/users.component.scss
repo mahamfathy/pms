@@ -1,4 +1,11 @@
 @import "../../../../../../assets/sass/abstracts/variables";
-section {
-  background-color: $dashboard-bg-color;
+div {
+  font-family: $font-montserrat;
+  background-color: $color-white;
+  padding-left: 2.5rem;
+  h1 {
+    font-weight: 500;
+    font-size: 28px;
+    color: #4f4f4f;
+  }
 }
