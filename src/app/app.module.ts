@@ -24,7 +24,9 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    NgxSpinnerModule
   ],
+
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -33,6 +35,7 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -4,7 +4,7 @@ import { ManagerProjectsComponent } from './manager-projects.component';
 import { CreateNewProjectComponent } from './components/create-new-project/create-new-project.component';
 
 const routes: Routes = [{ path: '', component: ManagerProjectsComponent },
-  {path: 'create- new-project', component: CreateNewProjectComponent, title:'create new project' }
+  {path: 'create-project', component: CreateNewProjectComponent, title:'create new project' }
 
 
 ];
