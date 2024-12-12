@@ -16,4 +16,7 @@ export class UsersService {
   getUserById(id: number): Observable<any> {
     return this._HttpClient.get(`Users/${id}`);
   }
+  getUsersOfManager(): Observable<any> {
+    return this._HttpClient.get('Users/Manager');
+  }
 }
