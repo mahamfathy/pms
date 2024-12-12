@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GlobalInterceptor } from './core/interceptors/global.interceptor';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { GlobalInterceptor } from './core/interceptors/global.interceptor';
       useClass: GlobalInterceptor,
       multi: true,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
