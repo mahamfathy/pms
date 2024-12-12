@@ -48,7 +48,7 @@ export class SidebarComponent {
       isActive: this.isEmployee() || this.isManager(),
     },
     {
-      route: '/dashboard/profile',
+      route: '/change',
       name: 'Change password',
       icon: 'lock_open',
       isActive: this.isEmployee() || this.isManager(),
