@@ -49,6 +49,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+
   ],
   exports: [
     MatInputModule,
