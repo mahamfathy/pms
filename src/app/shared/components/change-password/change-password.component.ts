@@ -73,7 +73,7 @@ export class ChangePasswordComponent {
         },
         complete: () => {
           this._ToastrService.success(this.resMessage, 'Reset Password');
-          this._Router.navigate(['/auth/login']);
+          this._AuthService.onLogout()
         },
       });
     }

@@ -17,8 +17,4 @@ export class HelperService {
   onChangePassword(changePasswordForm: IChangepassword): Observable<any> {
     return this._HttpClient.put('Users/ChangePassword', changePasswordForm);
   }
-  //if you find this function here don't take tention , i'll move it
-  onCreateNewPeoject(projectInfo :any) : Observable<any> {
-    return this._HttpClient.post('Project', projectInfo)
-   }
 }

@@ -4,12 +4,16 @@ import { Observable } from 'rxjs';
 import { IProject } from '../interfaces/iproject';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ManagerProjectsService {
-
-  constructor(private _HttpClient : HttpClient) { }
+  constructor(private _HttpClient: HttpClient) {}
   onCreateNewProject(infoProject: IProject): Observable<any> {
-    return this._HttpClient.post('Project', infoProject)
+    return this._HttpClient.post('Project', infoProject);
   }
+  onEditProject() {}
+  onGrtProjectById() {}
+  onDeleteProjects() {}
+  onGetMyProjectsForManager(){}
+  onGetAllProjects() {}
 }
