@@ -13,6 +13,11 @@
   line-height: 17.07px;
   &.collapsed {
     width: 70px;
+    .toggle-btn {
+      right: -0.54rem;
+      transform: translateX(50%);
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
   }
 
   .toggle-btn {
@@ -25,8 +30,9 @@
     width: fit-content;
     right: 0;
     height: 3rem;
-    top: 9%;
+    top: 3%;
     border-radius: 0.5rem 0 0 0.5rem;
+    transform: translateX(0);
     mat-icon {
       vertical-align: middle;
       width: 18px;
