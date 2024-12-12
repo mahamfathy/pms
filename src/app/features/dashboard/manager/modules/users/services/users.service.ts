@@ -10,4 +10,7 @@ export class UsersService {
   getAllUsers(): Observable<any> {
     return this._HttpClient.get('Users');
   }
+  createManager(form: FormData): Observable<any> {
+    return this._HttpClient.post('Users/Create', form);
+  }
 }
