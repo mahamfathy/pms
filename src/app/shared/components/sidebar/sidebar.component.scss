@@ -1,7 +1,7 @@
 @import "../../../../assets/sass/abstracts/variables";
 
 .sidebar {
-  width: 200px;
+  width: 15%;
   transition: width 0.3s ease;
   background-color: $dark-green-bg;
   height: 100%;
@@ -12,9 +12,9 @@
   font-weight: 500;
   line-height: 17.07px;
   &.collapsed {
-    width: 70px;
+    width: 7%;
     .toggle-btn {
-      right: -0.54rem;
+      right: -0.6rem;
       transform: translateX(50%);
       border-radius: 0 0.5rem 0.5rem 0;
     }
