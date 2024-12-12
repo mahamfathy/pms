@@ -49,6 +49,7 @@ import { HomeComponent } from './components/home/home.component';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+
   ],
   exports: [
     MatInputModule,

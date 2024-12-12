@@ -24,6 +24,7 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    NgxSpinnerModule
   ],
   providers: [
     {
