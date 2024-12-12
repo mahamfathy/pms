@@ -2,7 +2,8 @@
 div {
   font-family: $font-montserrat;
   background-color: $color-white;
-  padding-left: 2.5rem;
+  padding: 2.5rem;
+  justify-content: space-between;
   h1 {
     font-weight: 500;
     font-size: 28px;
