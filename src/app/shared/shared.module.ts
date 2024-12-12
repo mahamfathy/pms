@@ -20,6 +20,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NavbarComponent,
     SidebarComponent,
     NotfoundComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
