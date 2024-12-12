@@ -12,6 +12,7 @@ const routes: Routes = [
         (m) => m.ManagerProjectsModule
       ),
   },
+  { path: 'users', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule) },
 ];
 
 @NgModule({

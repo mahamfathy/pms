@@ -20,7 +20,9 @@ export class SidebarComponent {
     {
       name: 'Home',
       icon: 'home',
-      route: '/dashboard/home',
+      route: this.isManager()
+        ? '/dashboard/manager/home'
+        : '/dashboard/employee/home',
       isActive: this.isEmployee() || this.isManager(),
     },
     {
