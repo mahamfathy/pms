@@ -13,4 +13,7 @@ export class UsersService {
   createManager(form: FormData): Observable<any> {
     return this._HttpClient.post('Users/Create', form);
   }
+  getUserById(id: number): Observable<any> {
+    return this._HttpClient.get(`Users/${id}`);
+  }
 }
