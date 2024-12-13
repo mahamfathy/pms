@@ -20,6 +20,9 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TableComponent } from './components/table/table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NavbarComponent,
     SidebarComponent,
     NotfoundComponent,
+    TableComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +51,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   exports: [
     MatInputModule,
@@ -67,6 +74,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     SidebarComponent,
     MatSidenavModule,
     MatSidenav,
+    TableComponent,
   ],
 })
 export class SharedModule {}
