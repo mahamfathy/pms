@@ -22,3 +22,14 @@
     border: 1px solid $color-orange;
   }
 }
+.orange-btn-without-border-radius {
+  background-color: transparent;
+  color: $color-orange;
+  border: 1px solid $color-orange;
+  padding: 0.5rem;
+  transition: $main-transition ;
+  &:hover {
+  background-color: $color-orange;
+  color: $color-white;
+  }
+}

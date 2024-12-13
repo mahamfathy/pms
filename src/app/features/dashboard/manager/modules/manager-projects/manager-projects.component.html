@@ -36,9 +36,13 @@
               <mat-icon>dialpad</mat-icon>
               <span>view</span>
             </button>
-            <button mat-menu-item >
+            <button mat-menu-item  [routerLink]="['create-project', project.id]">
               <mat-icon>voicemail</mat-icon>
-              <span [routerLink]="['create-project', project.id]">edit</span>
+              <span>edit</span>
+            </button>
+            <button mat-menu-item (click)="openDialogDelete('100ms', '100ms',project)">
+              <mat-icon>voicemail</mat-icon>
+              <span>delete</span>
             </button>
           </mat-menu>
         </td>

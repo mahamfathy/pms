@@ -23,6 +23,8 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import {MatTableModule} from '@angular/material/table';
+import { DeleteItemComponent } from './components/delete-item/delete-item.component';
 import { TableComponent } from './components/table/table.component';
 
 @NgModule({
@@ -33,6 +35,7 @@ import { TableComponent } from './components/table/table.component';
     NotfoundComponent,
     TableComponent,
     HomeComponent,
+    DeleteItemComponent,
   ],
   imports: [
     CommonModule,
