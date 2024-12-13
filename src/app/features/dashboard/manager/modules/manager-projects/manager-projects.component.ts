@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ManagerProjectsComponent {
   projectsList: IProjectslist[] = [];
-// deletedProject : IProjectslist = {} as IProjectslist
+deletedProject : IProjectslist = {} as IProjectslist
   constructor(
     private _ManagerProjectsService: ManagerProjectsService,
     public _MatDialog: MatDialog,
@@ -51,7 +51,7 @@ export class ManagerProjectsComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // console.log(result);
-        // this.deletedProject = result
+        this.deletedProject = result
         this.deleteProject(result.id);
       }
     });
@@ -81,7 +81,7 @@ export class ManagerProjectsComponent {
         console.log(err);
       },
       complete: () => {
-        // this._ToastrService.error(`${this.deletedProject.title} removed`);
+        this._ToastrService.error(`${this.deletedProject.title} removed`);
         this.getAllProjects()
       },
     });

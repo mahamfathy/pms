@@ -62,14 +62,14 @@ export class CreateNewProjectComponent {
       .onEditProject(infoProject.value, this.projectId)
       .subscribe({
         next: (res) => {
-          // this.projectDetails = res;
+          this.projectDetails = res;
           // console.log(res);
         },
         error: (err) => {
           console.log(err);
         },
         complete: () => {
-          // this._ToastrService.success( `${this.projectDetails.title} edited successfully`),
+          this._ToastrService.success( `${this.projectDetails.title} edited successfully`),
             this._Router.navigateByUrl('/dashboard/manager/manager-projects');
         },
       });
