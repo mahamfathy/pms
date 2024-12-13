@@ -1,3 +1,24 @@
-table {
-  width: 100%;
+@import "../../../../assets/sass/abstracts/variables";
+.even {
+  background-color: $color-white;
+}
+.odd {
+  background-color: $dashboard-bg-color;
+}
+.header {
+  background-color: $light-green-bg;
+  color: $color-white;
+}
+th {
+  i {
+    cursor: pointer;
+    color: $color-orange;
+  }
+}
+.pink {
+  background-color: $pink-color;
+}
+
+.yellow {
+  background-color: $in-progress-bg;
 }

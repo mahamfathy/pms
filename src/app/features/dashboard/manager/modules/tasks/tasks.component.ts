@@ -17,6 +17,20 @@ export class TasksComponent {
     'project',
     'actions',
   ];
+  actions: any[] = [
+    {
+      name: 'View',
+      icon: 'visibility',
+    },
+    {
+      name: 'Edit',
+      icon: 'edit',
+    },
+    {
+      name: 'Delete',
+      icon: 'delete',
+    },
+  ];
   constructor(private _TasksService: TasksService) {}
 
   ngOnInit(): void {

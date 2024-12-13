@@ -9,6 +9,7 @@ import { Itasks } from 'src/app/features/dashboard/manager/modules/tasks/interfa
 export class TableComponent {
   @Input() dataSource: Itasks[] = [];
   @Input() displayedColumns: string[] = [];
+  @Input() actions: any[] = [];
   constructor() {}
 
   ngOnChanges(): void {
