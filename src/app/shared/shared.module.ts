@@ -21,6 +21,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
