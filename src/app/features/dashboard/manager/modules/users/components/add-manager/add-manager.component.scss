@@ -1,3 +1,4 @@
+@import "../../../../../../../../assets/sass/abstracts/variables";
 .dropzone-container {
   width: 120px;
   height: 120px;
@@ -25,4 +26,13 @@
 ::ng-deep ngx-dropzone-remove-badge {
   top: 11px !important;
   right: 16px !important;
+}
+mat-form-field {
+  --mdc-outlined-text-field-caret-color: orange;
+  --mdc-outlined-text-field-focus-outline-color: orange;
+  --mdc-outlined-text-field-focus-label-text-color: orange;
+
+  mat-icon {
+    color: $color-gray;
+  }
 }
