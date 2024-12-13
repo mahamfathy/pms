@@ -1,17 +1,17 @@
 @import "../../../../../../assets/sass/abstracts/variables";
 div {
   font-family: $font-montserrat;
-  background-color: $color-white;
-  padding: 2.5rem;
-  justify-content: space-between;
-  h1 {
-    font-weight: 500;
-    font-size: 28px;
-    color: #4f4f4f;
-  }
-  button {
-    mat-icon {
-      vertical-align: bottom;
+  .container {
+    background-color: $color-white;
+    h1 {
+      font-weight: 500;
+      font-size: 28px;
+      color: #4f4f4f;
+    }
+    button {
+      mat-icon {
+        vertical-align: bottom;
+      }
     }
   }
 }

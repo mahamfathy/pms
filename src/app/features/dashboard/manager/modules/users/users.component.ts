@@ -10,9 +10,24 @@ import { UsersService } from './services/users.service';
 })
 export class UsersComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-
-  sourceData: IUser[] = [];
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = [
+    'userName',
+    'email',
+    'country',
+    'phoneNumber',
+    'actions',
+  ];
+  actions: any[] = [
+    {
+      name: 'Block',
+      icon: 'edit',
+    },
+    {
+      name: 'View',
+      icon: 'visibility',
+    },
+  ];
+  dataSource: IUser[] = [];
   constructor(private _UsersService: UsersService) {}
   ngOnInit(): void {
     this.getAllUsers();
@@ -20,7 +35,7 @@ export class UsersComponent implements OnInit {
   private getAllUsers(): void {
     this._UsersService.getAllUsers().subscribe({
       next: (res) => {
-        this.sourceData = res.data;
+        this.dataSource = res.data;
       },
     });
   }

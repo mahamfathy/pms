@@ -1,6 +1,17 @@
-<div class="header shadow-sm d-flex py-4">
-  <h1>Users</h1>
-  <button class="orange-btn px-4" routerLink="add-manager">
-    <mat-icon> add </mat-icon> Add new user
-  </button>
+<div class="header flex-column shadow-sm d-flex py-4">
+  <div class="container d-flex justify-content-between">
+    <h1>Users</h1>
+    <button class="orange-btn px-4" routerLink="add-manager">
+      <mat-icon> add </mat-icon> Add new user
+    </button>
+  </div>
+  <section>
+    <div class="container-fluid">
+      <app-table
+        [displayedColumns]="displayedColumns"
+        [dataSource]="dataSource"
+        [actions]="actions"
+      ></app-table>
+    </div>
+  </section>
 </div>

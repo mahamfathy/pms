@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Itasks } from 'src/app/features/dashboard/manager/modules/tasks/interfaces/itasks';
 
 @Component({
   selector: 'app-table',
@@ -7,7 +6,7 @@ import { Itasks } from 'src/app/features/dashboard/manager/modules/tasks/interfa
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
-  @Input() dataSource: Itasks[] = [];
+  @Input() dataSource: any[] = [];
   @Input() displayedColumns: string[] = [];
   @Input() actions: any[] = [];
   constructor() {}
