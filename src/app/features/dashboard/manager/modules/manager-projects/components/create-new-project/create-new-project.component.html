@@ -12,7 +12,7 @@
     <div class="row mt-5 p-5 shadow-sm p-3 mb-5 bg-body-tertiary">
       <form
         [formGroup]="createNewProjectForm"
-        (ngSubmit)="createNewProject(createNewProjectForm)"
+        (ngSubmit)="toggleCreateEditProject(createNewProjectForm)"
         class="create-project-form"
       >
       <div class="form__wrapper">

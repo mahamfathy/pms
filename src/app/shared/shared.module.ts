@@ -22,6 +22,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {MatTableModule} from '@angular/material/table';
+import { DeleteItemComponent } from './components/delete-item/delete-item.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {MatTableModule} from '@angular/material/table';
     SidebarComponent,
     NotfoundComponent,
     HomeComponent,
+    DeleteItemComponent,
   ],
   imports: [
     CommonModule,

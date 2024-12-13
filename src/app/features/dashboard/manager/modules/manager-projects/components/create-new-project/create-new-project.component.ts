@@ -12,8 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CreateNewProjectComponent {
   projectId: number = 0;
-  projectDetails : IProject = {} as IProject
-  addOrEditProject: boolean = true
+  projectDetails: IProject = {} as IProject;
+  addOrEditProject: boolean = true;
   constructor(
     private _ManagerProjectsService: ManagerProjectsService,
     private _ToastrService: ToastrService,
@@ -29,7 +29,14 @@ export class CreateNewProjectComponent {
   ngOnInit(): void {
     if (this.projectId) {
       this.getProjectById(this.projectId);
-      this.addOrEditProject = false
+      this.addOrEditProject = false;
+    }
+  }
+  toggleCreateEditProject(data: FormGroup): void {
+    if (this.projectId) {
+      this.editProject(data);
+    } else {
+      this.createNewProject(data);
     }
   }
   createNewProject(infoProject: FormGroup): void {
@@ -50,33 +57,38 @@ export class CreateNewProjectComponent {
       });
   }
   editProject(infoProject: FormGroup): void {
-  infoProject.value.id = this.projectId
-  this._ManagerProjectsService.onEditProject(infoProject.value, this.projectId).subscribe({
-    next:(res)=> {
-      console.log(res);
-    }, error:(err)=> {
-      console.log(err);
-    }, complete:()=> {
-      this._ToastrService.success('Project edited successfully'),
-      this._Router.navigateByUrl('/dashboard/manager/manager-projects');
-    }
-  })
-
+    infoProject.value.id = this.projectId;
+    this._ManagerProjectsService
+      .onEditProject(infoProject.value, this.projectId)
+      .subscribe({
+        next: (res) => {
+          // this.projectDetails = res;
+          // console.log(res);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          // this._ToastrService.success( `${this.projectDetails.title} edited successfully`),
+            this._Router.navigateByUrl('/dashboard/manager/manager-projects');
+        },
+      });
   }
   getProjectById(id: number): void {
     this._ManagerProjectsService.onGrtProjectById(id).subscribe({
       next: (res) => {
         console.log(res);
-        this.projectDetails =res
+        this.projectDetails = res;
       },
       error: (err) => {
         console.log(err);
-      },complete:()=> {
+      },
+      complete: () => {
         this.createNewProjectForm.patchValue({
           title: this.projectDetails.title,
-          description: this.projectDetails.description
-        })
-      }
+          description: this.projectDetails.description,
+        });
+      },
     });
   }
 }
