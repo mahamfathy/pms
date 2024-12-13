@@ -12,11 +12,15 @@ import { UsersService } from '../../services/users.service';
 export class AddManagerComponent {
   files: File[] = [];
   resMessage: string = '';
+  additionalInfo: any;
   imgSrc: any;
   hidePassword: boolean = false;
   hideConfirmPassword: boolean = false;
   createManagerForm = new FormGroup({
-    userName: new FormControl(null, Validators.required),
+    userName: new FormControl(null, [
+      Validators.required,
+      Validators.pattern('^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z0-9_.-]*$'),
+    ]),
     email: new FormControl(null, [Validators.required, Validators.email]),
     phoneNumber: new FormControl(null, Validators.required),
     country: new FormControl(null, Validators.required),
@@ -48,9 +52,6 @@ export class AddManagerComponent {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  togglePasswordVisibility(): void {
-    this.hidePassword = !this.hidePassword;
-  }
   onCreateManager(data: FormGroup): void {
     let myData = new FormData();
     Object.keys(data.value).forEach((key) => {
@@ -65,10 +66,12 @@ export class AddManagerComponent {
         this.resMessage = res.message;
       },
       error: (err) => {
-        if (err.error.message && !err.error.additionalInfo) {
-          this._ToastrService.error(err.error.message, 'Error');
+        this.resMessage = err.error.message;
+        this.additionalInfo = err.error.additionalInfo;
+        if (this.resMessage && !this.additionalInfo) {
+          this._ToastrService.error(this.resMessage, 'Error');
         } else {
-          const map = new Map(Object.entries(err.error.additionalInfo.errors));
+          const map = new Map(Object.entries(this.additionalInfo.errors));
           for (let [msg, val] of map) {
             this._ToastrService.error(JSON.stringify(val), msg);
           }
@@ -76,7 +79,7 @@ export class AddManagerComponent {
       },
       complete: () => {
         this._ToastrService.success(this.resMessage, 'Success');
-        this._Router.navigateByUrl('/dashboard/admin/users');
+        this._Router.navigateByUrl('/dashboard/manager/users');
       },
     });
   }
