@@ -1,19 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+import { AddEditUserComponent } from './components/add-edit-user/add-edit-user.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
-import { AddUserComponent } from './components/add-user/add-user.component';
-
 
 @NgModule({
-  declarations: [
-    UsersComponent,
-    AddUserComponent
-  ],
-  imports: [
-    CommonModule,
-    UsersRoutingModule
-  ]
+  declarations: [UsersComponent, AddEditUserComponent],
+  imports: [CommonModule, UsersRoutingModule, SharedModule],
 })
-export class UsersModule { }
+export class UsersModule {}

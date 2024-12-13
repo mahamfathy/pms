@@ -9,4 +9,9 @@ div {
     font-size: 28px;
     color: #4f4f4f;
   }
+  button {
+    mat-icon {
+      vertical-align: bottom;
+    }
+  }
 }
