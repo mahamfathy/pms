@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TasksService } from './services/tasks.service';
 import { Itasks } from './interfaces/itasks';
+import { TasksService } from './services/tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -9,15 +9,15 @@ import { Itasks } from './interfaces/itasks';
 })
 export class TasksComponent {
   dataSource!: Itasks[];
-
-  constructor(private _TasksService: TasksService) {}
-
   displayedColumns: string[] = [
     'title',
     'status',
     'description',
     'creationDate',
+    'project',
+    'actions',
   ];
+  constructor(private _TasksService: TasksService) {}
 
   ngOnInit(): void {
     this._TasksService.getAllTasks().subscribe({

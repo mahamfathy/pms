@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, Input } from '@angular/core';
 import { Itasks } from 'src/app/features/dashboard/manager/modules/tasks/interfaces/itasks';
 
 @Component({
