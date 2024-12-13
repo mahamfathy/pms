@@ -1,0 +1,271 @@
+<div class="container-fluid">
+  <div class="col-md-12">
+    <div class="create-manager-form">
+      <form
+        class="form d-flex"
+        [formGroup]="createManagerForm"
+        (ngSubmit)="onCreateManager(createManagerForm)"
+      >
+        <div class="logo text-center">
+          <img src="assets/img/logo.svg" alt="logo" />
+        </div>
+        <div class="text-container">
+          <h3 class="auth-header">Create new admin</h3>
+          <p class="auth-paragraph">Please enter the new admin's details</p>
+        </div>
+        <div class="row my-2">
+          <div
+            class="col-md-12 d-flex justify-content-center align-content-center"
+          >
+            <ngx-dropzone
+              class="dropzone-container"
+              (change)="onSelect($event)"
+            >
+              <ngx-dropzone-label
+                >Drop photo <i class="fa-solid fa-cloud-upload"></i
+              ></ngx-dropzone-label>
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files"
+                [file]="f"
+                class="dropzone-preview"
+                [removable]="true"
+                (removed)="onRemove(f)"
+              >
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="fa-solid fa-user"></i
+                ></span>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="User name"
+                  aria-label="username"
+                  formControlName="userName"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <div
+                *ngIf="
+                  createManagerForm.get('userName')?.invalid &&
+                  createManagerForm.get('userName')?.touched
+                "
+                class="error-text"
+              >
+                <small
+                  *ngIf="
+                    createManagerForm.get('userName')?.hasError('required')
+                  "
+                  >Username is required.</small
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="fa-solid fa-envelope"></i>
+                </span>
+
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Enter your email"
+                  aria-label="email"
+                  formControlName="email"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <div
+                *ngIf="
+                  createManagerForm.get('email')?.invalid &&
+                  createManagerForm.get('email')?.touched
+                "
+                class="error-text"
+              >
+                <small
+                  *ngIf="createManagerForm.get('email')?.hasError('required')"
+                  >Email is required.</small
+                >
+                <small *ngIf="createManagerForm.get('email')?.hasError('email')"
+                  >Email must be in email-format .</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="fa-solid fa-earth-americas"></i
+                ></span>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Country"
+                  formControlName="country"
+                  aria-label="country"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <div
+                *ngIf="
+                  createManagerForm.get('country')?.invalid &&
+                  createManagerForm.get('country')?.touched
+                "
+                class="error-text"
+              >
+                <small
+                  *ngIf="createManagerForm.get('country')?.hasError('required')"
+                  >Country is required.</small
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="fa-solid fa-mobile-screen-button"></i
+                ></span>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Phone number"
+                  formControlName="phoneNumber"
+                  aria-label="phoneNumber"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <div
+                *ngIf="
+                  createManagerForm.get('phoneNumber')?.invalid &&
+                  createManagerForm.get('phoneNumber')?.touched
+                "
+                class="error-text"
+              >
+                <small
+                  *ngIf="
+                    createManagerForm.get('phoneNumber')?.hasError('required')
+                  "
+                  >Phone Number is required.</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="fa-solid fa-lock"></i>
+                </span>
+                <input
+                  class="form-control password"
+                  placeholder="Password"
+                  aria-label="password"
+                  formControlName="password"
+                  aria-describedby="basic-addon1"
+                  [type]="hidePassword ? 'password' : 'text'"
+                />
+                <span class="eye-icon">
+                  <i
+                    class="fa-solid"
+                    (click)="togglePasswordVisibility()"
+                    [class]="hidePassword ? 'fa-eye-slash' : 'fa-eye'"
+                  ></i>
+                </span>
+              </div>
+              <div
+                *ngIf="
+                  createManagerForm.get('password')?.invalid &&
+                  createManagerForm.get('password')?.touched
+                "
+                class="error-text"
+              >
+                <small
+                  *ngIf="
+                    createManagerForm.get('password')?.hasError('required')
+                  "
+                  >Password is required.</small
+                >
+                <small
+                  *ngIf="createManagerForm.get('password')?.hasError('pattern')"
+                  >Password must contain capital letters, small letters, numbers
+                  and special characters.</small
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form__group">
+              <div class="input-group">
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-lock"></i>
+                </span>
+                <input
+                  class="form-control password"
+                  placeholder="Confirm password"
+                  aria-label="confirmPassword"
+                  formControlName="confirmPassword"
+                  aria-describedby="basic-addon1"
+                  [type]="hideConfirmPassword ? 'password' : 'text'"
+                />
+                <span class="eye-icon">
+                  <i
+                    class="fa-solid"
+                    (click)="hideConfirmPassword = !hideConfirmPassword"
+                    [ngClass]="hideConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
+                  ></i>
+                </span>
+              </div>
+              <div
+                *ngIf="
+                  createManagerForm.get('confirmPassword')?.invalid &&
+                  createManagerForm.get('confirmPassword')?.touched
+                "
+                class="error-text"
+              >
+                <small
+                  *ngIf="
+                    createManagerForm
+                      .get('confirmPassword')
+                      ?.hasError('required')
+                  "
+                  >Confirm Password is required.</small
+                >
+                <small
+                  *ngIf="
+                    createManagerForm
+                      .get('confirmPassword')
+                      ?.hasError('pattern')
+                  "
+                  >Confirm Password must be stronger.</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-7 m-auto">
+          <button class="w-100 light-green-btn" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
