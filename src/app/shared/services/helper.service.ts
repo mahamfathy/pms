@@ -11,6 +11,7 @@ export class HelperService {
   onGetCurrentUser(): Observable<any> {
     return this._HttpClient.get('Users/currentUser');
   }
+  //may be we will not use this function
   onGetAllProjects(data: any): Observable<any> {
     return this._HttpClient.get('Project', data);
   }
