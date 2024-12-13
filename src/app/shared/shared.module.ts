@@ -21,7 +21,9 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import {MatTableModule} from '@angular/material/table';
+import { TableComponent } from './components/table/table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import {MatTableModule} from '@angular/material/table';
     NavbarComponent,
     SidebarComponent,
     NotfoundComponent,
+    TableComponent,
     HomeComponent,
   ],
   imports: [
@@ -50,7 +53,9 @@ import {MatTableModule} from '@angular/material/table';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   exports: [
     MatInputModule,
@@ -70,6 +75,8 @@ import {MatTableModule} from '@angular/material/table';
     NavbarComponent,
     SidebarComponent,
     MatSidenavModule,
+    MatSidenav,
+    TableComponent,
   ],
 })
 export class SharedModule {}
