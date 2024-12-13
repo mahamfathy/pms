@@ -4,18 +4,20 @@ import { CommonModule } from '@angular/common';
 import { ManagerProjectsRoutingModule } from './manager-projects-routing.module';
 import { ManagerProjectsComponent } from './manager-projects.component';
 import { CreateNewProjectComponent } from './components/create-new-project/create-new-project.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { ViewProjectComponent } from './components/view-project/view-project.component';
 
 
 @NgModule({
   declarations: [
     ManagerProjectsComponent,
-    CreateNewProjectComponent
+    CreateNewProjectComponent,
+    ViewProjectComponent
   ],
   imports: [
     CommonModule,
     ManagerProjectsRoutingModule,
-    ReactiveFormsModule
+    SharedModule
   ]
 })
 export class ManagerProjectsModule { }

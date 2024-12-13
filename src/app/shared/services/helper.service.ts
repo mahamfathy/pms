@@ -11,14 +11,11 @@ export class HelperService {
   onGetCurrentUser(): Observable<any> {
     return this._HttpClient.get('Users/currentUser');
   }
+  //may be we will not use this function
   onGetAllProjects(data: any): Observable<any> {
     return this._HttpClient.get('Project', data);
   }
   onChangePassword(changePasswordForm: IChangepassword): Observable<any> {
     return this._HttpClient.put('Users/ChangePassword', changePasswordForm);
   }
-  //if you find this function here don't take tention , i'll move it
-  onCreateNewPeoject(projectInfo :any) : Observable<any> {
-    return this._HttpClient.post('Project', projectInfo)
-   }
 }

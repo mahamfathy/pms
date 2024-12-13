@@ -1,5 +1,5 @@
 // @import "abstracts/variables";
-// @import "abstracts/mixins";
+@import "../abstracts/mixins";
 
 .auth-form {
   background-color: $light-green-bg;
@@ -64,8 +64,7 @@
       }
     }
     .form__links {
-      display: flex;
-      justify-content: space-between;
+     @include flex-between;
       margin-bottom: 1rem;
       a {
         text-decoration: none;
@@ -89,5 +88,33 @@
         }
       }
     }
+  }
+}
+.create-project-form {
+  .form__wrapper {
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 1rem;
+      color: $color-black;
+      mat-label {
+        color: $color-gray;
+      }
+      input {
+        color: $color-black;
+      }
+      ::placeholder {
+        .mat-mdc-form-field-error-wrapper.ng-tns-c1205077789-0.ng-trigger.ng-trigger-transitionMessages {
+          padding: 0 !important;
+        }
+      }
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        background-color: transparent;
+      }
+    }
+    // .form__actions {
+    //   // display: flex;
+    //   // justify-content: space-between;
+    //   // align-items: center;
+    // }
   }
 }

@@ -1,1 +1,48 @@
-<p>manager-projects works!</p>
+<section>
+  <div class="container">
+    <h1>Projects</h1>
+    <button class="orange-btn px-4" routerLink="create-project">
+      <mat-icon> add </mat-icon>
+      Add new project
+    </button>
+  </div>
+</section>
+
+<section>
+  <table class="w-100">
+    <thead>
+      <tr class="bg-info-subtle py-2">
+        <td>title</td>
+        <td>des</td>
+        <td>manager</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody *ngFor="let project of projectsList">
+      <tr>
+        <td>{{ project.title }}</td>
+        <td>{{ project.description }}</td>
+        <td>{{ project.manager.userName }}</td>
+        <td>
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-raised-button (click)="openDialog('500ms', '500ms', project)">
+              <mat-icon>dialpad</mat-icon>
+              <span>view</span>
+            </button>
+            <button mat-menu-item >
+              <mat-icon>voicemail</mat-icon>
+              <span [routerLink]="['create-project', project.id]">edit</span>
+            </button>
+          </mat-menu>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

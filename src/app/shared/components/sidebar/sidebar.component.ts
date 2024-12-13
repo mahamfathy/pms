@@ -20,7 +20,9 @@ export class SidebarComponent {
     {
       name: 'Home',
       icon: 'home',
-      route: '/dashboard/home',
+      route: this.isManager()
+        ? '/dashboard/manager/home'
+        : '/dashboard/employee/home',
       isActive: this.isEmployee() || this.isManager(),
     },
     {
@@ -46,7 +48,7 @@ export class SidebarComponent {
       isActive: this.isEmployee() || this.isManager(),
     },
     {
-      route: '/dashboard/profile',
+      route: '/change',
       name: 'Change password',
       icon: 'lock_open',
       isActive: this.isEmployee() || this.isManager(),

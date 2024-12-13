@@ -12,11 +12,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -31,6 +32,7 @@ import { MatSortModule } from '@angular/material/sort';
     SidebarComponent,
     NotfoundComponent,
     TableComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,

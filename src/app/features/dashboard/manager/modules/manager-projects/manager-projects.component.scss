@@ -1,0 +1,17 @@
+@import "../../../../../../assets/sass/abstracts/mixins";
+@import "../../../../../../assets/sass/abstracts/variables";
+section {
+  background-color: $color-white;
+  .container {
+         @include flex-between;
+         padding: 2rem;
+         h1 {
+          color: $color-gray;
+          font-size: 28px;
+         }
+         button {
+          @include flex-between
+         }
+  }
+}
+
