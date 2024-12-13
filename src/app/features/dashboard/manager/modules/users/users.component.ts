@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
   actions: any[] = [
     {
       name: 'Block',
-      icon: 'edit',
+      icon: 'block',
     },
     {
       name: 'View',
