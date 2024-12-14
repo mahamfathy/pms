@@ -13,13 +13,7 @@ export class ViewUserComponent {
     public dialogRef: MatDialogRef<ViewUserComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: IUser
-  ) {
-    if (this.data.imagePath) {
-      this.data.imagePath = this.imagePath + this.data.imagePath;
-    } else {
-      this.data.imagePath = 'assets/images/def-avatar.avif';
-    }
-  }
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close();

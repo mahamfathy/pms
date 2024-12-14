@@ -4,7 +4,7 @@ export interface IUser {
   email: string;
   country: string;
   phoneNumber: string;
-  imagePath: any;
+  imagePath: string;
   isActivated: boolean;
   group: Group;
   creationDate: string;

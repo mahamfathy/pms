@@ -7,7 +7,7 @@
       </button>
     </div>
   </div>
-  <div class="container">
+  <div class="container px-5">
     <app-table
       (userViewed)="viewUser($event)"
       [displayedColumns]="displayedColumns"
@@ -15,4 +15,13 @@
       [actions]="actions"
     ></app-table>
   </div>
+  <mat-paginator
+    [length]="tableRes?.totalNumberOfRecords"
+    [pageSize]="pageSize"
+    [pageIndex]="pageNumber"
+    (page)="handlePageEvent($event)"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
 </section>
