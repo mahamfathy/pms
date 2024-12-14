@@ -12,7 +12,7 @@ export class ViewProjectComponent {
     public dialogRef: MatDialogRef<ViewProjectComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IProjectslist,
   ) {
-    console.log(data);
+    // console.log(data);
 
   }
   onNoClick(): void {

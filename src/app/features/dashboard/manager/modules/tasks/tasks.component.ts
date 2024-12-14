@@ -36,7 +36,7 @@ export class TasksComponent {
   ngOnInit(): void {
     this._TasksService.getAllTasks().subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.dataSource = res.data;
       },
       error: (err) => {

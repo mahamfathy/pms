@@ -9,7 +9,8 @@ export interface IProjectslist {
   description: string;
   creationDate: string;
   modificationDate: string;
-  manager: IManager;
+  // manager: IManager;
+  task: []
 }
 
 export interface IManager {
