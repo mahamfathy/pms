@@ -9,6 +9,7 @@
   </div>
   <div class="container">
     <app-table
+      (userViewed)="viewUser($event)"
       [displayedColumns]="displayedColumns"
       [dataSource]="dataSource"
       [actions]="actions"

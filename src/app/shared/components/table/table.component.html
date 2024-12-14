@@ -19,7 +19,11 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item *ngFor="let action of actions">
+          <button
+            mat-menu-item
+            *ngFor="let action of actions"
+            (click)="viewUser(row)"
+          >
             <mat-icon>{{ action.icon }}</mat-icon>
             <span>{{ action.name }}</span>
           </button>

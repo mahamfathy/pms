@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ViewUserComponent } from './components/view-user/view-user.component';
 import { IUser } from './interfaces/IUser';
 import { UsersService } from './services/users.service';
 
@@ -40,5 +41,17 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  viewUser() {}
+  viewUser(user: IUser): void {
+    const userCopy = JSON.parse(JSON.stringify(user));
+    const dialogRef = this.dialog.open(ViewUserComponent, {
+      width: '45%',
+      data: user,
+    });
+
+    this._UsersService.getUserById(user.id).subscribe({
+      next: (res) => {},
+      error: () => {},
+      complete: () => {},
+    });
+  }
 }
