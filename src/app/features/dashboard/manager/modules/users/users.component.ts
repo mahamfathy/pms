@@ -47,7 +47,7 @@ export class UsersComponent implements OnInit {
     this._UsersService.getAllUsers(tableParams).subscribe({
       next: (res) => {
         tableParams = res;
-        console.log(res);
+        // console.log(res);
         this.dataSource = res.data.map((user: IUser) => ({
           ...user,
           imagePath:

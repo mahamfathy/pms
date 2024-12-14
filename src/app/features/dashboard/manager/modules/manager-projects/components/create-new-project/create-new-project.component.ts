@@ -21,6 +21,8 @@ export class CreateNewProjectComponent {
     private _ActivatedRoute: ActivatedRoute
   ) {
     this.projectId = _ActivatedRoute.snapshot.params['id'];
+    console.log(this.projectId);
+
   }
   createNewProjectForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -75,7 +77,7 @@ export class CreateNewProjectComponent {
       });
   }
   getProjectById(id: number): void {
-    this._ManagerProjectsService.onGrtProjectById(id).subscribe({
+    this._ManagerProjectsService.onGetProjectById(id).subscribe({
       next: (res) => {
         console.log(res);
         this.projectDetails = res;

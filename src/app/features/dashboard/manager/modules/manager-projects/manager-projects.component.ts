@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewProjectComponent } from './components/view-project/view-project.component';
 import { DeleteItemComponent } from 'src/app/shared/components/delete-item/delete-item.component';
 import { ToastrService } from 'ngx-toastr';
+import { PageEvent } from '@angular/material/paginator';
+import {  Router } from '@angular/router';
 @Component({
   selector: 'app-manager-projects',
   templateUrl: './manager-projects.component.html',
@@ -12,60 +14,77 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ManagerProjectsComponent {
   projectsList: IProjectslist[] = [];
-deletedProject : IProjectslist = {} as IProjectslist
+  dataSource: IProjectslist[] = [];
+  deletedProject: IProjectslist = {} as IProjectslist;
+  finalResponce : any;
+  pageSize: number = 10;
+  pageNumber: number = 1;
+  displayedColumns: string[] = [
+    'title',
+    'creationDate',
+    'task',
+    'modificationDate',
+    'actions',
+  ];
+  actions: any[] = [
+    {
+      name: 'View',
+      icon: 'visibility',
+    },
+    {
+      name: 'Edit',
+      icon: 'edit',
+    },
+    {
+      name: 'Delete',
+      icon: 'delete',
+    },
+  ];
   constructor(
     private _ManagerProjectsService: ManagerProjectsService,
     public _MatDialog: MatDialog,
-    private _ToastrService: ToastrService
+    private _ToastrService: ToastrService,
+    private _Router: Router
   ) {}
-
+  handlePageEvent(e: PageEvent) {
+    this.pageSize = e.pageSize;
+    this.pageNumber = e.pageIndex ;
+    // console.log(e);
+    this.getAllProjects();
+  }
   ngOnInit(): void {
     this.getAllProjects();
   }
-  openDialog(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string,
-    projectData: IProjectslist
-  ): void {
-    this._MatDialog.open(ViewProjectComponent, {
-      width: '60%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-      data: projectData,
-    });
-    // console.log(projectData);
-  }
   openDialogDelete(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string,
-    projectDetails: IProjectslist
+    projectDetails: any
   ): void {
     const dialogRef = this._MatDialog.open(DeleteItemComponent, {
       width: '50%',
-      enterAnimationDuration,
-      exitAnimationDuration,
       data: projectDetails,
     });
-    console.log(projectDetails);
+    // console.log(projectDetails);
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // console.log(result);
-        this.deletedProject = result
+        console.log(result);
+        this.deletedProject = result;
         this.deleteProject(result.id);
       }
     });
   }
   getAllProjects(): void {
     let param = {
-      pageSize: 10,
-      pageNumber: 1,
+      pageSize: this.pageSize,
+      pageNumber: this.pageNumber,
       title: '',
     };
-    this._ManagerProjectsService.onGetAllProjects(param).subscribe({
+    this._ManagerProjectsService.onGetMyProjectsForManager(param).subscribe({
       next: (res) => {
         // console.log(res);
-        this.projectsList = res.data;
+        // this.projectsList = res.data;
+        this.dataSource = res.data;
+        this.finalResponce = res
+        // console.log(this.projectsList);
       },
       error: (err) => {
         console.log(err);
@@ -73,6 +92,7 @@ deletedProject : IProjectslist = {} as IProjectslist
     });
   }
   deleteProject(projectId: number): void {
+    // console.log(projectId);
     this._ManagerProjectsService.onDeleteProjects(projectId).subscribe({
       next: (res) => {
         // console.log(res);
@@ -82,8 +102,27 @@ deletedProject : IProjectslist = {} as IProjectslist
       },
       complete: () => {
         this._ToastrService.error(`${this.deletedProject.title} removed`);
-        this.getAllProjects()
+        this.getAllProjects();
       },
     });
   }
+  viewProject(project: IProjectslist){
+    const dialogRef = this._MatDialog.open(ViewProjectComponent, {
+      width: '60%',
+      data: project,
+    });
+    this._ManagerProjectsService.onGetProjectById(project.id).subscribe({
+      next: (res)=> {
+        // console.log(res)
+      }, error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+navigateToEditProject(projectDetails: any):void {
+  const params = {id: projectDetails.id}
+this._Router.navigateByUrl(`/dashboard/manager/manager-projects/create-project/${projectDetails.id}`)
+console.log(projectDetails);
+console.log(projectDetails.id);
+}
 }
