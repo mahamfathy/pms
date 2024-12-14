@@ -2,6 +2,10 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TasksService } from 'src/app/features/dashboard/manager/modules/tasks/services/tasks.service';
+import { Project } from './../../../features/dashboard/manager/modules/tasks/interfaces/itasks';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IProject, IProjectslist } from 'src/app/features/dashboard/manager/modules/manager-projects/interfaces/iproject';
+import { IUser } from 'src/app/features/dashboard/manager/modules/users/interfaces/IUser';
 
 @Component({
   selector: 'app-table',
@@ -13,6 +17,10 @@ export class TableComponent {
   @Input() displayedColumns: string[] = [];
   @Input() actions: any[] = [];
   @Input() numRows!: number;
+ @Output() userViewed = new EventEmitter<any>();
+  @Output() projectViewed = new EventEmitter<any>()
+  @Output() projectDeleted = new EventEmitter<any>()
+  @Output() projectEdited = new EventEmitter<any>()
   constructor(private _TasksService: TasksService) {}
 
   data!: any;
@@ -20,7 +28,26 @@ export class TableComponent {
   pageSize: number = 5;
   pageNumber: number = 1;
   searchName: string = '';
+ 
 
+  constructor() {}
+  viewUser(user: IUser): void {
+    this.userViewed.emit(user);
+  }
+  viewProject(project: IProjectslist): void {
+    this.projectViewed.emit(project);
+    // console.log(project);
+  }
+  deleteProject(project: IProjectslist): void {
+this.projectDeleted.emit(project)
+// console.log(project);
+
+
+  }
+  editProject(project: IProjectslist) : void {
+this.projectEdited.emit(project)
+
+  }
   ngOnChanges(): void {
     console.log(this.displayedColumns);
     console.log(this.dataSource);
@@ -69,5 +96,7 @@ export class TableComponent {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex + 1;
     this.fireFilteration();
+    // console.log(this.displayedColumns);
+    // console.log(this.dataSource);
   }
 }

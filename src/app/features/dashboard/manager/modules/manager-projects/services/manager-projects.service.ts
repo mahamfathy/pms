@@ -15,7 +15,7 @@ export class ManagerProjectsService {
   onEditProject(infoProject: IProject, id: number): Observable<any>  {
     return this._HttpClient.put(`Project/${id}`,infoProject)
   }
-  onGrtProjectById(id: number): Observable<any>  {
+  onGetProjectById(id: number): Observable<any>  {
     return this._HttpClient.get(`Project/${id}`)
   }
   onDeleteProjects(id: number): Observable<any>  {

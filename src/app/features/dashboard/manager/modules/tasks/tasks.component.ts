@@ -47,7 +47,7 @@ export class TasksComponent {
   ngOnInit(): void {
     this._TasksService.getAllTasks(this.myparms).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.dataSource = res.data;
         this.numRows = res.totalNumberOfRecords;
       },
