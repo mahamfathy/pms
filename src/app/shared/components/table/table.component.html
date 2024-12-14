@@ -12,14 +12,22 @@
         {{ row.creationDate | date : "dd/MM/yyyy" }}
       </td>
     </ng-container>
-
+    <ng-container *ngIf="column === 'imagePath'" elseif project>
+      <td mat-cell *matCellDef="let row">
+        <img class="my-2" [src]="row.imagePath" alt="avatar" />
+      </td>
+    </ng-container>
     <ng-container *ngIf="column === 'actions'">
       <td mat-cell *matCellDef="let row">
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item *ngFor="let action of actions">
+          <button
+            mat-menu-item
+            *ngFor="let action of actions"
+            (click)="viewUser(row)"
+          >
             <mat-icon>{{ action.icon }}</mat-icon>
             <span>{{ action.name }}</span>
           </button>

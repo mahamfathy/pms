@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class UsersService {
   constructor(private _HttpClient: HttpClient) {}
-  getAllUsers(): Observable<any> {
-    return this._HttpClient.get('Users');
+  getAllUsers(data: any): Observable<any> {
+    return this._HttpClient.get('Users', { params: data });
   }
   createManager(form: FormData): Observable<any> {
     return this._HttpClient.post('Users/Create', form);
