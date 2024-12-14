@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
 export class TasksService {
   constructor(private _HttpClient: HttpClient) {}
 
-  getAllTasks(): Observable<any> {
-    return this._HttpClient.get('Task/manager');
+  getAllTasks(parms: any): Observable<any> {
+    return this._HttpClient.get('Task/manager', {
+      params: parms,
+    });
   }
 }

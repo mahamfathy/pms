@@ -12,9 +12,10 @@ export class TasksComponent {
   displayedColumns: string[] = [
     'title',
     'status',
-    'description',
-    'creationDate',
+    'userName',
     'project',
+    'creationDate',
+    'description',
     'actions',
   ];
   actions: any[] = [
@@ -31,13 +32,24 @@ export class TasksComponent {
       icon: 'delete',
     },
   ];
+
   constructor(private _TasksService: TasksService) {}
 
+  pageSize: number = 5;
+  pageNumber: number = 1;
+  numRows!: number;
+
+  myparms = {
+    pageNumber: this.pageNumber,
+    pageSize: this.pageSize,
+  };
+
   ngOnInit(): void {
-    this._TasksService.getAllTasks().subscribe({
+    this._TasksService.getAllTasks(this.myparms).subscribe({
       next: (res) => {
         // console.log(res);
         this.dataSource = res.data;
+        this.numRows = res.totalNumberOfRecords;
       },
       error: (err) => {
         console.log(err);
