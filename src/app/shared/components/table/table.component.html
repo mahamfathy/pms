@@ -93,7 +93,15 @@
       <!-- user -->
       <ng-container *ngIf="column === 'imagePath'" elseif project>
         <td mat-cell *matCellDef="let row">
-          <img class="my-2" [src]="row.imagePath" alt="avatar" />
+          <img
+            class="my-2"
+            [src]="
+              row.imagePath
+                ? 'https://upskilling-egypt.com:3003/' + row.imagePath
+                : 'assets/images/def-avatar.avif'
+            "
+            alt="avatar"
+          />
         </td>
       </ng-container>
       <ng-container *ngIf="column === 'isActivated'">
@@ -168,9 +176,31 @@
               *ngIf="action.name === 'Delete'"
               (click)="deleteProject(row)"
               style="padding-left: 6px"
+              *ngIf="action.name === 'Edit'"
+              (click)="editProject(row)"
+              class="justify-content-center"
             >
               <mat-icon>{{ action.icon }}</mat-icon>
               <span>{{ action.name }}</span>
+            </button>
+            <button
+              *ngIf="action.name === 'Block' && !row.isActivated"
+              mat-menu-item
+              (click)="toggleBlock(row)"
+              class="justify-content-center"
+            >
+              <mat-icon>lock_open</mat-icon>
+              <span>Unblock</span>
+            </button>
+
+            <button
+              *ngIf="action.name === 'Unblock' && row.isActivated"
+              mat-menu-item
+              (click)="toggleBlock(row)"
+              class="justify-content-center"
+            >
+              <mat-icon>block</mat-icon>
+              <span>Block</span>
             </button>
           </ng-container>
         </mat-menu>

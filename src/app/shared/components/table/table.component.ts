@@ -34,7 +34,7 @@ export class TableComponent {
 
   viewTask(task: Itasks) {
     this.viewedTask.emit(task);
-    console.log(task);
+    // console.log(task);
   }
 
   viewUser(user: IUser): void {
@@ -74,8 +74,8 @@ export class TableComponent {
     this.projectEdited.emit(project);
   }
   ngOnChanges(): void {
-    console.log(this.displayedColumns);
-    console.log(this.dataSource);
+    // console.log(this.displayedColumns);
+    // console.log(this.dataSource);
     this.data = new MatTableDataSource(this.dataSource);
   }
 
@@ -88,7 +88,7 @@ export class TableComponent {
 
     this._TasksService.getAllTasks(myparms).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.dataSource = res;
         this.data = res.data;
       },
@@ -108,7 +108,7 @@ export class TableComponent {
 
     this._TasksService.getAllTasks(myparms).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.dataSource = res;
 
         this.data = res.data;
