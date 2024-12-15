@@ -1,5 +1,5 @@
-@import "../../../../assets/sass/abstracts/mixins";
-@import "../../../../assets/sass/abstracts/variables";
+@import "/src/assets/sass/main.scss";
+
 .auth-section {
   @include divCenter;
   @include auth-bg("../../../../assets/images/bg-auth.svg");
@@ -8,16 +8,14 @@
   .form {
     @include divCenter;
     border-radius: $border-radius-form;
-    mat-form-field  {
+    mat-form-field {
       // height: 60px;
       margin-bottom: 0;
-
     }
     mat-error {
       height: 40px;
       display: flex;
       align-items: center;
-
     }
     ::ng-deep .mat-mdc-form-field-subscript-wrapper {
       height: 10px;

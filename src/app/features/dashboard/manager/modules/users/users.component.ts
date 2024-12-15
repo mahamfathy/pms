@@ -93,7 +93,11 @@ export class UsersComponent implements OnInit {
       data: user,
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      this._UsersService.blockUser(user.id).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+      });
     });
   }
 }
