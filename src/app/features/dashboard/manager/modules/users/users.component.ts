@@ -18,6 +18,7 @@ export class UsersComponent implements OnInit {
   pageSize: number = 10;
   pageNumber: number = 1;
   tableRes: any;
+
   displayedColumns: string[] = [
     'userName',
     'imagePath',
