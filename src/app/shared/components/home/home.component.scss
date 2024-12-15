@@ -1,14 +1,16 @@
 @import "../../../../assets/sass/abstracts/variables";
 section {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  .container-fluid {
+  &.main {
+    padding-left: 1rem;
+    padding-right: 1rem;
     height: 20rem;
-    border-radius: 1rem;
-    background: linear-gradient(#31595170, #31595170),
-      url("../../../../assets/images/home.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
+      border-radius: 1rem;
+      background: linear-gradient(#31595170, #31595170),
+        url("../../../../assets/images/home.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  .container-fluid {
     margin-top: 2.5rem;
     .row {
       height: 100%;
@@ -35,4 +37,5 @@ section {
       }
     }
   }
+
 }
