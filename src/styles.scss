@@ -25,7 +25,6 @@ $PMS-theme: mat.define-light-theme(
       primary: $PMS-primary,
       accent: $PMS-accent,
       warn: $PMS-warn,
-
     ),
   )
 );
@@ -48,4 +47,10 @@ $PMS-theme: mat.define-light-theme(
 @import "assets/sass/main.scss";
 html {
   --mdc-filled-text-field-focus-active-indicator-color: white !important;
+}
+mat-form-field {
+  --mdc-outlined-text-field-caret-color: orange;
+  --mdc-outlined-text-field-focus-outline-color: orange;
+  --mdc-outlined-text-field-focus-label-text-color: orange;
+  --mat-option-selected-state-label-text-color: orange;
 }

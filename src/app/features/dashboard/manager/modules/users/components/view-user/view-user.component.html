@@ -17,7 +17,15 @@
         <mat-card-subtitle>
           Is activated: {{ data.isActivated }}</mat-card-subtitle
         >
-        <img mat-card-md-image [src]="data.imagePath" alt="image" />
+        <img
+          mat-card-md-image
+          [src]="
+            data.imagePath
+              ? 'https://upskilling-egypt.com:3003/' + data.imagePath
+              : 'assets/images/def-avatar.avif'
+          "
+          alt="image"
+        />
       </mat-card-title-group>
     </mat-card-header>
   </mat-card>
