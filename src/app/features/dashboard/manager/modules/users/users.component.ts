@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { BlockUserComponent } from './components/block-user/block-user.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { IUser } from './interfaces/IUser';
 import { UsersService } from './services/users.service';
@@ -80,6 +79,9 @@ export class UsersComponent implements OnInit {
   }
   blockUser(user: IUser): void {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7ef4034 ([feat] block user : finish in the methods and dialog)
     this._UsersService.blockUser(user.id).subscribe({
       next: () => {
         this.getAllUsers();
@@ -87,6 +89,7 @@ export class UsersComponent implements OnInit {
       error: (err) => {
         console.error('Error blocking user:', err);
       },
+<<<<<<< HEAD
 =======
     const dialogRef = this.dialog.open(BlockUserComponent, {
       data: user,
@@ -99,6 +102,8 @@ export class UsersComponent implements OnInit {
           res.isActivated = !res.isActivated;
         },
       });
+=======
+>>>>>>> 7ef4034 ([feat] block user : finish in the methods and dialog)
     });
   }
 }
