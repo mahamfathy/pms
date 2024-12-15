@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { BlockUserComponent } from './components/block-user/block-user.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { IUser } from './interfaces/IUser';
 import { UsersService } from './services/users.service';
@@ -29,10 +28,6 @@ export class UsersComponent implements OnInit {
     'actions',
   ];
   actions: any[] = [
-    {
-      name: 'Block',
-      icon: 'block',
-    },
     {
       name: 'View',
       icon: 'visibility',
@@ -79,16 +74,13 @@ export class UsersComponent implements OnInit {
     });
   }
   blockUser(user: IUser): void {
-    const dialogRef = this.dialog.open(BlockUserComponent, {
-      data: user,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      this._UsersService.blockUser(user.id).subscribe({
-        next: (res) => {
-          this.getAllUsers();
-          res.isActivated = !res.isActivated;
-        },
-      });
+    this._UsersService.blockUser(user.id).subscribe({
+      next: () => {
+        this.getAllUsers();
+      },
+      error: (err) => {
+        console.error('Error blocking user:', err);
+      },
     });
   }
 }
