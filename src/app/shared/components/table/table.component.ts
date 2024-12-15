@@ -14,6 +14,7 @@ export class TableComponent {
   @Input() dataSource!: any[];
   @Input() displayedColumns: string[] = [];
   @Input() actions: any[] = [];
+  @Input() moduleName: string = '';
   @Input() numRows!: number;
   @Output() userViewed = new EventEmitter<any>();
   @Output() projectViewed = new EventEmitter<any>();
