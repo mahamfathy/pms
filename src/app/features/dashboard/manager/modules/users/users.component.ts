@@ -90,7 +90,11 @@ export class UsersComponent implements OnInit {
 >>>>>>> 4511bd1 ([feat]users service : createblock method)
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      this._UsersService.blockUser(user.id).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+      });
     });
   }
 }
