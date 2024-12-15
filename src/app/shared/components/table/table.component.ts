@@ -25,12 +25,12 @@ export class TableComponent {
   @Output() projectEdited = new EventEmitter<any>();
   @Output() userBlocked = new EventEmitter<any>();
   @Output() viewedTask = new EventEmitter<any>();
-  constructor(private _TasksService: TasksService, private dialog: MatDialog) {}
   data!: any;
   filterName: string = 'Title';
   pageSize: number = 5;
   pageNumber: number = 1;
   searchName: string = '';
+  constructor(private _TasksService: TasksService, private dialog: MatDialog) {}
 
   viewTask(task: Itasks) {
     this.viewedTask.emit(task);
