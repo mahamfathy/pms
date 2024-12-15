@@ -10,12 +10,13 @@
 <section>
   <div class="container-fluid px-5">
     <app-table
-    (projectViewed) = "viewProject($event)"
-    (projectDeleted) ="openDialogDelete($event)"
-    (projectEdited) ="navigateToEditProject($event)"
+      (projectViewed)="viewProject($event)"
+      (projectDeleted)="openDialogDelete($event)"
+      (projectEdited)="navigateToEditProject($event)"
       [displayedColumns]="displayedColumns"
       [dataSource]="dataSource"
       [actions]="actions"
+      [moduleName]="moduleName"
     ></app-table>
   </div>
   <mat-paginator
