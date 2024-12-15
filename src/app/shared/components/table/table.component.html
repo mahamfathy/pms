@@ -157,19 +157,6 @@
               </button>
             </ng-container>
 
-            <ng-container *ngIf="moduleName == 'users'">
-              <button
-                mat-menu-item
-                (click)="toggleBlock(row)"
-                class="justify-content-center bg-warning"
-              >
-                <mat-icon>{{
-                  row.isActivated ? "block" : "lock_open"
-                }}</mat-icon>
-                <span>{{ row.isActivated ? "Block" : "Unblock" }}</span>
-              </button>
-            </ng-container>
-
             <button
               mat-menu-item
               class="justify-content-center"
