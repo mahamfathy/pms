@@ -18,10 +18,6 @@ export class UsersComponent implements OnInit {
   pageSize: number = 10;
   pageNumber: number = 1;
   tableRes: any;
-<<<<<<< HEAD
-
-=======
->>>>>>> 8b9514c ([feat] block user : finish in activate component)
   displayedColumns: string[] = [
     'userName',
     'imagePath',
@@ -78,10 +74,6 @@ export class UsersComponent implements OnInit {
     });
   }
   blockUser(user: IUser): void {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7ef4034 ([feat] block user : finish in the methods and dialog)
     this._UsersService.blockUser(user.id).subscribe({
       next: () => {
         this.getAllUsers();
@@ -89,21 +81,6 @@ export class UsersComponent implements OnInit {
       error: (err) => {
         console.error('Error blocking user:', err);
       },
-<<<<<<< HEAD
-=======
-    const dialogRef = this.dialog.open(BlockUserComponent, {
-      data: user,
->>>>>>> 4511bd1 ([feat]users service : createblock method)
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      this._UsersService.blockUser(user.id).subscribe({
-        next: (res) => {
-          this.getAllUsers();
-          res.isActivated = !res.isActivated;
-        },
-      });
-=======
->>>>>>> 7ef4034 ([feat] block user : finish in the methods and dialog)
     });
   }
 }

@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 <h2 mat-dialog-title>
   {{ data.isActivated === true ? "Block" : "Unblock" }} User
 </h2>
@@ -22,32 +19,3 @@
     {{ data.isActivated === true ? "Block" : "Unblock" }}
   </button>
 </mat-dialog-actions>
-=======
-<p>block-user works!</p>
->>>>>>> 2ece285 ([feat] block-user component : create the component)
-=======
-<h2 mat-dialog-title>Block user</h2>
-=======
-<h2 mat-dialog-title>
-  {{ data.isActivated === true ? "Block" : "Unblock" }} User
-</h2>
->>>>>>> 7ef4034 ([feat] block user : finish in the methods and dialog)
-<mat-dialog-content>
-  <p>
-    Are you sure you want to
-    {{ data.isActivated === true ? "Block" : "Unblock" }}
-    <strong>{{ data.userName }}</strong
-    >?
-  </p>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="false">Cancel</button>
-  <button
-    mat-raised-button
-    [color]="data.isActivated === true ? 'warn' : 'primary'"
-    [mat-dialog-close]="true"
-  >
-    {{ data.isActivated === true ? "Block" : "Unblock" }}
-  </button>
-</mat-dialog-actions>
->>>>>>> 4511bd1 ([feat]users service : createblock method)

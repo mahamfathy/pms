@@ -15,12 +15,7 @@ import { UsersComponent } from './users.component';
     AddManagerComponent,
     BlockUserComponent,
   ],
-  declarations: [
-    UsersComponent,
-    ViewUserComponent,
-    AddManagerComponent,
-    BlockUserComponent,
-  ],
+
   imports: [CommonModule, UsersRoutingModule, SharedModule],
 })
 export class UsersModule {}
