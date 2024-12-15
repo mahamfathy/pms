@@ -16,17 +16,16 @@ export class UsersComponent implements OnInit {
 
   readonly dialog = inject(MatDialog);
   defaultImage: string = 'assets/images/def-avatar.avif';
-  pageSize: number = 5;
+  pageSize: number = 10;
   pageNumber: number = 1;
   tableRes: any;
-  numRows!: number;
-  isBlocked: boolean = false;
   displayedColumns: string[] = [
     'userName',
     'imagePath',
     'email',
     'country',
     'phoneNumber',
+    'isActivated',
     'actions',
   ];
   actions: any[] = [
@@ -52,9 +51,6 @@ export class UsersComponent implements OnInit {
     this._UsersService.getAllUsers(tableParams).subscribe({
       next: (res) => {
         this.tableRes = res;
-        this.numRows = res.totalNumberOfRecords;
-
-        // console.log(res);
         this.dataSource = res.data.map((user: IUser) => ({
           ...user,
           imagePath:
@@ -81,12 +77,6 @@ export class UsersComponent implements OnInit {
       width: '45%',
       data: user,
     });
-
-    // this._UsersService.getUserById(user.id).subscribe({
-    //   next: (res) => {},
-    //   error: () => {},
-    //   complete: () => {},
-    // });
   }
   blockUser(user: IUser): void {
     const dialogRef = this.dialog.open(BlockUserComponent, {
@@ -95,7 +85,8 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this._UsersService.blockUser(user.id).subscribe({
         next: (res) => {
-          console.log(res);
+          this.getAllUsers();
+          res.isActivated = !res.isActivated;
         },
       });
     });
