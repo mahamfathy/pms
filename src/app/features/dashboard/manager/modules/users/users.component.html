@@ -1,4 +1,4 @@
-  <section>
+<section>
   <div class="header flex-column shadow-sm d-flex">
     <div class="wrapper d-flex justify-content-between">
       <h1>Users</h1>
@@ -13,9 +13,10 @@
       [displayedColumns]="displayedColumns"
       [dataSource]="dataSource"
       [actions]="actions"
+      [numRows]="numRows"
     ></app-table>
   </div>
-  <mat-paginator
+  <!-- <mat-paginator
     [length]="tableRes?.totalNumberOfRecords"
     [pageSize]="pageSize"
     [pageIndex]="pageNumber"
@@ -23,5 +24,5 @@
     [pageSizeOptions]="[5, 10, 25, 100]"
     aria-label="Select page"
   >
-  </mat-paginator>
+  </mat-paginator> -->
 </section>
