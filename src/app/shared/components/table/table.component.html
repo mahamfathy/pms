@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center gap-4 px-3 py-2">
+<!-- <div class="d-flex align-items-center gap-4 px-3 py-2">
   <div>
     <mat-form-field class="" *ngIf="filterName == 'Title'; else status">
       <mat-label
@@ -43,7 +43,7 @@
       <button mat-menu-item (click)="filterChange('Status')">Status</button>
     </mat-menu>
   </div>
-</div>
+</div> -->
 
 <table mat-table [dataSource]="data" class="mat-elevation-z8">
   <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
@@ -126,6 +126,7 @@
         <mat-menu #menu="matMenu">
           <ng-container *ngFor="let action of actions">
             <button
+              class="justify-content-center"
               mat-menu-item
               *ngIf="action.name === 'View'"
               (click)="viewUser(row); viewProject(row)"
@@ -151,11 +152,11 @@
             </button>
             <button
               mat-menu-item
-              *ngIf="action.name === 'Block'"
-              (click)="blockUser(row)"
+              (click)="toggleBlock(row)"
+              class="justify-content-center"
             >
-              <mat-icon>{{ action.icon }}</mat-icon>
-              <span>{{ action.name }}</span>
+              <mat-icon>{{ row.isActivated ? "block" : "lock_open" }}</mat-icon>
+              <span>{{ row.isActivated ? "Block" : "Unblock" }}</span>
             </button>
           </ng-container>
         </mat-menu>

@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { IProjectslist } from 'src/app/features/dashboard/manager/modules/manager-projects/interfaces/iproject';
 import { TasksService } from 'src/app/features/dashboard/manager/modules/tasks/services/tasks.service';
+import { BlockUserComponent } from 'src/app/features/dashboard/manager/modules/users/components/block-user/block-user.component';
 import { IUser } from 'src/app/features/dashboard/manager/modules/users/interfaces/IUser';
 
 @Component({
@@ -21,8 +23,8 @@ export class TableComponent {
   @Output() projectDeleted = new EventEmitter<any>();
   @Output() projectEdited = new EventEmitter<any>();
   @Output() userBlocked = new EventEmitter<any>();
-  constructor(private _TasksService: TasksService) {}
-
+  constructor(private _TasksService: TasksService, private dialog: MatDialog) {}
+  isBlocked: boolean = false;
   data!: any;
   filterName: string = 'Title';
   pageSize: number = 5;
@@ -32,9 +34,28 @@ export class TableComponent {
   viewUser(user: IUser): void {
     this.userViewed.emit(user);
   }
+  toggleBlock(user: IUser): void {
+    const dialogRef = this.dialog.open(BlockUserComponent, {
+      width: '400px',
+      data: user, // Pass the user data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.userBlocked.emit(user);
+      }
+    });
+  }
   blockUser(user: IUser): void {
+    user.isActivated = false;
     this.userBlocked.emit(user);
   }
+
+  unblockUser(user: IUser): void {
+    user.isActivated = true;
+    this.userBlocked.emit(user);
+  }
+
   viewProject(project: IProjectslist): void {
     this.projectViewed.emit(project);
     // console.log(project);
