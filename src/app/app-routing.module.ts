@@ -22,11 +22,10 @@ const routes: Routes = [
     path: 'change',
     component: ChangePasswordComponent,
   },
-  { path: 'page-not-found', component: NotfoundComponent },
   {
     path: '**',
-    redirectTo: 'page-not-found',
-    pathMatch: 'full',
+    component: NotfoundComponent,
+    title: 'not-found',
   },
 ];
 

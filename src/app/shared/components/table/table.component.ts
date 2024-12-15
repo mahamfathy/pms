@@ -58,6 +58,7 @@ export class TableComponent {
     this._TasksService.getAllTasks(myparms).subscribe({
       next: (res) => {
         console.log(res);
+        this.dataSource = res;
         this.data = res.data;
       },
       error: (err) => {
@@ -77,6 +78,8 @@ export class TableComponent {
     this._TasksService.getAllTasks(myparms).subscribe({
       next: (res) => {
         console.log(res);
+        this.dataSource = res;
+
         this.data = res.data;
       },
       error: (err) => {

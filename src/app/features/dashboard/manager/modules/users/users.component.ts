@@ -15,9 +15,11 @@ export class UsersComponent implements OnInit {
 
   readonly dialog = inject(MatDialog);
   defaultImage: string = 'assets/images/def-avatar.avif';
-  pageSize: number = 10;
+  pageSize: number = 5;
   pageNumber: number = 1;
   tableRes: any;
+  numRows!: number;
+
   displayedColumns: string[] = [
     'userName',
     'imagePath',
@@ -48,7 +50,9 @@ export class UsersComponent implements OnInit {
     };
     this._UsersService.getAllUsers(tableParams).subscribe({
       next: (res) => {
-        tableParams = res;
+        this.tableRes = res;
+        this.numRows = res.totalNumberOfRecords;
+
         // console.log(res);
         this.dataSource = res.data.map((user: IUser) => ({
           ...user,
@@ -65,7 +69,7 @@ export class UsersComponent implements OnInit {
   }
   handlePageEvent(e: PageEvent) {
     this.pageSize = e.pageSize;
-    this.pageNumber = e.pageIndex + 1;
+    this.pageNumber = e.pageIndex;
     console.log(e);
     this.getAllUsers();
   }
