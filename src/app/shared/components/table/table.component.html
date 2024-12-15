@@ -138,6 +138,7 @@
               mat-menu-item
               *ngIf="action.name === 'Edit'"
               (click)="editProject(row)"
+              class="justify-content-center"
             >
               <mat-icon>{{ action.icon }}</mat-icon>
               <span>{{ action.name }}</span>
@@ -146,11 +147,13 @@
               mat-menu-item
               *ngIf="action.name === 'Delete'"
               (click)="deleteProject(row)"
+              class="justify-content-center"
             >
               <mat-icon>{{ action.icon }}</mat-icon>
               <span>{{ action.name }}</span>
             </button>
             <button
+              *ngIf="action.name === 'Block' || action.name === 'Unblock'"
               mat-menu-item
               (click)="toggleBlock(row)"
               class="justify-content-center"
