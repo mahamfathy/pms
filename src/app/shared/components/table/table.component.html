@@ -123,7 +123,7 @@
             <button
               mat-menu-item
               *ngIf="action.name === 'View'"
-              (click)="viewUser(row); viewProject(row)"
+              (click)="viewUser(row); viewProject(row); viewTask(row)"
             >
               <mat-icon>{{ action.icon }}</mat-icon>
               <span>{{ action.name }}</span>

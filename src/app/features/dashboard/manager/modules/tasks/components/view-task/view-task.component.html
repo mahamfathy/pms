@@ -1,0 +1,38 @@
+<section>
+  <div class="container-fluid">
+    <div class="d-flex justify-content-end pb-5" (click)="onNoClick()">
+      <mat-icon
+        style="background-color: red; cursor: pointer; border-radius: 50%"
+      >
+        close</mat-icon
+      >
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center fs-3 fw-bolder">
+        {{ data.title }}
+      </div>
+
+      <div class="project-details">
+        <div class="project-details-content">
+          <p>Manager:{{ data.project.manager.userName }}</p>
+          <p>Title: {{ data.project.title }}</p>
+          <p>creationDate: {{ data.creationDate | date }}</p>
+          <p>Status: {{ data.status }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 
+<h1 mat-dialog-title>Hi {{ data }}</h1>
+<div mat-dialog-content>
+  <p>What's your favorite animal?</p>
+  <mat-form-field>
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="data.animal" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div> -->

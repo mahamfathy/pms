@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { IProjectslist } from 'src/app/features/dashboard/manager/modules/manager-projects/interfaces/iproject';
+import { Itasks } from 'src/app/features/dashboard/manager/modules/tasks/interfaces/itasks';
 import { TasksService } from 'src/app/features/dashboard/manager/modules/tasks/services/tasks.service';
 import { IUser } from 'src/app/features/dashboard/manager/modules/users/interfaces/IUser';
 
@@ -20,6 +21,7 @@ export class TableComponent {
   @Output() projectViewed = new EventEmitter<any>();
   @Output() projectDeleted = new EventEmitter<any>();
   @Output() projectEdited = new EventEmitter<any>();
+  @Output() viewedTask = new EventEmitter<any>();
   constructor(private _TasksService: TasksService) {}
 
   data!: any;
@@ -27,6 +29,11 @@ export class TableComponent {
   pageSize: number = 5;
   pageNumber: number = 1;
   searchName: string = '';
+
+  viewTask(task: Itasks) {
+    this.viewedTask.emit(task);
+    console.log(task);
+  }
 
   viewUser(user: IUser): void {
     this.userViewed.emit(user);
