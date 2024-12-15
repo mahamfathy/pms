@@ -1,0 +1,26 @@
+@import "../../../../../../../../assets/sass/abstracts/variables";
+@import "../../../../../../../../assets/sass/components/_button";
+
+section {
+  h2 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: $color-gray;
+  }
+
+  .transparent-btn {
+    &:hover {
+      background-color: rgb(152, 47, 47);
+      color: $color-white;
+      border: 1px solid transparent;
+    }
+  }
+  .orange-btn {
+    &:hover {
+      background-color: $color-orange;
+      color: $color-white;
+      border: 1px solid transparent;
+    }
+  }
+}

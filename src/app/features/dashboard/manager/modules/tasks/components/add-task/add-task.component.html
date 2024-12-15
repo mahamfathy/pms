@@ -1,0 +1,57 @@
+<section>
+  <div class="bg-white p-2">
+    <p class="m-0" style="cursor: pointer">
+      <i class="fa-solid fa-angle-left"></i> View All Tasks
+    </p>
+    <h1 class="m-0">Add a New Task</h1>
+  </div>
+
+  <div class="container py-3">
+    <div class="w-75 mx-auto rounded-4 bg-white">
+      <div class="px-5 pt-2 pb-0">
+        <h2>Title</h2>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput />
+        </mat-form-field>
+
+        <h2>Description</h2>
+        <mat-form-field class="w-100">
+          <mat-label>Description</mat-label>
+          <textarea matInput></textarea>
+        </mat-form-field>
+
+        <div class="row g-5">
+          <div class="col-md-6">
+            <h2>User</h2>
+            <mat-form-field class="w-100">
+              <mat-label>users</mat-label>
+              <mat-select class="w-100">
+                <mat-option value="one">First option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <h2>Project</h2>
+            <mat-form-field class="w-100">
+              <mat-label>Projects</mat-label>
+              <mat-select class="w-100">
+                <mat-option value="one">First option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <hr />
+
+      <div
+        class="px-5 pt-0 pb-3 d-flex justify-content-between align-items-center"
+      >
+        <button mat-raised-button class="transparent-btn p-4">Cancel</button>
+        <button mat-raised-button class="orange-btn p-4">Save</button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -8,6 +8,7 @@
   // font-size: 2rem;
   padding: 0.5rem;
 }
+
 .transparent-btn {
   line-height: 19.5px;
   color: $dark-green-bg;
@@ -27,9 +28,9 @@
   color: $color-orange;
   border: 1px solid $color-orange;
   padding: 0.5rem;
-  transition: $main-transition ;
+  transition: $main-transition;
   &:hover {
-  background-color: $color-orange;
-  color: $color-white;
+    background-color: $color-orange;
+    color: $color-white;
   }
 }
