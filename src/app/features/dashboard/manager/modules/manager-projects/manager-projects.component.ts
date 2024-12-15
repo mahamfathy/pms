@@ -20,6 +20,7 @@ export class ManagerProjectsComponent {
   moduleName: string = 'projects';
   pageSize: number = 10;
   pageNumber: number = 1;
+  serchValue: string = '';
   displayedColumns: string[] = [
     'title',
     'creationDate',
@@ -51,10 +52,10 @@ export class ManagerProjectsComponent {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex;
     // console.log(e);
-    this.getAllProjects();
+    this.getMyProjectsForManager();
   }
   ngOnInit(): void {
-    this.getAllProjects();
+    this.getMyProjectsForManager();
   }
   openDialogDelete(projectDetails: any): void {
     const dialogRef = this._MatDialog.open(DeleteItemComponent, {
@@ -71,11 +72,11 @@ export class ManagerProjectsComponent {
       }
     });
   }
-  getAllProjects(): void {
+  getMyProjectsForManager(): void {
     let param = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
-      title: '',
+      title: this.serchValue,
     };
     this._ManagerProjectsService.onGetMyProjectsForManager(param).subscribe({
       next: (res) => {
@@ -101,7 +102,7 @@ export class ManagerProjectsComponent {
       },
       complete: () => {
         this._ToastrService.error(`${this.deletedProject.title} removed`);
-        this.getAllProjects();
+        this.getMyProjectsForManager();
       },
     });
   }
