@@ -38,6 +38,7 @@ export class TasksComponent {
   pageSize: number = 5;
   pageNumber: number = 1;
   numRows!: number;
+  moduleName: string = 'tasks';
 
   myparms = {
     pageNumber: this.pageNumber,

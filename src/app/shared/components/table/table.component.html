@@ -7,7 +7,7 @@
       <input
         matInput
         [(ngModel)]="searchName"
-        (keydown)="fireFilteration()"
+        (keydown.enter)="fireFilteration()"
         placeholder="Title"
         #input
       />
@@ -55,32 +55,64 @@
       ></i>
     </th>
 
-    <!-- <ng-container *ngIf="column === 'userName'">
-      <td mat-cell *matCellDef="let row">
-        {{ row.project.manager.userName }}
-      </td>
-    </ng-container> -->
+    <ng-container *ngIf="moduleName === 'tasks'">
+      <ng-container *ngIf="column === 'userName'">
+        <td mat-cell *matCellDef="let row">
+          {{ row.project.manager.userName }}
+        </td>
+      </ng-container>
 
-    <ng-container *ngIf="column === 'creationDate'" elseif project>
-      <td mat-cell *matCellDef="let row">
-        {{ row.creationDate | date : "dd/MM/yyyy" }}
-      </td>
+      <!-- tasks -->
+      <ng-container *ngIf="column === 'status'">
+        <td
+          mat-cell
+          *matCellDef="let row"
+          class="badge p-2 mt-2"
+          [ngClass]="
+            row.status === 'ToDo'
+              ? 'pink'
+              : row.status === 'Done'
+              ? 'bg-success'
+              : 'yellow'
+          "
+        >
+          {{ row.status }}
+        </td>
+      </ng-container>
+
+      <!-- tasks -->
+      <ng-container *ngIf="column === 'project'" #project else default>
+        <td mat-cell *matCellDef="let row">
+          <span>{{ row.project.title }}</span>
+          <span *ngIf="!row.project">No project</span>
+        </td>
+      </ng-container>
     </ng-container>
-    <ng-container *ngIf="column === 'modificationDate'">
-      <td mat-cell *matCellDef="let row">
-        {{ row.modificationDate | date : "dd/MM/yyyy" }}
-      </td>
+
+    <ng-container *ngIf="moduleName == 'users'">
+      <!-- user -->
+      <ng-container *ngIf="column === 'imagePath'" elseif project>
+        <td mat-cell *matCellDef="let row">
+          <img class="my-2" [src]="row.imagePath" alt="avatar" />
+        </td>
+      </ng-container>
     </ng-container>
-    <ng-container *ngIf="column === 'task'">
-      <td mat-cell *matCellDef="let row">
-        {{ row.task.length }}
-      </td>
+
+    <ng-container *ngIf="moduleName == 'projects'">
+      <ng-container *ngIf="column === 'modificationDate'">
+        <td mat-cell *matCellDef="let row">
+          {{ row.modificationDate | date : "dd/MM/yyyy" }}
+        </td>
+      </ng-container>
+
+      <!-- project -->
+      <ng-container *ngIf="column === 'task'">
+        <td mat-cell *matCellDef="let row">
+          {{ row.task.length }}
+        </td>
+      </ng-container>
     </ng-container>
-    <ng-container *ngIf="column === 'imagePath'" elseif project>
-      <td mat-cell *matCellDef="let row">
-        <img class="my-2" [src]="row.imagePath" alt="avatar" />
-      </td>
-    </ng-container>
+
     <ng-container *ngIf="column === 'actions'">
       <td mat-cell *matCellDef="let row">
         <button mat-button [matMenuTriggerFor]="menu">
@@ -117,29 +149,12 @@
       </td>
     </ng-container>
 
-    <ng-container *ngIf="column === 'status'">
-      <td
-        mat-cell
-        *matCellDef="let row"
-        class="badge p-2 mt-2"
-        [ngClass]="
-          row.status === 'ToDo'
-            ? 'pink'
-            : row.status === 'Done'
-            ? 'bg-success'
-            : 'yellow'
-        "
-      >
-        {{ row.status }}
+    <ng-container *ngIf="column === 'creationDate'" elseif project>
+      <td mat-cell *matCellDef="let row">
+        {{ row.creationDate | date : "dd/MM/yyyy" }}
       </td>
     </ng-container>
 
-    <ng-container *ngIf="column === 'project'" #project else default>
-      <td mat-cell *matCellDef="let row">
-        <span>{{ row.project.title }}</span>
-        <span *ngIf="!row.project">No project</span>
-      </td>
-    </ng-container>
     <td #default mat-cell *matCellDef="let row" [ngClass]="{ class: true }">
       {{ row[column] }}
     </td>

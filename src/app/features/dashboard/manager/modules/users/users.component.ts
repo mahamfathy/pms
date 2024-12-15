@@ -11,6 +11,8 @@ import { UsersService } from './services/users.service';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
+  moduleName: string = 'users';
+
   readonly dialog = inject(MatDialog);
   defaultImage: string = 'assets/images/def-avatar.avif';
   pageSize: number = 10;
@@ -67,6 +69,7 @@ export class UsersComponent implements OnInit {
     console.log(e);
     this.getAllUsers();
   }
+
   viewUser(user: IUser): void {
     const userCopy = JSON.parse(JSON.stringify(user));
     const dialogRef = this.dialog.open(ViewUserComponent, {
@@ -74,10 +77,10 @@ export class UsersComponent implements OnInit {
       data: user,
     });
 
-    this._UsersService.getUserById(user.id).subscribe({
-      next: (res) => {},
-      error: () => {},
-      complete: () => {},
-    });
+    // this._UsersService.getUserById(user.id).subscribe({
+    //   next: (res) => {},
+    //   error: () => {},
+    //   complete: () => {},
+    // });
   }
 }
