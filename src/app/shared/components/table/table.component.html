@@ -153,13 +153,23 @@
               <span>{{ action.name }}</span>
             </button>
             <button
-              *ngIf="action.name === 'Block' || action.name === 'Unblock'"
+              *ngIf="action.name === 'Block' && !row.isActivated"
               mat-menu-item
               (click)="toggleBlock(row)"
               class="justify-content-center"
             >
-              <mat-icon>{{ row.isActivated ? "block" : "lock_open" }}</mat-icon>
-              <span>{{ row.isActivated ? "Block" : "Unblock" }}</span>
+              <mat-icon>lock_open</mat-icon>
+              <span>Unblock</span>
+            </button>
+
+            <button
+              *ngIf="action.name === 'Unblock' && row.isActivated"
+              mat-menu-item
+              (click)="toggleBlock(row)"
+              class="justify-content-center"
+            >
+              <mat-icon>block</mat-icon>
+              <span>Block</span>
             </button>
           </ng-container>
         </mat-menu>
