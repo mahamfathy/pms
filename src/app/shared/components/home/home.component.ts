@@ -13,6 +13,8 @@ export class HomeComponent {
   }
   usersCount:number = 0;
   tasksCount:number = 0;
+  totalUsers: number =  0;
+  totalTasks: number =  0;
   chart: any ;
 
   ngOnInit() {
@@ -23,7 +25,9 @@ export class HomeComponent {
     this._HelperService.OnGetUserCount().subscribe({
       next:(res)=>{
         this.usersCount=res;
-        console.log(this.usersCount);
+        // console.log(this.usersCount);
+        this.totalUsers = res.activatedEmployeeCount + res.deactivatedEmployeeCount
+        // console.log(this.totalUsers);
       },
       error:(err)=>{
         // console.log(err)
@@ -35,7 +39,7 @@ export class HomeComponent {
             labels: ['activatedEmployeeCount', 'deactivatedEmployeeCount'],
             datasets: [{
               label: 'Count',
-              data: [44,7],
+              data: [50,15],
               backgroundColor: ['#315951e5', '#31595193']
             }]
           }
@@ -48,7 +52,9 @@ getTasksChart() {
   this._HelperService.onTsksCount().subscribe({
     next:(res)=>{
       this.tasksCount=res;
-      console.log(this.tasksCount);
+      // console.log(this.tasksCount);
+      this.totalTasks = res.done + res.toDo + res.inProgress
+      // console.log(this.totalTasks);
     },
     error:(err)=>{
       // console.log(err)
@@ -60,7 +66,7 @@ getTasksChart() {
           labels: ['done', 'toDo', 'inProgress'],
           datasets: [{
             label: 'Count',
-            data: [63,19,19],
+            data: [50,15,15],
             backgroundColor: ['#315951e5', '#31595193', '#ef9b28']
           }]
         }
