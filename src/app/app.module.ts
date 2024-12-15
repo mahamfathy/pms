@@ -28,7 +28,7 @@ import { NgChartsModule } from 'ng2-charts';
     NgxSpinnerModule,
     NgChartsModule
   ],
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -37,6 +37,7 @@ import { NgChartsModule } from 'ng2-charts';
     },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
+  exports:[NgxSpinnerModule],
 
   bootstrap: [AppComponent],
 })
