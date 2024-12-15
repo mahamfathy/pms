@@ -30,8 +30,11 @@ export class TableComponent {
 
 =======
   constructor(private _TasksService: TasksService, private dialog: MatDialog) {}
+<<<<<<< HEAD
   isBlocked: boolean = false;
 >>>>>>> 7ef4034 ([feat] block user : finish in the methods and dialog)
+=======
+>>>>>>> fe2be00 ([feat] users component : create method of block)
   data!: any;
   filterName: string = 'Title';
   pageSize: number = 5;
@@ -49,7 +52,7 @@ export class TableComponent {
   toggleBlock(user: IUser): void {
     const dialogRef = this.dialog.open(BlockUserComponent, {
       width: '400px',
-      data: user, // Pass the user data to the dialog
+      data: user,
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {

@@ -152,11 +152,11 @@
             </button>
             <button
               mat-menu-item
-              (click)="toggleBlock(row)"
-              class="justify-content-center"
+              *ngIf="action.name === 'Block'"
+              (click)="blockUser(row)"
             >
-              <mat-icon>{{ row.isActivated ? "block" : "lock_open" }}</mat-icon>
-              <span>{{ row.isActivated ? "Block" : "Unblock" }}</span>
+              <mat-icon>{{ action.icon }}</mat-icon>
+              <span>{{ action.name }}</span>
             </button>
           </ng-container>
         </mat-menu>
