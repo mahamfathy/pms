@@ -32,6 +32,8 @@ export class UsersComponent implements OnInit {
       name: 'View',
       icon: 'visibility',
     },
+    { name: 'Block', icon: 'block' },
+    { name: 'Unblock', icon: 'lock_open' },
   ];
   dataSource: IUser[] = [];
   constructor(private _UsersService: UsersService) {}
