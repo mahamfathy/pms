@@ -20,6 +20,10 @@ export class UsersService {
     return this._HttpClient.get('Users/Manager');
   }
   blockUser(id: number): Observable<any> {
+<<<<<<< HEAD
     return this._HttpClient.put(`Users/${id}`, { HttpParams: id });
+=======
+    return this._HttpClient.put(`Users/${id}`, id);
+>>>>>>> 4511bd1 ([feat]users service : createblock method)
   }
 }
