@@ -21,9 +21,13 @@ export class UsersService {
   }
   blockUser(id: number): Observable<any> {
 <<<<<<< HEAD
+<<<<<<< HEAD
     return this._HttpClient.put(`Users/${id}`, { HttpParams: id });
 =======
     return this._HttpClient.put(`Users/${id}`, id);
 >>>>>>> 4511bd1 ([feat]users service : createblock method)
+=======
+    return this._HttpClient.put(`Users/${id}`, { HttpParams: id });
+>>>>>>> 8b9514c ([feat] block user : finish in activate component)
   }
 }

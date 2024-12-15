@@ -19,7 +19,10 @@ export class UsersComponent implements OnInit {
   pageSize: number = 10;
   pageNumber: number = 1;
   tableRes: any;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8b9514c ([feat] block user : finish in activate component)
   displayedColumns: string[] = [
     'userName',
     'imagePath',
@@ -92,7 +95,8 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this._UsersService.blockUser(user.id).subscribe({
         next: (res) => {
-          console.log(res);
+          this.getAllUsers();
+          res.isActivated = !res.isActivated;
         },
       });
     });
