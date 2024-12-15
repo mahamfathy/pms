@@ -21,6 +21,7 @@ export class TableComponent {
   @Output() projectViewed = new EventEmitter<any>();
   @Output() projectDeleted = new EventEmitter<any>();
   @Output() projectEdited = new EventEmitter<any>();
+  @Output() userBlocked = new EventEmitter<any>();
   @Output() viewedTask = new EventEmitter<any>();
   constructor(private _TasksService: TasksService) {}
 
@@ -37,6 +38,9 @@ export class TableComponent {
 
   viewUser(user: IUser): void {
     this.userViewed.emit(user);
+  }
+  blockUser(user: IUser): void {
+    this.userBlocked.emit(user);
   }
   viewProject(project: IProjectslist): void {
     this.projectViewed.emit(project);

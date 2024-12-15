@@ -1,18 +1,18 @@
-@import "../../../../../../../../assets/sass/abstracts/mixins";
+@import "/src/assets/sass/main.scss";
 
 section {
   .header {
     span {
       @include flex-between;
       width: fit-content;
-      cursor: pointer
+      cursor: pointer;
     }
   }
   .container {
     .create-project-form {
       .form__wrapper {
         .form__actions {
-         @include flex-between;
+          @include flex-between;
         }
       }
     }

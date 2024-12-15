@@ -14,9 +14,10 @@
       [dataSource]="dataSource"
       [actions]="actions"
       [moduleName]="moduleName"
+      (userBlocked)="blockUser($event)"
     ></app-table>
   </div>
-  <!-- <mat-paginator
+  <mat-paginator
     [length]="tableRes?.totalNumberOfRecords"
     [pageSize]="pageSize"
     [pageIndex]="pageNumber"
@@ -24,5 +25,5 @@
     [pageSizeOptions]="[5, 10, 25, 100]"
     aria-label="Select page"
   >
-  </mat-paginator> -->
+  </mat-paginator>
 </section>

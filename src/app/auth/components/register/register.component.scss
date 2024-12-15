@@ -1,5 +1,4 @@
-@import "../../../../assets/sass/abstracts/variables";
-@import "../../../../assets/sass/abstracts/mixins";
+@import "/src/assets/sass/main.scss";
 
 section.auth-section {
   @include auth-bg("../../../../assets/images/register-bg.jpeg");
