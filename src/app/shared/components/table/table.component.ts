@@ -24,6 +24,10 @@ export class TableComponent {
   @Output() projectEdited = new EventEmitter<any>();
   @Output() userBlocked = new EventEmitter<any>();
   constructor(private _TasksService: TasksService, private dialog: MatDialog) {}
+<<<<<<< HEAD
+=======
+  isBlocked: boolean = false;
+>>>>>>> 7ef4034 ([feat] block user : finish in the methods and dialog)
   data!: any;
   filterName: string = 'Title';
   pageSize: number = 5;
@@ -36,7 +40,11 @@ export class TableComponent {
   toggleBlock(user: IUser): void {
     const dialogRef = this.dialog.open(BlockUserComponent, {
       width: '400px',
+<<<<<<< HEAD
       data: user,
+=======
+      data: user, // Pass the user data to the dialog
+>>>>>>> 7ef4034 ([feat] block user : finish in the methods and dialog)
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
