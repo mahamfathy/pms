@@ -176,9 +176,6 @@
               *ngIf="action.name === 'Delete'"
               (click)="deleteProject(row)"
               style="padding-left: 6px"
-              *ngIf="action.name === 'Edit'"
-              (click)="editProject(row)"
-              class="justify-content-center"
             >
               <mat-icon>{{ action.icon }}</mat-icon>
               <span>{{ action.name }}</span>
