@@ -144,6 +144,14 @@
               <mat-icon>{{ action.icon }}</mat-icon>
               <span>{{ action.name }}</span>
             </button>
+            <button
+              mat-menu-item
+              *ngIf="action.name === 'Block'"
+              (click)="blockUser(row)"
+            >
+              <mat-icon>{{ action.icon }}</mat-icon>
+              <span>{{ action.name }}</span>
+            </button>
           </ng-container>
         </mat-menu>
       </td>

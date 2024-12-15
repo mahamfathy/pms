@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
   pageNumber: number = 1;
   tableRes: any;
   numRows!: number;
-
+  isBlocked: boolean = false;
   displayedColumns: string[] = [
     'userName',
     'imagePath',
@@ -86,5 +86,11 @@ export class UsersComponent implements OnInit {
     //   error: () => {},
     //   complete: () => {},
     // });
+  }
+  blockUser(user: IUser): void {
+    const dialogRef = this.dialog.open(ViewUserComponent, {
+      width: '45%',
+      data: user,
+    });
   }
 }
