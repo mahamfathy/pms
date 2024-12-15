@@ -104,4 +104,13 @@ export class UsersComponent implements OnInit {
       },
     });
   }
+  clearFilters(): void {
+    this.searchVal = '';
+    this.roleId = [1, 2];
+    this.searchPlaceholder = 'Search by User Name';
+    this.searchIcon = 'person';
+    this.searchLabel = 'user name';
+    this.searchBy = 'userName';
+    this.getAllUsers();
+  }
 }
