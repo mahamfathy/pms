@@ -1,14 +1,62 @@
 @import "../../../../assets/sass/abstracts/variables";
 section {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  .container-fluid {
+  &.main {
+    padding-left: 1rem;
+    padding-right: 1rem;
     height: 20rem;
     border-radius: 1rem;
     background: linear-gradient(#31595170, #31595170),
       url("../../../../assets/images/home.svg");
     background-repeat: no-repeat;
     background-size: cover;
+  }
+  &.sctatistics {
+    .contetnt {
+      .card {
+        border-radius: 15px;
+        padding: 1rem;
+        .card-icon {
+          height: 40px;
+          width: 40px;
+          border-radius: 15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .card-content {
+          h5 {
+            font-size: 13px;
+            font-weight: 500;
+            color: #6f7881;
+          }
+          p {
+            font-size: 20px;
+            line-height: 24px;
+            color: #000;
+          }
+        }
+        &.first-card {
+          background-color: #E5E6F4;
+          .card-icon {
+            background-color: #CFD1EC ;
+          }
+        }
+        &.second-card {
+          background-color: #F4F4E5;
+          .card-icon {
+            background-color: #E4E4BC ;
+          }
+        }
+        &.third-card {
+          background-color: #F4E5ED;
+          .card-icon {
+            background-color: #E7C3D7 ;
+          }
+        }
+      }
+    }
+  }
+  .container-fluid {
     margin-top: 2.5rem;
     .row {
       height: 100%;
