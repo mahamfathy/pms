@@ -123,7 +123,8 @@
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
-        <mat-menu #menu="matMenu">
+
+        <mat-menu class="" #menu="matMenu">
           <ng-container *ngFor="let action of actions">
             <button
               class="justify-content-center"
@@ -134,29 +135,42 @@
               <mat-icon>{{ action.icon }}</mat-icon>
               <span>{{ action.name }}</span>
             </button>
+
+            <ng-container *ngIf="moduleName == 'tasks' || 'projects'">
+              <button
+                mat-menu-item
+                style="margin-left: -5px"
+                class="justify-content-center"
+                *ngIf="action.name === 'Edit'"
+                (click)="editProject(row)"
+              >
+                <mat-icon>{{ action.icon }}</mat-icon>
+                <span>{{ action.name }}</span>
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="moduleName == 'users'">
+              <button
+                mat-menu-item
+                (click)="toggleBlock(row)"
+                class="justify-content-center bg-warning"
+              >
+                <mat-icon>{{
+                  row.isActivated ? "block" : "lock_open"
+                }}</mat-icon>
+                <span>{{ row.isActivated ? "Block" : "Unblock" }}</span>
+              </button>
+            </ng-container>
+
             <button
               mat-menu-item
-              *ngIf="action.name === 'Edit'"
-              (click)="editProject(row)"
-            >
-              <mat-icon>{{ action.icon }}</mat-icon>
-              <span>{{ action.name }}</span>
-            </button>
-            <button
-              mat-menu-item
+              class="justify-content-center"
               *ngIf="action.name === 'Delete'"
               (click)="deleteProject(row)"
+              style="padding-left: 6px"
             >
               <mat-icon>{{ action.icon }}</mat-icon>
               <span>{{ action.name }}</span>
-            </button>
-            <button
-              mat-menu-item
-              (click)="toggleBlock(row)"
-              class="justify-content-center"
-            >
-              <mat-icon>{{ row.isActivated ? "block" : "lock_open" }}</mat-icon>
-              <span>{{ row.isActivated ? "Block" : "Unblock" }}</span>
             </button>
           </ng-container>
         </mat-menu>

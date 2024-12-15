@@ -13,4 +13,20 @@ export class TasksService {
       params: parms,
     });
   }
+
+  addTask(data: object): Observable<any> {
+    return this._HttpClient.post('Task', data);
+  }
+
+  getUsers(data: any): Observable<any> {
+    return this._HttpClient.get('Users', {
+      params: data,
+    });
+  }
+
+  getProjects(data: any) {
+    return this._HttpClient.get('Project/manager', {
+      params: data,
+    });
+  }
 }
