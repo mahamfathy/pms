@@ -9,6 +9,28 @@
 </section>
 <section>
   <div class="container-fluid px-5">
+    <mat-form-field
+      class="example-form-field mb-4"
+      appearance="outline"
+      (keydown.enter)="getMyProjectsForManager()"
+    >
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="serchValue"
+        placeholder="Search by title"
+      />
+      <button
+        *ngIf="serchValue"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="serchValue = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
     <app-table
       (projectViewed)="viewProject($event)"
       (projectDeleted)="openDialogDelete($event)"
