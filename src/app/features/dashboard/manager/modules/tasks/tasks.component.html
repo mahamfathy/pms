@@ -1,17 +1,15 @@
-<section>
-  <div class="container-fluid mx-0">
-    <div
-      class="bg-white p-4 d-flex justify-content-between align-content-center"
-    >
-      <h1>Tasks</h1>
+<section class="">
+  <div class="bg-white p-4 d-flex justify-content-between align-content-center">
+    <h1>Tasks</h1>
 
-      <button class="orange-btn py-2 px-4">
-        <i class="fa-solid fa-plus pe-2"></i>Add New Task
-      </button>
-    </div>
-
+    <button class="orange-btn py-2 px-4">
+      <i class="fa-solid fa-plus pe-2"></i>Add New Task
+    </button>
+  </div>
+  <div class="container px-3">
     <app-table
       class="bg-secondary-subtle"
+      (viewedTask)="viewTask($event)"
       [displayedColumns]="displayedColumns"
       [dataSource]="dataSource"
       [actions]="actions"
