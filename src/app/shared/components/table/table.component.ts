@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { IProjectslist } from 'src/app/features/dashboard/manager/modules/manager-projects/interfaces/iproject';
+import { Itasks } from 'src/app/features/dashboard/manager/modules/tasks/interfaces/itasks';
 import { TasksService } from 'src/app/features/dashboard/manager/modules/tasks/services/tasks.service';
 import { BlockUserComponent } from 'src/app/features/dashboard/manager/modules/users/components/block-user/block-user.component';
 import { IUser } from 'src/app/features/dashboard/manager/modules/users/interfaces/IUser';
@@ -23,16 +24,19 @@ export class TableComponent {
   @Output() projectDeleted = new EventEmitter<any>();
   @Output() projectEdited = new EventEmitter<any>();
   @Output() userBlocked = new EventEmitter<any>();
+  @Output() viewedTask = new EventEmitter<any>();
+
   constructor(private _TasksService: TasksService, private dialog: MatDialog) {}
-<<<<<<< HEAD
-=======
-  isBlocked: boolean = false;
->>>>>>> 7ef4034 ([feat] block user : finish in the methods and dialog)
   data!: any;
   filterName: string = 'Title';
   pageSize: number = 5;
   pageNumber: number = 1;
   searchName: string = '';
+
+  viewTask(task: Itasks) {
+    this.viewedTask.emit(task);
+    console.log(task);
+  }
 
   viewUser(user: IUser): void {
     this.userViewed.emit(user);
@@ -40,11 +44,7 @@ export class TableComponent {
   toggleBlock(user: IUser): void {
     const dialogRef = this.dialog.open(BlockUserComponent, {
       width: '400px',
-<<<<<<< HEAD
       data: user,
-=======
-      data: user, // Pass the user data to the dialog
->>>>>>> 7ef4034 ([feat] block user : finish in the methods and dialog)
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {

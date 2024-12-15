@@ -47,6 +47,21 @@ mat-form-field {
   border-bottom: 0px solid transparent;
 }
 
+::ng-deep mat-form-field .mdc-text-field--filled {
+  --mdc-filled-text-field-container-shape: 50px !important;
+  border-bottom-right-radius: 50px !important;
+  border-bottom-left-radius: 50px !important;
+}
+html {
+  --mdc-filled-text-field-input-text-color: $color-orange;
+}
+
+::ng-deep mat-form-field .mat-mdc-form-field-bottom-align::before {
+  content: "";
+  display: inline;
+  height: 0px;
+}
+
 img {
   width: 100px;
   height: 100px;

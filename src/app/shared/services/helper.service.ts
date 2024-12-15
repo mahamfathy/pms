@@ -18,4 +18,10 @@ export class HelperService {
   onChangePassword(changePasswordForm: IChangepassword): Observable<any> {
     return this._HttpClient.put('Users/ChangePassword', changePasswordForm);
   }
+  OnGetUserCount():Observable<any>{
+    return this._HttpClient.get('Users/count')
+  }
+  onTsksCount():Observable<any>{
+    return this._HttpClient.get('Task/count')
+  }
 }

@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GlobalInterceptor } from './core/interceptors/global.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,8 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgChartsModule
   ],
 
   providers: [

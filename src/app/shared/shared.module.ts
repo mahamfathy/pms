@@ -25,7 +25,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TableComponent } from './components/table/table.component';
-
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     ChangePasswordComponent,
@@ -58,6 +58,7 @@ import { TableComponent } from './components/table/table.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    NgChartsModule,
   ],
   exports: [
     MatInputModule,
@@ -78,6 +79,7 @@ import { TableComponent } from './components/table/table.component';
     SidebarComponent,
     MatSidenavModule,
     TableComponent,
+    NgChartsModule
   ],
 })
 export class SharedModule {}
