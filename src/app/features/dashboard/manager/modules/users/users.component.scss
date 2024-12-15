@@ -1,17 +1,30 @@
 @import "/src/assets/sass/main.scss";
-
-.wrapper {
-  font-family: $font-montserrat;
-  background-color: $color-white;
-  padding: 2.5rem;
-  h1 {
-    font-weight: 500;
-    font-size: 28px;
-    color: #4f4f4f;
+section {
+  .header {
+    .wrapper {
+      font-family: $font-montserrat;
+      background-color: $color-white;
+      padding: 2.5rem;
+      h1 {
+        font-weight: 500;
+        font-size: 28px;
+        color: #4f4f4f;
+      }
+      button {
+        mat-icon {
+          vertical-align: bottom;
+        }
+      }
+    }
   }
-  button {
-    mat-icon {
-      vertical-align: bottom;
+  .container {
+    .row {
+      .search {
+        width: 20%;
+      }
+      .search2 {
+        width: 30%;
+      }
     }
   }
 }

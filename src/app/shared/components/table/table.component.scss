@@ -28,15 +28,13 @@ th {
   mat-form-field
   .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   border: 1px solid gray;
-  border-radius: 50px;
+  border-radius: 1rem;
   padding-left: 24px;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
 }
-::ng-deep
-  .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
-  height: 0px;
-}
-// .mat-mdc-text-field-wrapper
-
 mat-form-field {
   --mdc-filled-text-field-active-indicator-color: transperent;
 }
@@ -47,11 +45,11 @@ mat-form-field {
   border-bottom: 0px solid transparent;
 }
 
-::ng-deep mat-form-field .mdc-text-field--filled {
-  --mdc-filled-text-field-container-shape: 50px !important;
-  border-bottom-right-radius: 50px !important;
-  border-bottom-left-radius: 50px !important;
-}
+// mat-form-field .mdc-text-field--filled {
+//   --mdc-filled-text-field-container-shape: 50px;
+//   border-bottom-right-radius: 50px;
+//   border-bottom-left-radius: 50px;
+// }
 html {
   --mdc-filled-text-field-input-text-color: $color-orange;
 }
@@ -59,7 +57,7 @@ html {
 ::ng-deep mat-form-field .mat-mdc-form-field-bottom-align::before {
   content: "";
   display: inline;
-  height: 0px;
+  // height: 0px;
 }
 
 img {
