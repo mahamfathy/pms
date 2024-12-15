@@ -6,9 +6,10 @@ import { AddManagerComponent } from './components/add-manager/add-manager.compon
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
+import { BlockUserComponent } from './components/block-user/block-user.component';
 
 @NgModule({
-  declarations: [UsersComponent, ViewUserComponent, AddManagerComponent],
+  declarations: [UsersComponent, ViewUserComponent, AddManagerComponent, BlockUserComponent],
   imports: [CommonModule, UsersRoutingModule, SharedModule],
 })
 export class UsersModule {}
