@@ -74,7 +74,4 @@ export class SidebarComponent {
   logout(): void {
     this._AuthService.onLogout();
   }
-  openChangePasswordDialog(): void {
-    console.log('dialog change password');
-  }
 }

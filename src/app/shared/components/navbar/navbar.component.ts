@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { HelperService } from '../../services/helper.service';
 
@@ -13,7 +14,8 @@ export class NavbarComponent implements OnInit {
   userName: string = '';
   constructor(
     private _HelperService: HelperService,
-    private _AuthService: AuthService
+    private _AuthService: AuthService,
+    private _Router: Router
   ) {}
   ngOnInit(): void {
     this._HelperService.onGetCurrentUser().subscribe({
@@ -30,6 +32,9 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+  changePassword(): void {
+    this._Router.navigate(['/change']);
   }
   logout(): void {
     this._AuthService.onLogout();
