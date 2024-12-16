@@ -33,9 +33,6 @@ export class NavbarComponent implements OnInit {
       },
     });
   }
-  changePassword(): void {
-    this._Router.navigate(['/change']);
-  }
   logout(): void {
     this._AuthService.onLogout();
   }

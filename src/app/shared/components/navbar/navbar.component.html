@@ -15,11 +15,11 @@
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="/profile">
           <mat-icon>person</mat-icon>
           <span>Profile</span>
         </button>
-        <button mat-menu-item (click)="changePassword()">
+        <button mat-menu-item routerLink="/change">
           <mat-icon>lock_open</mat-icon>
           <span>Change Password</span>
         </button>
