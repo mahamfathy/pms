@@ -4,16 +4,12 @@
   </a>
   <div class="profile-wrapper d-flex align-items-center">
     <mat-icon class="me-2">notifications</mat-icon>
-    <img
-      src="assets/images/def-avatar.avif"
-      alt="Avatar"
-      class="profile-image"
-    />
+    <img [src]="imagePath" alt="Avatar" class="profile-image" />
 
     <div class="profile-details d-flex">
       <div class="user-info d-flex flex-column">
-        <span class="username">Upskilling</span>
-        <span class="email">johndoeexample.com</span>
+        <span class="username">{{ userName }}</span>
+        <span class="email">{{ email }}</span>
       </div>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>arrow_drop_down</mat-icon>

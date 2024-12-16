@@ -7,12 +7,13 @@ import { IChangepassword } from 'src/app/auth/interfaces/ichangepassword';
   providedIn: 'root',
 })
 export class HelperService {
-  private userNameSub = new BehaviorSubject<string | null>(null);
+  private userNameSub = new BehaviorSubject<string>('');
   $userName = this.userNameSub.asObservable();
-  private emailSub = new BehaviorSubject<string | null>(null);
+  private emailSub = new BehaviorSubject<string>('');
   $email = this.emailSub.asObservable();
-  private imagePathSub = new BehaviorSubject<string | null>('');
+  private imagePathSub = new BehaviorSubject<string>('');
   $imagePath = this.imagePathSub.asObservable();
+
   constructor(private _HttpClient: HttpClient) {}
 
   onGetCurrentUser(): Observable<any> {
@@ -22,7 +23,9 @@ export class HelperService {
           this.userNameSub.next(res.userName);
           this.emailSub.next(res.email);
           this.imagePathSub.next(
-            res.imagePath || 'assets/images/def-avatar.avif'
+            res.imagePath
+              ? 'https://upskilling-egypt.com:3003/' + res.imagePath
+              : 'assets/images/def-avatar.avif'
           );
         }
       })
