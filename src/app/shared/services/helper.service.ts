@@ -7,11 +7,11 @@ import { IChangepassword } from 'src/app/auth/interfaces/ichangepassword';
   providedIn: 'root',
 })
 export class HelperService {
-  private userNameSub = new BehaviorSubject<string>('');
+  private userNameSub = new BehaviorSubject<string>('`');
   $userName = this.userNameSub.asObservable();
-  private emailSub = new BehaviorSubject<string>('');
+  private emailSub = new BehaviorSubject<string>('`');
   $email = this.emailSub.asObservable();
-  private imagePathSub = new BehaviorSubject<string>('');
+  private imagePathSub = new BehaviorSubject<string>('`');
   $imagePath = this.imagePathSub.asObservable();
 
   constructor(private _HttpClient: HttpClient) {}
@@ -43,5 +43,8 @@ export class HelperService {
   }
   onTsksCount(): Observable<any> {
     return this._HttpClient.get('Task/count');
+  }
+  onUpdateProfile(profileForm: FormData): Observable<any> {
+    return this._HttpClient.put('Users', profileForm);
   }
 }
