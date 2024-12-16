@@ -13,7 +13,11 @@
   <div class="container py-3">
     <div class="w-75 mx-auto rounded-4 bg-white">
       <div class="px-5 pt-4 pb-0">
-        <form [formGroup]="addTaskForm" (ngSubmit)="sendData()">
+        <form
+          class="d-flex flex-column row-gap-4"
+          [formGroup]="addTaskForm"
+          (ngSubmit)="sendData()"
+        >
           <h2>Title</h2>
 
           <mat-form-field color="accent" class="w-100" appearance="outline">
@@ -38,7 +42,7 @@
 
           <div class="row justify-content-between">
             <div class="col-md-6 pe-4">
-              <h2>User</h2>
+              <!-- <h2>User</h2> -->
               <mat-form-field color="accent" class="w-100">
                 <mat-label>users</mat-label>
                 <mat-select formControlName="employeeId" class="w-100">
@@ -56,7 +60,7 @@
               </mat-form-field>
             </div>
             <div class="col-md-6 ps-4">
-              <h2>Project</h2>
+              <!-- <h2>Project</h2> -->
               <mat-form-field color="accent" class="w-100">
                 <mat-label>Projects</mat-label>
                 <mat-select formControlName="projectId" class="w-100">

@@ -13,7 +13,7 @@
   <button mat-button [mat-dialog-close]="false">Cancel</button>
   <button
     mat-raised-button
-    [color]="data.isActivated === true ? 'warn' : 'primary'"
+    [class]="data.isActivated === true ? 'warn' : 'orange'"
     [mat-dialog-close]="true"
   >
     {{ data.isActivated === true ? "Block" : "Unblock" }}
