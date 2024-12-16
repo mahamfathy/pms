@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UsersService } from 'src/app/features/dashboard/manager/modules/users/services/users.service';
+import { HelperService } from '../../services/helper.service';
 
 @Component({
   selector: 'app-profile',
@@ -34,7 +34,7 @@ export class ProfileComponent {
     profileImage: new FormControl(null),
   });
   constructor(
-    private _UsersService: UsersService,
+    private _HelperService: HelperService,
     private _ToastrService: ToastrService,
     private _Router: Router
   ) {}
@@ -47,7 +47,7 @@ export class ProfileComponent {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  onCreateManager(data: FormGroup): void {
+  onUpdate(data: FormGroup): void {
     let myData = new FormData();
     Object.keys(data.value).forEach((key) => {
       myData.append(key, data.value[key]);
@@ -56,7 +56,7 @@ export class ProfileComponent {
       myData.append('profileImage', this.files[0]);
     }
 
-    this._UsersService.createManager(myData).subscribe({
+    this._HelperService.onUpdateProfile(myData).subscribe({
       next: (res) => {
         this.resMessage = res.message;
       },
@@ -74,7 +74,7 @@ export class ProfileComponent {
       },
       complete: () => {
         this._ToastrService.success(this.resMessage, 'Success');
-        this._Router.navigateByUrl('/dashboard/manager/users');
+        this._Router.navigateByUrl('/dashboard/');
       },
     });
   }
