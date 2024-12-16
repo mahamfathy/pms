@@ -26,6 +26,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TableComponent } from './components/table/table.component';
+import { ProfileComponent } from './components/profile/profile.component';
 @NgModule({
   declarations: [
     ChangePasswordComponent,
@@ -35,6 +36,7 @@ import { TableComponent } from './components/table/table.component';
     TableComponent,
     HomeComponent,
     DeleteItemComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
