@@ -17,6 +17,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { NgChartsModule } from 'ng2-charts';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { DeleteItemComponent } from './components/delete-item/delete-item.component';
@@ -25,8 +26,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TableComponent } from './components/table/table.component';
-import { NgChartsModule } from 'ng2-charts';
-import { ProfileComponent } from './components/profile/profile.component';
 @NgModule({
   declarations: [
     ChangePasswordComponent,
@@ -36,7 +35,6 @@ import { ProfileComponent } from './components/profile/profile.component';
     TableComponent,
     HomeComponent,
     DeleteItemComponent,
-    ProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -81,7 +79,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     SidebarComponent,
     MatSidenavModule,
     TableComponent,
-    NgChartsModule
+    NgChartsModule,
   ],
 })
 export class SharedModule {}
