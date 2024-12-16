@@ -26,6 +26,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TableComponent } from './components/table/table.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ProfileComponent } from './components/profile/profile.component';
 @NgModule({
   declarations: [
     ChangePasswordComponent,
@@ -35,6 +36,7 @@ import { NgChartsModule } from 'ng2-charts';
     TableComponent,
     HomeComponent,
     DeleteItemComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
