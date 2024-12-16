@@ -1,6 +1,10 @@
-<section>
+<section *ngIf="dataArrived">
   <div class="bg-white p-2">
-    <p class="m-0" style="cursor: pointer" routerLink="../">
+    <p
+      class="m-0"
+      style="cursor: pointer"
+      routerLink="/dashboard/manager/tasks"
+    >
       <i class="fa-solid fa-angle-left"></i> View All Tasks
     </p>
     <h1 class="m-0">Add a New Task</h1>
@@ -15,6 +19,7 @@
           <mat-form-field color="accent" class="w-100" appearance="outline">
             <mat-label>Name</mat-label>
             <input matInput formControlName="title" />
+
             <mat-error *ngIf="addTaskForm.get('title')?.hasError('required')">
               Title is required
             </mat-error>
@@ -23,7 +28,7 @@
           <h2>Description</h2>
           <mat-form-field color="accent" class="w-100">
             <mat-label>Description</mat-label>
-            <textarea matInput formControlName="description"></textarea>
+            <textarea matInput formControlName="description"> </textarea>
             <mat-error
               *ngIf="addTaskForm.get('description')?.hasError('required')"
             >

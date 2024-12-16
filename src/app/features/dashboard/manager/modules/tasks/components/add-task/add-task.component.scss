@@ -43,8 +43,8 @@ section {
 }
 
 ::ng-deep html {
-  --mdc-filled-text-field-container-color: transparent !important;
-  --mdc-filled-text-field-input-text-color: #ef9b28 !important;
-  --mdc-outlined-text-field-input-text-color: #ef9b28 !important;
-  --mdc-filled-text-field-active-indicator-color: transparent !important;
+  --mdc-filled-text-field-container-color: transparent;
+  --mdc-filled-text-field-input-text-color: #ef9b28;
+  --mdc-outlined-text-field-input-text-color: #ef9b28;
+  --mdc-filled-text-field-active-indicator-color: transparent;
 }

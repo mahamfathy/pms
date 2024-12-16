@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Itasks } from './interfaces/itasks';
 import { TasksService } from './services/tasks.service';
@@ -35,7 +36,11 @@ export class TasksComponent {
     },
   ];
 
-  constructor(private _TasksService: TasksService, public dialog: MatDialog) {}
+  constructor(
+    private _TasksService: TasksService,
+    public dialog: MatDialog,
+    private _Router: Router
+  ) {}
 
   pageSize: number = 5;
   pageNumber: number = 1;
@@ -50,7 +55,7 @@ export class TasksComponent {
   ngOnInit(): void {
     this._TasksService.getAllTasks(this.myparms).subscribe({
       next: (res) => {
-        // console.log(res);
+        console.log(res);
         this.dataSource = res.data;
         this.numRows = res.totalNumberOfRecords;
       },
@@ -69,5 +74,10 @@ export class TasksComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
+  }
+
+  editTask(id: any) {
+    // console.log(id);
+    this._Router.navigate(['dashboard/manager/tasks/add-edit-task', id]);
   }
 }

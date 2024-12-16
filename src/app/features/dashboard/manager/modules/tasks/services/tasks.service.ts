@@ -18,6 +18,13 @@ export class TasksService {
     return this._HttpClient.post('Task', data);
   }
 
+  getTaskById(id: number): Observable<any> {
+    return this._HttpClient.get(`Task/${id}`);
+  }
+  updateTaskById(id: number, data: object): Observable<any> {
+    return this._HttpClient.put(`Task/${id}`, data);
+  }
+
   getUsers(data: any): Observable<any> {
     return this._HttpClient.get('Users', {
       params: data,
