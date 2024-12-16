@@ -21,6 +21,13 @@ section {
     .row {
       .search {
         width: 20%;
+
+        --mat-select-focused-arrow-color: orange;
+        --mdc-filled-text-field-focus-label-text-color: orange;
+        --mat-option-selected-state-label-text-color: orange !important;
+      }
+      .mdc-list-item__primary-text {
+        color: orange !important;
       }
       .search2 {
         width: 30%;
