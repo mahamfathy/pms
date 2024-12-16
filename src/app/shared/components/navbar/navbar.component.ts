@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { HelperService } from '../../services/helper.service';
 
 @Component({
@@ -10,7 +11,10 @@ export class NavbarComponent implements OnInit {
   imagePath: string = '';
   email: string = '';
   userName: string = '';
-  constructor(private _HelperService: HelperService) {}
+  constructor(
+    private _HelperService: HelperService,
+    private _AuthService: AuthService
+  ) {}
   ngOnInit(): void {
     this._HelperService.onGetCurrentUser().subscribe({
       next: (res: any) => {
@@ -26,5 +30,8 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+  logout(): void {
+    this._AuthService.onLogout();
   }
 }
