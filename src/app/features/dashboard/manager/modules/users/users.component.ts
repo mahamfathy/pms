@@ -66,6 +66,7 @@ export class UsersComponent implements OnInit {
       },
     });
   }
+
   handlePageEvent(e: PageEvent) {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex;

@@ -6,6 +6,7 @@ export interface Itasks {
   creationDate: string;
   modificationDate: string;
   project: Project;
+  employee: Employee;
 }
 
 export interface Project {
@@ -21,6 +22,21 @@ export interface Manager {
   id: number;
   userName: string;
   imagePath: string;
+  email: string;
+  password: string;
+  country: string;
+  phoneNumber: string;
+  verificationCode: any;
+  isVerified: boolean;
+  isActivated: boolean;
+  creationDate: string;
+  modificationDate: string;
+}
+
+export interface Employee {
+  id: number;
+  userName: string;
+  imagePath: any;
   email: string;
   password: string;
   country: string;

@@ -58,7 +58,7 @@
     <ng-container *ngIf="moduleName === 'tasks'">
       <ng-container *ngIf="column === 'userName'">
         <td mat-cell *matCellDef="let row">
-          {{ row.project.manager.userName }}
+          {{ row.employee.userName }}
         </td>
       </ng-container>
 
@@ -150,7 +150,7 @@
                 style="margin-left: -5px"
                 class="justify-content-center"
                 *ngIf="action.name === 'Edit'"
-                (click)="editProject(row)"
+                (click)="editProject(row); sendEditId(row)"
               >
                 <mat-icon>{{ action.icon }}</mat-icon>
                 <span>{{ action.name }}</span>

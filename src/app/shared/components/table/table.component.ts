@@ -20,6 +20,7 @@ export class TableComponent {
   @Input() moduleName: string = '';
   @Input() numRows!: number;
   @Output() userViewed = new EventEmitter<any>();
+  @Output() editId = new EventEmitter<any>();
   @Output() projectViewed = new EventEmitter<any>();
   @Output() projectDeleted = new EventEmitter<any>();
   @Output() projectEdited = new EventEmitter<any>();
@@ -34,7 +35,10 @@ export class TableComponent {
 
   viewTask(task: Itasks) {
     this.viewedTask.emit(task);
-    // console.log(task);
+    console.log(task);
+  }
+  sendEditId(task: Itasks) {
+    this.editId.emit(task.id);
   }
 
   viewUser(user: IUser): void {
