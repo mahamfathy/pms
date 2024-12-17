@@ -13,24 +13,11 @@
 
 <section class="sctatistics">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6">
+    <div class="row mb-4">
+      <div class="col-md-8">
         <h3 class="mb-3">Tasks</h3>
         <div class="contetnt">
-          <div class="row ">
-            <div class="col-md-4">
-              <div class="card first-card">
-                <div class="card-headerr mb-3">
-                  <span class="card-icon">
-                    <mat-icon> query_stats </mat-icon>
-                  </span>
-                </div>
-                <div class="card-content">
-                  <h5>Progress</h5>
-                  <p>$ 7328.32</p>
-                </div>
-              </div>
-            </div>
+          <div class="row gap-4">
             <div class="col-md-4">
               <div class="card second-card">
                 <div class="card-headerr mb-3">
@@ -61,16 +48,18 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="row gap-2">
-          <div id="chartUser" class="bg-white col-md-5 chart p-2 rounded-3">
-            <h2 class="text-gray">Employees</h2>
-            <canvas id="userChart" class="userChart">{{ chart }}</canvas>
-          </div>
-          <div id="chartTask" class="bg-white col-md-5 chart p-2 rounded-3">
-            <h2 class="text-gray">Tasks</h2>
-            <canvas id="taskChart" class="userChart">{{ chart }}</canvas>
-          </div>
+    </div>
+    <div class="row justify-content-between">
+      <div class="col-md-5">
+        <div id="chartUser" class="bg-white p-2 rounded-3">
+          <h2 class="mb-3">Employees</h2>
+          <canvas id="userChart">{{ chart }}</canvas>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="chartTask" class="bg-white p-2 rounded-3">
+          <h2 class="mb-3">Tasks</h2>
+          <canvas id="taskChart">{{ chart }}</canvas>
         </div>
       </div>
     </div>

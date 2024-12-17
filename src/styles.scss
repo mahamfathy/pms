@@ -58,3 +58,13 @@ mat-form-field {
   --mdc-outlined-text-field-focus-label-text-color: orange;
   --mat-option-selected-state-label-text-color: orange;
 }
+mat-form-field {
+  color: $color-black !important;
+  mat-label {
+    color: $color-orange;
+  }
+  input, textarea, mat-select  {
+    color: $color-black !important;
+  }
+
+}

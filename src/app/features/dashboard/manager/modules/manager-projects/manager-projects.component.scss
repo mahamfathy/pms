@@ -13,4 +13,11 @@ section {
       @include flex-between;
     }
   }
+  .container-fluid {
+    mat-form-field {
+      input {
+        color: $color-black !important;
+      }
+    }
+  }
 }

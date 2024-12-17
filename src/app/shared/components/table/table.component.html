@@ -45,7 +45,7 @@
   </div>
 </div> -->
 
-<table mat-table [dataSource]="data" class="mat-elevation-z8">
+<table mat-table [dataSource]="data" class="mat-elevation-z8 mb-4">
   <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
     <th mat-header-cell *matHeaderCellDef>
       {{ column | titlecase }}
@@ -209,7 +209,7 @@
   ></tr>
 </table>
 
-<mat-paginator
+<!-- <mat-paginator
   (page)="handlePageEvent($event)"
   [length]="numRows"
   [pageIndex]="pageNumber - 1"
@@ -217,4 +217,4 @@
   [pageSizeOptions]="[5, 7, 10, 25, 100]"
   aria-label="Select page"
 >
-</mat-paginator>
+</mat-paginator> -->
