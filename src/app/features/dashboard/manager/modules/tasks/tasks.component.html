@@ -19,4 +19,14 @@
       [moduleName]="moduleName"
     ></app-table>
   </div>
+
+  <mat-paginator
+    (page)="handlePageEvent($event)"
+    [length]="numRows"
+    [pageIndex]="pageNumber - 1"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
 </section>

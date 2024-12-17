@@ -122,13 +122,4 @@ export class TableComponent {
       },
     });
   }
-
-  handlePageEvent(e: PageEvent) {
-    // this.length = e.length;
-    this.pageSize = e.pageSize;
-    this.pageNumber = e.pageIndex + 1;
-    this.fireFilteration();
-    // console.log(this.displayedColumns);
-    // console.log(this.dataSource);
-  }
 }

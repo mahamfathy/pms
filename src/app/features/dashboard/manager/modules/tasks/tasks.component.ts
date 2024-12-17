@@ -4,6 +4,7 @@ import { Itasks } from './interfaces/itasks';
 import { TasksService } from './services/tasks.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewTaskComponent } from './components/view-task/view-task.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-tasks',
@@ -52,7 +53,7 @@ export class TasksComponent {
     pageSize: this.pageSize,
   };
 
-  ngOnInit(): void {
+  getAllTasks() {
     this._TasksService.getAllTasks(this.myparms).subscribe({
       next: (res) => {
         console.log(res);
@@ -63,6 +64,10 @@ export class TasksComponent {
         console.log(err);
       },
     });
+  }
+
+  ngOnInit(): void {
+    this.getAllTasks();
   }
 
   viewTask(task: Itasks) {
@@ -79,5 +84,32 @@ export class TasksComponent {
   editTask(id: any) {
     // console.log(id);
     this._Router.navigate(['dashboard/manager/tasks/add-edit-task', id]);
+  }
+
+  // fireFilteration() {
+  //   let myparms = {
+  //     status: this.searchName,
+  //     pageNumber: this.pageNumber,
+  //     pageSize: this.pageSize,
+  //   };
+
+  //   this._TasksService.getAllTasks(myparms).subscribe({
+  //     next: (res) => {
+  //       // console.log(res);
+  //       this.dataSource = res;
+  //       this.data = res.data;
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
+
+  handlePageEvent(e: PageEvent) {
+    console.log(e);
+
+    this.myparms.pageSize = e.pageSize;
+    this.myparms.pageNumber = e.pageIndex + 1;
+    this.getAllTasks();
   }
 }
