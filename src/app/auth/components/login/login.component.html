@@ -44,7 +44,7 @@
                           formData['email'].errors &&
                           (formData['email'].touched || formData['email'].dirty)
                         "
-class="py-0"
+                        class="py-0"
                       >
                         <p
                           class="p-1 mb-0"
@@ -108,21 +108,20 @@ class="py-0"
                       </mat-error>
                     </div>
                   </div>
-                  <div class="row">
-                    <div
-                      class="form__links d-flex justify-content-between align-items-center mb-4 w-100"
+                  <div
+                    class="form__links d-flex justify-content-between align-items-center mb-4 w-100"
+                  >
+                    <a routerLink="/auth/register" class="link form__paragraph"
+                      >Register now ?</a
                     >
-                      <a
-                        routerLink="/auth/register"
-                        class="link form__paragraph"
-                        >Register now ?</a
-                      >
-                      <a
-                        routerLink="/auth/reset-request"
-                        class="link form__paragraph"
-                        >Forgot Password ?</a
-                      >
-                    </div>
+                    <a
+                      routerLink="/auth/reset-request"
+                      class="link form__paragraph"
+                      >Forgot Password ?</a
+                    >
+                  </div>
+
+                  <div class="row w-100">
                     <div class="col-md-9 form__actions">
                       <button class="orange-btn w-100 border-0" type="submit">
                         Login
