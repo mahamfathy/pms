@@ -18,8 +18,11 @@
     .row {
       @include divCenter;
       height: 100vh;
-      .col-md-7 {
+      .col-md-5 {
         @include divCenter;
+        .auth-form {
+          padding: 2.5rem;
+        }
       }
     }
   }
