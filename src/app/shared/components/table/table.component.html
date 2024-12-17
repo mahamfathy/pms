@@ -1,51 +1,4 @@
-<!-- <div class="d-flex align-items-center gap-4 px-3 py-2">
-  <div>
-    <mat-form-field class="" *ngIf="filterName == 'Title'; else status">
-      <mat-label
-        ><i class="fa-solid fa-magnifying-glass pe-2"></i> Filter</mat-label
-      >
-      <input
-        matInput
-        [(ngModel)]="searchName"
-        (keydown.enter)="fireFilteration()"
-        placeholder="Title"
-        #input
-      />
-    </mat-form-field>
-
-    <ng-template #status class="">
-      <div>
-        <mat-form-field class="mt-3">
-          <mat-label
-            ><i class="fa-solid fa-magnifying-glass pe-2"></i> Filter</mat-label
-          >
-          <input
-            matInput
-            [(ngModel)]="searchName"
-            (keydown.enter)="fireFilteration()"
-            placeholder="Status"
-            #input
-          />
-        </mat-form-field>
-      </div>
-      <span class="text-secondary-emphasis bg-body-secondary">
-        values: ToDo, InProgress, Done</span
-      >
-    </ng-template>
-  </div>
-
-  <div class="border border-1 border-secondary px-3 py-2 rounded-5">
-    <button mat-button [matMenuTriggerFor]="menu">
-      <span><i class="fa-solid fa-arrow-down-short-wide pe-2"></i></span> Filter
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="filterChange('Title')">Title</button>
-      <button mat-menu-item (click)="filterChange('Status')">Status</button>
-    </mat-menu>
-  </div>
-</div> -->
-
-<table mat-table [dataSource]="data" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
     <th mat-header-cell *matHeaderCellDef>
       {{ column | titlecase }}
@@ -58,25 +11,25 @@
     <ng-container *ngIf="moduleName === 'tasks'">
       <ng-container *ngIf="column === 'userName'">
         <td mat-cell *matCellDef="let row">
-          {{ row.employee.userName }}
+          {{ row.employee?.userName }}
         </td>
       </ng-container>
 
       <!-- tasks -->
       <ng-container *ngIf="column === 'status'">
-        <td
-          mat-cell
-          *matCellDef="let row"
-          class="badge p-2 mt-2"
-          [ngClass]="
-            row.status === 'ToDo'
-              ? 'pink'
-              : row.status === 'Done'
-              ? 'bg-success'
-              : 'yellow'
-          "
-        >
-          {{ row.status }}
+        <td mat-cell *matCellDef="let row">
+          <div
+            class="badge p-2 my-auto"
+            [ngClass]="
+              row.status === 'ToDo'
+                ? 'pink'
+                : row.status === 'Done'
+                ? 'bg-success'
+                : 'yellow'
+            "
+          >
+            {{ row.status }}
+          </div>
         </td>
       </ng-container>
 
@@ -138,21 +91,22 @@
               class="justify-content-center"
               mat-menu-item
               *ngIf="action.name === 'View'"
+              style="color: orange"
               (click)="viewUser(row); viewProject(row); viewTask(row)"
             >
-              <mat-icon>{{ action.icon }}</mat-icon>
+              <mat-icon style="color: orange">{{ action.icon }}</mat-icon>
               <span>{{ action.name }}</span>
             </button>
 
             <ng-container *ngIf="moduleName == 'tasks' || 'projects'">
               <button
                 mat-menu-item
-                style="margin-left: -5px"
+                style="margin-left: -5px; color: gray"
                 class="justify-content-center"
                 *ngIf="action.name === 'Edit'"
                 (click)="editProject(row); sendEditId(row)"
               >
-                <mat-icon>{{ action.icon }}</mat-icon>
+                <mat-icon style="color: gray">{{ action.icon }}</mat-icon>
                 <span>{{ action.name }}</span>
               </button>
             </ng-container>
@@ -162,9 +116,9 @@
               class="justify-content-center"
               *ngIf="action.name === 'Delete'"
               (click)="deleteProject(row)"
-              style="padding-left: 6px"
+              style="padding-left: 6px; color: red"
             >
-              <mat-icon>{{ action.icon }}</mat-icon>
+              <mat-icon style="color: red">{{ action.icon }}</mat-icon>
               <span>{{ action.name }}</span>
             </button>
             <button
@@ -183,8 +137,8 @@
               (click)="toggleBlock(row)"
               class="justify-content-center"
             >
-              <mat-icon>block</mat-icon>
-              <span>Block</span>
+              <mat-icon style="color: gray">block</mat-icon>
+              <span style="color: gray">Block</span>
             </button>
           </ng-container>
         </mat-menu>
@@ -208,13 +162,3 @@
     [ngClass]="even ? 'even' : 'odd'"
   ></tr>
 </table>
-
-<mat-paginator
-  (page)="handlePageEvent($event)"
-  [length]="numRows"
-  [pageIndex]="pageNumber - 1"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="[5, 7, 10, 25, 100]"
-  aria-label="Select page"
->
-</mat-paginator>
