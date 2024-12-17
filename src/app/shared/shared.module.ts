@@ -36,7 +36,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     TableComponent,
     HomeComponent,
     DeleteItemComponent,
-    ProfileComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
