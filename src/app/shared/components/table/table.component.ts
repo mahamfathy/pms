@@ -27,10 +27,7 @@ export class TableComponent {
   @Output() userBlocked = new EventEmitter<any>();
   @Output() viewedTask = new EventEmitter<any>();
   data!: any;
-  filterName: string = 'Title';
-  pageSize: number = 5;
-  pageNumber: number = 1;
-  searchName: string = '';
+
   constructor(private _TasksService: TasksService, private dialog: MatDialog) {}
 
   viewTask(task: Itasks) {
@@ -77,58 +74,7 @@ export class TableComponent {
   editProject(project: IProjectslist): void {
     this.projectEdited.emit(project);
   }
-  ngOnChanges(): void {
-    // console.log(this.displayedColumns);
-    // console.log(this.dataSource);
-    this.data = new MatTableDataSource(this.dataSource);
-  }
-
-  fireFilteration() {
-    let myparms = {
-      status: this.searchName,
-      pageNumber: this.pageNumber,
-      pageSize: this.pageSize,
-    };
-
-    this._TasksService.getAllTasks(myparms).subscribe({
-      next: (res) => {
-        // console.log(res);
-        this.dataSource = res;
-        this.data = res.data;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
-  filterChange(name: string) {
-    this.filterName = name;
-    this.searchName = '';
-    let myparms = {
-      pageNumber: this.pageNumber,
-      pageSize: this.pageSize,
-    };
-
-    this._TasksService.getAllTasks(myparms).subscribe({
-      next: (res) => {
-        // console.log(res);
-        this.dataSource = res;
-
-        this.data = res.data;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
-  handlePageEvent(e: PageEvent) {
-    // this.length = e.length;
-    this.pageSize = e.pageSize;
-    this.pageNumber = e.pageIndex + 1;
-    this.fireFilteration();
-    // console.log(this.displayedColumns);
-    // console.log(this.dataSource);
-  }
+  // ngOnChanges(): void {
+  //   this.data = new MatTableDataSource(this.dataSource);
+  // }
 }

@@ -4,6 +4,7 @@ import { Itasks } from './interfaces/itasks';
 import { TasksService } from './services/tasks.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewTaskComponent } from './components/view-task/view-task.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-tasks',
@@ -46,14 +47,20 @@ export class TasksComponent {
   pageNumber: number = 1;
   numRows!: number;
   moduleName: string = 'tasks';
+  filterName: string = 'title';
 
-  myparms = {
-    pageNumber: this.pageNumber,
-    pageSize: this.pageSize,
-  };
+  searchTitle: string = '';
+  searchStatus: string = '';
 
-  ngOnInit(): void {
-    this._TasksService.getAllTasks(this.myparms).subscribe({
+  getAllTasks() {
+    let myparms = {
+      pageNumber: this.pageNumber,
+      pageSize: this.pageSize,
+      title: this.searchTitle,
+      status: this.searchStatus,
+    };
+    console.log(myparms);
+    this._TasksService.getAllTasks(myparms).subscribe({
       next: (res) => {
         console.log(res);
         this.dataSource = res.data;
@@ -63,6 +70,10 @@ export class TasksComponent {
         console.log(err);
       },
     });
+  }
+
+  ngOnInit(): void {
+    this.getAllTasks();
   }
 
   viewTask(task: Itasks) {
@@ -79,5 +90,52 @@ export class TasksComponent {
   editTask(id: any) {
     // console.log(id);
     this._Router.navigate(['dashboard/manager/tasks/add-edit-task', id]);
+  }
+
+  // fireFilteration() {
+  //   let myparms = {
+  //     status: this.searchName,
+  //     pageNumber: this.pageNumber,
+  //     pageSize: this.pageSize,
+  //   };
+
+  //   this._TasksService.getAllTasks(myparms).subscribe({
+  //     next: (res) => {
+  //       // console.log(res);
+  //       // this.dataSource = res;
+  //       this.dataSource = res.data;
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
+
+  // filterChange(name: string) {
+  //   this.filterName = name;
+  //   this.searchName = '';
+  //   let myparms = {
+  //     pageNumber: this.pageNumber,
+  //     pageSize: this.pageSize,
+  //   };
+
+  //   this._TasksService.getAllTasks(myparms).subscribe({
+  //     next: (res) => {
+  //       // console.log(res);
+  //       // this.dataSource = res;
+  //       this.dataSource = res.data;
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
+
+  handlePageEvent(e: PageEvent) {
+    console.log(e);
+
+    this.pageSize = e.pageSize;
+    this.pageNumber = e.pageIndex + 1;
+    this.getAllTasks();
   }
 }
