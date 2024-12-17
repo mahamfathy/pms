@@ -47,14 +47,20 @@ export class TasksComponent {
   pageNumber: number = 1;
   numRows!: number;
   moduleName: string = 'tasks';
+  filterName: string = 'title';
 
-  myparms = {
-    pageNumber: this.pageNumber,
-    pageSize: this.pageSize,
-  };
+  searchTitle: string = '';
+  searchStatus: string = '';
 
   getAllTasks() {
-    this._TasksService.getAllTasks(this.myparms).subscribe({
+    let myparms = {
+      pageNumber: this.pageNumber,
+      pageSize: this.pageSize,
+      title: this.searchTitle,
+      status: this.searchStatus,
+    };
+    console.log(myparms);
+    this._TasksService.getAllTasks(myparms).subscribe({
       next: (res) => {
         console.log(res);
         this.dataSource = res.data;
@@ -96,8 +102,28 @@ export class TasksComponent {
   //   this._TasksService.getAllTasks(myparms).subscribe({
   //     next: (res) => {
   //       // console.log(res);
-  //       this.dataSource = res;
-  //       this.data = res.data;
+  //       // this.dataSource = res;
+  //       this.dataSource = res.data;
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
+
+  // filterChange(name: string) {
+  //   this.filterName = name;
+  //   this.searchName = '';
+  //   let myparms = {
+  //     pageNumber: this.pageNumber,
+  //     pageSize: this.pageSize,
+  //   };
+
+  //   this._TasksService.getAllTasks(myparms).subscribe({
+  //     next: (res) => {
+  //       // console.log(res);
+  //       // this.dataSource = res;
+  //       this.dataSource = res.data;
   //     },
   //     error: (err) => {
   //       console.log(err);
@@ -108,8 +134,8 @@ export class TasksComponent {
   handlePageEvent(e: PageEvent) {
     console.log(e);
 
-    this.myparms.pageSize = e.pageSize;
-    this.myparms.pageNumber = e.pageIndex + 1;
+    this.pageSize = e.pageSize;
+    this.pageNumber = e.pageIndex + 1;
     this.getAllTasks();
   }
 }
