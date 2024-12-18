@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Chart } from 'chart.js';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { UserService } from './services/user.service';
-import { Chart, registerables } from 'chart.js';
 
 @Component({
   selector: 'app-employee',
@@ -8,7 +9,10 @@ import { Chart, registerables } from 'chart.js';
   styleUrls: ['./employee.component.scss'],
 })
 export class EmployeeComponent {
-  constructor(private _UserService: UserService) {}
+  constructor(
+    private _UserService: UserService,
+    private _HelperService: HelperService
+  ) {}
   userName: string = '';
   tasksToDo: number = 0;
   tasksInProgress: number = 0;
@@ -23,7 +27,7 @@ export class EmployeeComponent {
     this.getAllProjects();
   }
   getCurrentUser(): void {
-    this._UserService.onGetCurrentUser().subscribe({
+    this._HelperService.onGetCurrentUser().subscribe({
       next: (res) => {
         this.userName = res.userName;
       },
@@ -68,9 +72,8 @@ export class EmployeeComponent {
     };
     this._UserService.onGetAllProjects(myParams).subscribe({
       next: (res) => {
-        this.totalProjectsCount = res.data.length
+        this.totalProjectsCount = res.data.length;
         // console.log(this.totalProjectsCount );
-
       },
     });
   }
