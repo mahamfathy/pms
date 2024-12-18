@@ -5,7 +5,6 @@ import { managerGuard } from 'src/app/core/guards/manager.guard';
 import { HomeComponent } from 'src/app/shared/components/home/home.component';
 import { ProfileComponent } from 'src/app/shared/components/profile/profile.component';
 import { DashboardComponent } from './dashboard.component';
-import { EmployeeComponent } from './employee/employee.component';
 const routes: Routes = [
   {
     path: '',
@@ -13,7 +12,6 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: 'user', component: EmployeeComponent },
 
       {
         path: 'manager',

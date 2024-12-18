@@ -3,7 +3,7 @@
 section {
   padding-left: 1rem;
   padding-right: 1rem;
-  background-color: $dashboard-bg-color ;
+  background-color: $dashboard-bg-color;
   &.main {
     .container-fluid {
       height: 13rem;
@@ -24,7 +24,7 @@ section {
       }
     }
   }
-  &.sctatistics {
+  &.statistics {
     .contetnt {
       .card {
         border-radius: 15px;
@@ -70,6 +70,7 @@ section {
       }
     }
   }
+
   .container-fluid {
     margin-top: 2.5rem;
     .row {

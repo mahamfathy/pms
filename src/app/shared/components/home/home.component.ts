@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Chart } from 'chart.js';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { HelperService } from '../../services/helper.service';
-import { ChartData, ChartType } from 'chart.js';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  constructor(private _HelperService: HelperService) {}
+  constructor(
+    private _HelperService: HelperService,
+    private _AuthService: AuthService
+  ) {}
   usersCount: number = 0;
   actvatedUsers: number = 0;
   deactvatedUsers: number = 0;
@@ -23,6 +26,10 @@ export class HomeComponent {
   ngOnInit() {
     this.getUserChart();
     this.getTasksChart();
+  }
+
+  isManager(): boolean {
+    return this._AuthService.role === 'Manager';
   }
   getUserChart() {
     this._HelperService.OnGetUserCount().subscribe({
