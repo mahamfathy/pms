@@ -1,0 +1,65 @@
+<section>
+  <div class="bg-white p-4">
+    <h1>Projects</h1>
+  </div>
+
+  <div class="container px-3">
+    <div class="d-flex align-items-center gap-4 px-3 py-2">
+      <div>
+        <!-- filterName == 'title'; else status -->
+        <mat-form-field class="" *ngIf="true">
+          <mat-label
+            ><i class="fa-solid fa-magnifying-glass pe-2"></i> Filter</mat-label
+          >
+          <!-- [(ngModel)]="searchTitle"
+          (keydown.enter)="getAllTasks()" -->
+          <input matInput placeholder="Title" #input />
+        </mat-form-field>
+
+        <ng-template #status class="">
+          <div>
+            <mat-form-field class="mt-3">
+              <mat-label
+                ><i class="fa-solid fa-magnifying-glass pe-2"></i>
+                Filter</mat-label
+              >
+              <!--  [(ngModel)]="searchStatus"
+                (keydown.enter)="getAllTasks()" -->
+              <input matInput placeholder="Status" #input />
+            </mat-form-field>
+          </div>
+          <span class="text-secondary-emphasis bg-body-secondary">
+            values: ToDo, InProgress, Done</span
+          >
+        </ng-template>
+      </div>
+
+      <div class="">
+        <mat-form-field>
+          <mat-label>
+            <span><i class="fa-solid fa-arrow-down-short-wide pe-2"></i></span>
+            Filter</mat-label
+          >
+          <!-- [(ngModel)]="filterName" -->
+          <mat-select name="food">
+            <mat-option [value]="'title'"> Title </mat-option>
+            <mat-option [value]="'status'"> Status </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <app-table> </app-table>
+
+    <!-- <app-table
+      class="bg-secondary-subtle"
+      (viewedTask)="viewTask($event)"
+      (editId)="editTask($event)"
+      [displayedColumns]="displayedColumns"
+      [dataSource]="dataSource"
+      [actions]="actions"
+      [numRows]="numRows"
+      [moduleName]="moduleName"
+    ></app-table> -->
+  </div>
+</section>
