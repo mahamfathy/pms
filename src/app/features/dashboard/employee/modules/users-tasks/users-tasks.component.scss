@@ -1,0 +1,36 @@
+@import "/src/assets/sass/main.scss";
+section {
+  .container-fluid {
+    h1{
+      font-size: 28px;
+          font-weight: 500;
+          color: $color-gray;
+    }
+    padding: 2rem 1rem;
+    .card-user {
+      .card-heading {
+        margin-bottom: 1rem;
+        padding: 1rem 2rem;
+        h2 {
+          font-size: 22px;
+          font-weight: 500;
+          color: $color-gray;
+        }
+      }
+      .card-content {
+        background-color: $dark-green-bg;
+        border: 1px solid $color-gray;
+        padding: 1rem;
+        border-radius: 2rem;
+        min-height: 500px;
+        color: $color-white;
+        .example-box {
+          background-color: $color-orange;
+          padding: 1rem;
+          margin: 1rem;
+          border-radius: 0.5rem;
+        }
+      }
+    }
+  }
+}
