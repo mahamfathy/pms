@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
 export class EmployeeService {
   constructor(private _HttpClient: HttpClient) {}
 
-  getAllProjects(): Observable<any> {
-    return this._HttpClient.get(`Project/employee`);
+  getAllProjects(parms: any): Observable<any> {
+    return this._HttpClient.get(`Project/employee`, {
+      params: parms,
+    });
   }
 }
