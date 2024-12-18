@@ -51,7 +51,7 @@ export class AddTaskComponent {
     if (this.id !== ' ') {
       this._TasksService.getTaskById(this.id).subscribe({
         next: (res: any) => {
-          console.log(res);
+          // console.log(res);
 
           this.addTaskForm.get('title')?.setValue(res?.title);
           this.addTaskForm.get('description')?.setValue(res?.description);
@@ -67,7 +67,7 @@ export class AddTaskComponent {
 
     this._TasksService.getProjects(myparms).subscribe({
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.projects = res.data;
         this.dataArrived = true;
       },
@@ -79,7 +79,7 @@ export class AddTaskComponent {
 
     this._TasksService.getUsers(myparms).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.users = res.data;
       },
       error: (err) => {
@@ -92,7 +92,7 @@ export class AddTaskComponent {
     if (this.id == 0) {
       this._TasksService.addTask(this.addTaskForm.value).subscribe({
         next: (res) => {
-          console.log(res);
+          // console.log(res);
           this._ToastrService.success('Added Task', 'Successfully');
           this._Router.navigate(['/dashboard/manager/tasks']);
         },
@@ -110,7 +110,7 @@ export class AddTaskComponent {
         })
         .subscribe({
           next: (res) => {
-            console.log(res);
+            // console.log(res);
             this._ToastrService.success('Edited Task', 'Successfully');
             this._Router.navigate(['/dashboard/manager/tasks']);
           },

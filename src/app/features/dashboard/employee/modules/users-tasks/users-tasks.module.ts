@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { EmployeeRoutingModule } from './employee-routing.module';
-import { EmployeeComponent } from './employee.component';
+import { UsersTasksRoutingModule } from './users-tasks-routing.module';
+import { UsersTasksComponent } from './users-tasks.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    EmployeeComponent
+    UsersTasksComponent
   ],
   imports: [
     CommonModule,
-    EmployeeRoutingModule,
+    UsersTasksRoutingModule,
     SharedModule
   ]
 })
-export class EmployeeModule { }
+export class UsersTasksModule { }

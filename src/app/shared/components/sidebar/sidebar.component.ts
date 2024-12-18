@@ -22,7 +22,7 @@ export class SidebarComponent {
       icon: 'home',
       route: this.isManager()
         ? '/dashboard/manager/home'
-        : '/dashboard/employee/home',
+        : '/dashboard/user',
       isActive: this.isEmployee() || this.isManager(),
     },
     {
@@ -36,7 +36,7 @@ export class SidebarComponent {
       icon: 'task',
       route: this.isManager()
         ? '/dashboard/manager/tasks'
-        : '/dashboard/employee/tasks',
+        : '/dashboard/employee/user-tasks',
       isActive: this.isManager() || this.isEmployee(),
     },
     {
