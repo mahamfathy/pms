@@ -59,10 +59,10 @@ export class TasksComponent {
       title: this.searchTitle,
       status: this.searchStatus,
     };
-    console.log(myparms);
+    // console.log(myparms);
     this._TasksService.getAllTasks(myparms).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.dataSource = res.data;
         this.numRows = res.totalNumberOfRecords;
       },

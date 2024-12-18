@@ -27,6 +27,11 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TableComponent } from './components/table/table.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import {NgFor} from '@angular/common';
+import {
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     ChangePasswordComponent,
@@ -61,6 +66,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatPaginatorModule,
     MatSortModule,
     NgChartsModule,
+    CdkDropList, NgFor, CdkDrag
   ],
   exports: [
     MatInputModule,
@@ -82,6 +88,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatSidenavModule,
     TableComponent,
     NgChartsModule,
+    CdkDropList, NgFor, CdkDrag
   ],
 })
 export class SharedModule {}
