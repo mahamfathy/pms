@@ -1,4 +1,3 @@
-
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
     <th mat-header-cell *matHeaderCellDef>
@@ -60,7 +59,12 @@
       </ng-container>
       <ng-container *ngIf="column === 'isActivated'">
         <td mat-cell *matCellDef="let row">
-          {{ row.isActivated ? "Active" : "Inactive" }}
+          <div
+            class="badge p-3 rounded-4"
+            [ngClass]="row.isActivated ? 'bg-success' : 'bg-danger'"
+          >
+            {{ row.isActivated ? "Active" : "Inactive" }}
+          </div>
         </td>
       </ng-container>
     </ng-container>
@@ -163,4 +167,3 @@
     [ngClass]="even ? 'even' : 'odd'"
   ></tr>
 </table>
-
