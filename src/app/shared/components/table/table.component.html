@@ -134,7 +134,7 @@
               mat-menu-item
               class="justify-content-center"
               *ngIf="action.name === 'Delete'"
-              (click)="deleteProject(row)"
+              (click)="deleteProject(row); deleteItem(row)"
               style="padding-left: 6px; color: red"
             >
               <mat-icon style="color: red">{{ action.icon }}</mat-icon>

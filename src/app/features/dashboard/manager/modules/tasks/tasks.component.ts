@@ -5,6 +5,8 @@ import { TasksService } from './services/tasks service/tasks.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewTaskComponent } from './components/view-task/view-task.component';
 import { PageEvent } from '@angular/material/paginator';
+import { DeleteItemComponent } from 'src/app/shared/components/delete-item/delete-item.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tasks',
@@ -47,7 +49,8 @@ export class TasksComponent implements OnInit {
   constructor(
     private _TasksService: TasksService,
     public dialog: MatDialog,
-    private _Router: Router
+    private _Router: Router,
+    private _ToastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -87,6 +90,29 @@ export class TasksComponent implements OnInit {
 
   editTask(id: any) {
     this._Router.navigate(['dashboard/manager/tasks/edit-task', id]);
+  }
+
+  DeleteItem(Item: Itasks) {
+    const dialogRef = this.dialog.open(DeleteItemComponent, {
+      data: Item,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      if (result) {
+        this._TasksService.deleteTask(Item.id).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.getAllTasks();
+            this._ToastrService.success('Deleted Successfully');
+          },
+          error: (err) => {
+            console.log(err);
+            this._ToastrService.error('Error On Delete');
+          },
+        });
+      }
+    });
   }
 
   handlePageEvent(e: PageEvent) {

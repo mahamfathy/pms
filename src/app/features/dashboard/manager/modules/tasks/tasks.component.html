@@ -61,6 +61,7 @@
 
     <app-table
       class="bg-secondary-subtle"
+      (DeletedItem)="DeleteItem($event)"
       (viewedTask)="viewTask($event)"
       (editId)="editTask($event)"
       [displayedColumns]="displayedColumns"

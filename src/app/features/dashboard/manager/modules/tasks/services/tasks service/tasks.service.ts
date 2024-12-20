@@ -26,6 +26,10 @@ export class TasksService {
     return this._HttpClient.put(`Task/${id}`, data);
   }
 
+  deleteTask(id: number): Observable<any> {
+    return this._HttpClient.delete(`Task/${id}`);
+  }
+
   getUsers(data: any): Observable<any> {
     return this._HttpClient.get('Users', {
       params: data,

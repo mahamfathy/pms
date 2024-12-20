@@ -23,6 +23,7 @@ export class TableComponent {
   @Output() editId = new EventEmitter<any>();
   @Output() projectViewed = new EventEmitter<any>();
   @Output() projectDeleted = new EventEmitter<any>();
+  @Output() DeletedItem = new EventEmitter<any>();
   @Output() projectEdited = new EventEmitter<any>();
   @Output() userBlocked = new EventEmitter<any>();
   @Output() viewedTask = new EventEmitter<any>();
@@ -36,6 +37,11 @@ export class TableComponent {
   }
   sendEditId(task: Itasks) {
     this.editId.emit(task.id);
+  }
+
+  deleteItem(data: any) {
+    console.log(data);
+    this.DeletedItem.emit(data);
   }
 
   viewUser(user: IUser): void {
