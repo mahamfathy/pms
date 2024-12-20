@@ -41,28 +41,6 @@
       [actions]="actions"
       [moduleName]="moduleName"
     ></app-table>
-
-    <!-- <table class=" shadow p-3 mb-5 bg-body-tertiary w-100" matSort (matSortChange)="sortProjects($event)">
-      <thead class="">
-          <tr>
-              <th mat-sort-header="title">title</th>
-              <th mat-sort-header="creationDate">Creation date</th>
-              <th mat-sort-header="task">task</th>
-              <th mat-sort-header="modificationDate">Modification date</th>
-              <th>actions</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let item of sortedData">
-              <td>{{item.title}}</td>
-              <td>{{item.creationDate|date:'short'}}</td>
-              <td>{{item.task.length}}</td>
-              <td>{{item.modificationDate|date:'short'}}</td>
-              <td></td>
-          </tr>
-      </tbody>
-  </table> -->
-
     <mat-paginator
     [length]="finalResponce?.totalNumberOfRecords"
     [pageSize]="pageSize"
