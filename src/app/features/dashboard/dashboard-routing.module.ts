@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from 'src/app/shared/components/home/home.component';
-import { employeeGuard } from 'src/app/core/guards/employee.guard';
-import { managerGuard } from 'src/app/core/guards/manager.guard';
+import { employeeGuard } from 'src/app/core/guards/employee guard/employee.guard';
+import { managerGuard } from 'src/app/core/guards/manager guard/manager.guard';
 import { ProfileComponent } from 'src/app/shared/components/profile/profile.component';
 import { DashboardComponent } from './dashboard.component';
 const routes: Routes = [
