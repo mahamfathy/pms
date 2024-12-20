@@ -66,7 +66,7 @@
     <mat-paginator
     [length]="finalResponce?.totalNumberOfRecords"
     [pageSize]="pageSize"
-    [pageIndex]="pageNumber"
+    [pageIndex]="pageNumber - 1"
     (page)="handlePageEvent($event)"
     [pageSizeOptions]="[5, 10, 25, 50, 100]"
     aria-label="Select page"

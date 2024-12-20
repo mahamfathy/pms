@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ManagerProjectsService } from './services/manager-projects.service';
+import { ManagerProjectsService } from './services/manager-project-service/manager-projects.service';
 import { IProjectslist } from './interfaces/iproject';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewProjectComponent } from './components/view-project/view-project.component';
