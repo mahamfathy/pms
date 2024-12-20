@@ -69,7 +69,7 @@ export class UsersComponent implements OnInit {
 
   handlePageEvent(e: PageEvent) {
     this.pageSize = e.pageSize;
-    this.pageNumber = e.pageIndex - 1;
+    this.pageNumber = e.pageIndex + 1;
     console.log(e);
     this.getAllUsers();
   }

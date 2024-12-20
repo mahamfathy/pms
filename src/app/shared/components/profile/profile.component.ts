@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { HelperService } from '../../services/helper service/helper.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   files: File[] = [];
   resMessage: string = '';
   additionalInfo: any;
@@ -38,6 +38,14 @@ export class ProfileComponent {
     private _ToastrService: ToastrService,
     private _Router: Router
   ) {}
+  ngOnInit(): void {
+    this._HelperService.onGetCurrentUser().subscribe({
+      next: (res) => {
+        console.log(res);
+        // this.profileForm.
+      },
+    });
+  }
   onSelect(event: any) {
     this.files.push(...event.addedFiles);
     this.imgSrc = this.files[0];
