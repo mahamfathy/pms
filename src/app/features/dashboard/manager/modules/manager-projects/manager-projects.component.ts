@@ -119,7 +119,5 @@ export class ManagerProjectsComponent {
     this._Router.navigateByUrl(
       `/dashboard/manager/manager-projects/create-project/${projectDetails.id}`
     );
-    console.log(projectDetails);
-    console.log(projectDetails.id);
   }
 }
