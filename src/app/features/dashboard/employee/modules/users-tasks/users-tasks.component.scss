@@ -1,10 +1,10 @@
 @import "/src/assets/sass/main.scss";
 section {
   .container-fluid {
-    h1{
+    h1 {
       font-size: 28px;
-          font-weight: 500;
-          color: $color-gray;
+      font-weight: 500;
+      color: $color-gray;
     }
     padding: 2rem 1rem;
     .card-user {
@@ -18,7 +18,7 @@ section {
         }
       }
       .card-content {
-        background-color: $dark-green-bg;
+        background-color: $light-green-bg;
         border: 1px solid $color-gray;
         padding: 1rem;
         border-radius: 2rem;

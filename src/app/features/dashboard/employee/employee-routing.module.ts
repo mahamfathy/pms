@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeComponent } from './employee.component';
+import { HomeComponent } from 'src/app/shared/components/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: EmployeeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   {
     path: 'projects',
     loadChildren: () =>

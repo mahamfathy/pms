@@ -33,6 +33,10 @@ export class NavbarComponent implements OnInit {
       },
     });
   }
+  isManager(): boolean {
+    return this._AuthService.role === 'Manager';
+  }
+
   logout(): void {
     this._AuthService.onLogout();
   }

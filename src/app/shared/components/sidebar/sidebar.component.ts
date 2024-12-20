@@ -22,7 +22,7 @@ export class SidebarComponent {
       icon: 'home',
       route: this.isManager()
         ? '/dashboard/manager/home'
-        : '/dashboard/employee',
+        : '/dashboard/employee/home',
       isActive: this.isEmployee() || this.isManager(),
     },
     {

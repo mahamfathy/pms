@@ -1,5 +1,9 @@
 <mat-toolbar class="navbar px-4">
-  <a routerLink="">
+  <a
+    [routerLink]="
+      isManager() ? '/dashboard/manager/home' : '/dashboard/employee/home'
+    "
+  >
     <img src="assets/images/nav-logo.svg" alt="" />
   </a>
   <div class="profile-wrapper d-flex align-items-center">
