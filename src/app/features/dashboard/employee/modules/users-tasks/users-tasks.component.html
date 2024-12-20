@@ -1,9 +1,9 @@
 <section>
   <div class="container-fluid">
     <h1>Task brand</h1>
-    <div class="row gap-1 flex-nowrap">
+    <div class="row gap-2 flex-nowrap" cdkDropListGroup>
       <div class="col-md-4">
-        <div class="card-user">
+        <div class="example-container">
           <div class="card-heading">
             <h2>To do</h2>
           </div>
@@ -12,7 +12,7 @@
             #todoList="cdkDropList"
             [cdkDropListData]="toDo"
             [cdkDropListConnectedTo]="[inProgressList, doneList]"
-            class="example-list card-content"
+            class="example-list"
             (cdkDropListDropped)="drop($event)"
             id="toDo"
           >
@@ -23,27 +23,29 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card-user">
+        <div class="example-container" >
           <div class="card-heading">
             <h2>In progress</h2>
           </div>
           <div
-            cdkDropList
-            #inProgressList="cdkDropList"
-            [cdkDropListData]="inProgress"
-            [cdkDropListConnectedTo]="[doneList, todoList]"
-            class="example-list card-content"
-            (cdkDropListDropped)="drop($event)"
-            id="inProgress"
+          cdkDropList
+          #inProgressList="cdkDropList"
+          [cdkDropListData]="inProgress"
+          [cdkDropListConnectedTo]="[doneList, todoList]"
+          (cdkDropListDropped)="drop($event)"
+          id="inProgress"
+          class="example-list"
           >
             <div class="example-box" *ngFor="let item of inProgress" cdkDrag>
-              {{ item.title }}
-            </div>
+              <div>
+                {{ item.title }}
+              </div>
+          </div>
           </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card-user">
+        <div class="example-container">
           <div class="card-heading">
             <h2>Done</h2>
           </div>
@@ -52,7 +54,7 @@
             #doneList="cdkDropList"
             [cdkDropListData]="done"
             [cdkDropListConnectedTo]="[todoList, inProgressList]"
-            class="example-list card-content"
+            class="example-list"
             (cdkDropListDropped)="drop($event)"
             id="done"
           >

@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
   moduleName: string = 'users';
 
   readonly dialog = inject(MatDialog);
-  defaultImage: string = 'assets/images/def-avatar.avif';
+  defaultImage: string = 'assets/images/defaultAvatar.avif';
   pageSize: number = 10;
   pageNumber: number = 1;
   tableRes: any;
