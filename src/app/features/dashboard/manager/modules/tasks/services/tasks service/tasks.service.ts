@@ -14,15 +14,20 @@ export class TasksService {
     });
   }
 
-  addTask(data: object): Observable<any> {
+  addTask(data: any): Observable<any> {
     return this._HttpClient.post('Task', data);
   }
 
   getTaskById(id: number): Observable<any> {
     return this._HttpClient.get(`Task/${id}`);
   }
-  updateTaskById(id: number, data: object): Observable<any> {
+  updateTaskById(id: number, data: any): Observable<any> {
+    delete data.projectId;
     return this._HttpClient.put(`Task/${id}`, data);
+  }
+
+  deleteTask(id: number): Observable<any> {
+    return this._HttpClient.delete(`Task/${id}`);
   }
 
   getUsers(data: any): Observable<any> {

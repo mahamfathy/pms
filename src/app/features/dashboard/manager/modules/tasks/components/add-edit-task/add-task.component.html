@@ -1,4 +1,4 @@
-<section *ngIf="dataArrived">
+<section>
   <div class="bg-white p-2">
     <p
       class="m-0"
@@ -7,7 +7,8 @@
     >
       <i class="fa-solid fa-angle-left"></i> View All Tasks
     </p>
-    <h1 class="m-0">Add a New Task</h1>
+    <h1 class="m-0" *ngIf="!id">Add a New Task</h1>
+    <h1 class="m-0" *ngIf="id">edit a Task</h1>
   </div>
 
   <div class="container py-3">
@@ -15,7 +16,7 @@
       <div class="px-5 pt-4 pb-0">
         <form
           class="d-flex flex-column row-gap-4"
-          [formGroup]="addTaskForm"
+          [formGroup]="tasksForm"
           (ngSubmit)="sendData()"
         >
           <h2>Title</h2>
@@ -24,7 +25,7 @@
             <mat-label>Name</mat-label>
             <input matInput formControlName="title" />
 
-            <mat-error *ngIf="addTaskForm.get('title')?.hasError('required')">
+            <mat-error *ngIf="tasksForm.get('title')?.hasError('required')">
               Title is required
             </mat-error>
           </mat-form-field>
@@ -34,7 +35,7 @@
             <mat-label>Description</mat-label>
             <textarea matInput formControlName="description"> </textarea>
             <mat-error
-              *ngIf="addTaskForm.get('description')?.hasError('required')"
+              *ngIf="tasksForm.get('description')?.hasError('required')"
             >
               Description is required
             </mat-error>
@@ -53,7 +54,7 @@
                   </ng-container>
                 </mat-select>
                 <mat-error
-                  *ngIf="addTaskForm.get('employeeId')?.hasError('required')"
+                  *ngIf="tasksForm.get('employeeId')?.hasError('required')"
                 >
                   user is required
                 </mat-error>
@@ -71,7 +72,7 @@
                   </ng-container>
                 </mat-select>
                 <mat-error
-                  *ngIf="addTaskForm.get('projectId')?.hasError('required')"
+                  *ngIf="tasksForm.get('projectId')?.hasError('required')"
                 >
                   Project is required
                 </mat-error>
@@ -86,7 +87,7 @@
             <button
               mat-raised-button
               class="transparent-btn p-4"
-              routerLink="../"
+              routerLink="/dashboard/manager/tasks"
               type="button"
             >
               Cancel
@@ -94,7 +95,7 @@
             <button
               type="submit"
               mat-raised-button
-              [disabled]="addTaskForm.invalid"
+              [disabled]="tasksForm.invalid"
               class="orange-btn p-4"
             >
               Save

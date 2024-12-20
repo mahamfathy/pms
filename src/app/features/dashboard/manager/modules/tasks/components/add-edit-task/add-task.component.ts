@@ -8,6 +8,7 @@ import { ITaskUsers } from '../../interfaces/itask-users';
 import { ITaskProjects } from '../../interfaces/itask-projects';
 import { ToastrService } from 'ngx-toastr';
 import { Itasks } from '../../interfaces/itasks';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-add-task',
@@ -15,6 +16,20 @@ import { Itasks } from '../../interfaces/itasks';
   styleUrls: ['./add-task.component.scss'],
 })
 export class AddTaskComponent {
+  id!: any;
+
+  users: ITaskUsers[] = [];
+  projects: ITaskProjects[] = [];
+  userId: string = '';
+  projectId: string = '';
+
+  tasksForm: FormGroup = this._FormBuilder.group({
+    title: ['', [Validators.required]],
+    description: ['', [Validators.required]],
+    projectId: ['', [Validators.required]],
+    employeeId: ['', [Validators.required]],
+  });
+
   constructor(
     private _FormBuilder: FormBuilder,
     private _TasksService: TasksService,
@@ -23,60 +38,42 @@ export class AddTaskComponent {
     private route: ActivatedRoute
   ) {}
 
-  id!: any;
-  dataArrived: boolean = false;
-
-  users: ITaskUsers[] = [];
-  projects: ITaskProjects[] = [];
-  userId: string = '';
-  projectId: string = '';
-
-  addTaskForm: FormGroup = this._FormBuilder.group({
-    title: ['', [Validators.required]],
-    description: ['', [Validators.required]],
-    projectId: ['', [Validators.required]],
-    employeeId: ['', [Validators.required]],
-  });
+  myparms = {
+    pageSize: 1000,
+    pageNumber: 1,
+  };
 
   ngOnInit(): void {
-    let myparms = {
-      pageSize: 1000,
-      pageNumber: 1,
-    };
-
-    this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id');
-      console.log('Updated ID:', +this.id);
-    });
-    if (this.id !== ' ') {
-      this._TasksService.getTaskById(this.id).subscribe({
-        next: (res: any) => {
-          // console.log(res);
-
-          this.addTaskForm.get('title')?.setValue(res?.title);
-          this.addTaskForm.get('description')?.setValue(res?.description);
-          this.addTaskForm.get('projectId')?.setValue(res?.project.id);
-          this.addTaskForm.get('employeeId')?.setValue(res?.employee.id);
-          this.dataArrived = true;
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+    this.getId();
+    if (this.id) {
+      this.getTaskById();
     }
+    this.getAllProjects(this.myparms);
+    this.getAllUsers(this.myparms);
+  }
 
-    this._TasksService.getProjects(myparms).subscribe({
+  getId(): void {
+    this.route.paramMap.pipe(take(1)).subscribe((params) => {
+      this.id = params.get('id');
+      if (this.id) {
+        console.log('Updated ID:', +this.id);
+      }
+    });
+  }
+  getTaskById() {
+    this._TasksService.getTaskById(this.id).subscribe({
       next: (res: any) => {
-        // console.log(res);
-        this.projects = res.data;
-        this.dataArrived = true;
+        this.tasksForm.patchValue(res);
+        this.tasksForm.get('projectId')?.setValue(res?.project.id);
+        this.tasksForm.get('employeeId')?.setValue(res?.employee.id);
       },
       error: (err) => {
         console.log(err);
-        this.dataArrived = true;
       },
     });
+  }
 
+  getAllUsers(myparms: any) {
     this._TasksService.getUsers(myparms).subscribe({
       next: (res) => {
         // console.log(res);
@@ -88,9 +85,20 @@ export class AddTaskComponent {
     });
   }
 
+  getAllProjects(myparms: any) {
+    this._TasksService.getProjects(myparms).subscribe({
+      next: (res: any) => {
+        this.projects = res.data;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
   sendData() {
-    if (this.id == 0) {
-      this._TasksService.addTask(this.addTaskForm.value).subscribe({
+    if (!this.id) {
+      this._TasksService.addTask(this.tasksForm.value).subscribe({
         next: (res) => {
           // console.log(res);
           this._ToastrService.success('Added Task', 'Successfully');
@@ -103,14 +111,10 @@ export class AddTaskComponent {
       });
     } else {
       this._TasksService
-        .updateTaskById(this.id, {
-          title: this.addTaskForm.value.title,
-          description: this.addTaskForm.value.description,
-          employeeId: this.addTaskForm.value.employeeId,
-        })
+        .updateTaskById(this.id, this.tasksForm.value)
         .subscribe({
           next: (res) => {
-            // console.log(res);
+            console.log(res);
             this._ToastrService.success('Edited Task', 'Successfully');
             this._Router.navigate(['/dashboard/manager/tasks']);
           },
