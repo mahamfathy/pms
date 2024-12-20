@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Itasks } from './interfaces/itasks';
 import { TasksService } from './services/tasks service/tasks.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,8 +11,15 @@ import { PageEvent } from '@angular/material/paginator';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss'],
 })
-export class TasksComponent {
+export class TasksComponent implements OnInit {
   dataSource!: Itasks[];
+  pageSize: number = 5;
+  pageNumber: number = 1;
+  numRows!: number;
+  moduleName: string = 'tasks';
+  filterName: string = 'title';
+  searchTitle: string = '';
+  searchStatus: string = '';
   displayedColumns: string[] = [
     'title',
     'status',
@@ -43,14 +50,9 @@ export class TasksComponent {
     private _Router: Router
   ) {}
 
-  pageSize: number = 5;
-  pageNumber: number = 1;
-  numRows!: number;
-  moduleName: string = 'tasks';
-  filterName: string = 'title';
-
-  searchTitle: string = '';
-  searchStatus: string = '';
+  ngOnInit(): void {
+    this.getAllTasks();
+  }
 
   getAllTasks() {
     let myparms = {
@@ -59,7 +61,7 @@ export class TasksComponent {
       title: this.searchTitle,
       status: this.searchStatus,
     };
-    // console.log(myparms);
+
     this._TasksService.getAllTasks(myparms).subscribe({
       next: (res) => {
         // console.log(res);
@@ -70,10 +72,6 @@ export class TasksComponent {
         console.log(err);
       },
     });
-  }
-
-  ngOnInit(): void {
-    this.getAllTasks();
   }
 
   viewTask(task: Itasks) {
@@ -88,52 +86,10 @@ export class TasksComponent {
   }
 
   editTask(id: any) {
-    // console.log(id);
-    this._Router.navigate(['dashboard/manager/tasks/add-edit-task', id]);
+    this._Router.navigate(['dashboard/manager/tasks/edit-task', id]);
   }
 
-  // fireFilteration() {
-  //   let myparms = {
-  //     status: this.searchName,
-  //     pageNumber: this.pageNumber,
-  //     pageSize: this.pageSize,
-  //   };
-
-  //   this._TasksService.getAllTasks(myparms).subscribe({
-  //     next: (res) => {
-  //       // console.log(res);
-  //       // this.dataSource = res;
-  //       this.dataSource = res.data;
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
-
-  // filterChange(name: string) {
-  //   this.filterName = name;
-  //   this.searchName = '';
-  //   let myparms = {
-  //     pageNumber: this.pageNumber,
-  //     pageSize: this.pageSize,
-  //   };
-
-  //   this._TasksService.getAllTasks(myparms).subscribe({
-  //     next: (res) => {
-  //       // console.log(res);
-  //       // this.dataSource = res;
-  //       this.dataSource = res.data;
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
-
   handlePageEvent(e: PageEvent) {
-    console.log(e);
-
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex + 1;
     this.getAllTasks();
