@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { EmployeeService } from '../../services/employee.service';
-import { IemployeeProjects } from '../../interfaces/iemployee-projects';
+import { EmployeeService } from '../../services/employee service/employee.service';
+import { IemployeeProjects } from './interfaces/iemployee-projects';
 import { PageEvent } from '@angular/material/paginator';
-
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -25,11 +24,9 @@ export class ProjectsComponent {
   pageSize: number = 5;
   pageNumber: number = 1;
   searchName: string = '';
-
   ngOnInit(): void {
     this.getProjects();
   }
-
   getProjects() {
     let myParms = {
       pageNumber: this.pageNumber,
@@ -37,9 +34,8 @@ export class ProjectsComponent {
       title: this.searchName,
     };
 
-    this._EmployeeService.getAllProjects(myParms).subscribe({
+    this._EmployeeService.onGetAllProjects(myParms).subscribe({
       next: (res) => {
-        console.log(res);
         this.dataSource = res.data;
         this.numRows = res.data.length;
       },
@@ -48,9 +44,7 @@ export class ProjectsComponent {
       },
     });
   }
-
   handlePageEvent(e: PageEvent) {
-    console.log(e);
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex + 1;
     this.getProjects();

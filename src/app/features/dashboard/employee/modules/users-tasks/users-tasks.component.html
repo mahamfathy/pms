@@ -15,7 +15,6 @@
           class="example-list card-content "
           (cdkDropListDropped)="drop($event)"
           id="toDo"
-
         >
           <div class="example-box" *ngFor="let item of toDo" cdkDrag>{{ item.title }}</div>
         </div>

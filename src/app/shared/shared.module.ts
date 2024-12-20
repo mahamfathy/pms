@@ -32,6 +32,7 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
+import {Sort} from '@angular/material/sort';
 @NgModule({
   declarations: [
     ChangePasswordComponent,
@@ -88,7 +89,10 @@ import {
     MatSidenavModule,
     TableComponent,
     NgChartsModule,
-    CdkDropList, NgFor, CdkDrag
+    CdkDropList, NgFor, CdkDrag, MatSortModule
   ],
 })
-export class SharedModule {}
+export class SharedModule {
+
+
+}

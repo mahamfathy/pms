@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
+import { routes } from 'src/app/shared/interfaces/routes.model';
 
 @Component({
   selector: 'app-register',
@@ -79,5 +80,8 @@ export class RegisterComponent {
         this._Router.navigateByUrl('/auth/verify-account');
       },
     });
+  }
+  public get getRoutes(): typeof routes {
+    return routes
   }
 }

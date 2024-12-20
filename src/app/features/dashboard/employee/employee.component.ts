@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Chart } from 'chart.js';
-import { HelperService } from 'src/app/shared/services/helper.service';
-import { UserService } from './services/user.service';
+import { HelperService } from 'src/app/shared/services/helper service/helper.service';
+import { EmployeeService } from './services/employee service/employee.service';
 
 @Component({
   selector: 'app-employee',
@@ -10,7 +10,7 @@ import { UserService } from './services/user.service';
 })
 export class EmployeeComponent {
   constructor(
-    private _UserService: UserService,
+    private _EmployeeService: EmployeeService,
     private _HelperService: HelperService
   ) {}
   userName: string = '';
@@ -34,7 +34,7 @@ export class EmployeeComponent {
     });
   }
   getTasksChart() {
-    this._UserService.onTasksCount().subscribe({
+    this._EmployeeService.onTasksCount().subscribe({
       next: (res) => {
         this.totaltasksCount = res.done + res.toDo + res.inProgress;
         this.tasksDone = res.done;
@@ -44,7 +44,6 @@ export class EmployeeComponent {
           this.tasksToDo + this.tasksInProgress + this.tasksDone;
       },
       error: (err) => {
-        // console.log(err)
       },
       complete: () => {
         this.chart = new Chart('taskChart', {
@@ -70,10 +69,9 @@ export class EmployeeComponent {
       pageSize: 1000,
       pageNumber: 1,
     };
-    this._UserService.onGetAllProjects(myParams).subscribe({
+    this._EmployeeService.onGetAllProjects(myParams).subscribe({
       next: (res) => {
         this.totalProjectsCount = res.data.length;
-        // console.log(this.totalProjectsCount );
       },
     });
   }

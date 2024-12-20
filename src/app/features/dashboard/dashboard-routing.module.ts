@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: 'user', component: EmployeeComponent },
+      { path: 'employee', component: EmployeeComponent },
 
       {
         path: 'manager',

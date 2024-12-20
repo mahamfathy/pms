@@ -7,13 +7,14 @@ import { DeleteItemComponent } from 'src/app/shared/components/delete-item/delet
 import { ToastrService } from 'ngx-toastr';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { Sort } from '@angular/material/sort';
 @Component({
   selector: 'app-manager-projects',
   templateUrl: './manager-projects.component.html',
   styleUrls: ['./manager-projects.component.scss'],
 })
 export class ManagerProjectsComponent {
-  projectsList: IProjectslist[] = [];
+  sortedData: IProjectslist[];
   dataSource: IProjectslist[] = [];
   deletedProject: IProjectslist = {} as IProjectslist;
   finalResponce: any;
@@ -47,7 +48,9 @@ export class ManagerProjectsComponent {
     public _MatDialog: MatDialog,
     private _ToastrService: ToastrService,
     private _Router: Router
-  ) {}
+  ) {
+    this.sortedData = this.dataSource;
+  }
   handlePageEvent(e: PageEvent) {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex;
@@ -128,4 +131,34 @@ export class ManagerProjectsComponent {
     console.log(projectDetails);
     console.log(projectDetails.id);
   }
+
+  sortProjects(sort: Sort) {
+    const data = this.dataSource.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'title':
+          return compareProjects(a.title, b.title, isAsc);
+        case 'creationDate':
+          return compareProjects(a.creationDate, b.creationDate, isAsc);
+        case 'task':
+          return compareProjects(a.task.length, b.task.length, isAsc);
+        case 'modificationDate':
+          return compareProjects(a.modificationDate, b.modificationDate, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+}
+function compareProjects(
+  a: number | string,
+  b: number | string,
+  isAsc: boolean
+) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

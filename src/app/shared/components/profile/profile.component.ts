@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { HelperService } from '../../services/helper.service';
+import { HelperService } from '../../services/helper service/helper.service';
 
 @Component({
   selector: 'app-profile',
@@ -42,11 +42,9 @@ export class ProfileComponent {
     this.files.push(...event.addedFiles);
     this.imgSrc = this.files[0];
   }
-
   onRemove(event: any) {
     this.files.splice(this.files.indexOf(event), 1);
   }
-
   onUpdate(data: FormGroup): void {
     let myData = new FormData();
     Object.keys(data.value).forEach((key) => {
@@ -55,7 +53,6 @@ export class ProfileComponent {
     if (this.files.length > 0) {
       myData.append('profileImage', this.files[0]);
     }
-
     this._HelperService.onUpdateProfile(myData).subscribe({
       next: (res) => {
         this.resMessage = res.message;

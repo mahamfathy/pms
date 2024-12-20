@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
-import { HelperService } from '../../services/helper.service';
+import { HelperService } from '../../services/helper service/helper.service';
 import { ChartData, ChartType } from 'chart.js';
 @Component({
   selector: 'app-home',
@@ -28,15 +28,12 @@ export class HomeComponent {
     this._HelperService.OnGetUserCount().subscribe({
       next: (res) => {
         this.usersCount = res;
-        // console.log(this.usersCount);
         this.totalUsers =
           res.activatedEmployeeCount + res.deactivatedEmployeeCount;
-        // console.log(this.totalUsers);
         this.actvatedUsers = res.activatedEmployeeCount;
         this.deactvatedUsers = res.deactivatedEmployeeCount;
       },
       error: (err) => {
-        // console.log(err)
       },
       complete: () => {
         this.chart = new Chart('userChart', {
@@ -59,15 +56,12 @@ export class HomeComponent {
     this._HelperService.onTsksCount().subscribe({
       next: (res) => {
         this.tasksCount = res;
-        // console.log(this.tasksCount);
         this.totalTasks = res.done + res.toDo + res.inProgress;
         this.tasksDone = res.done;
         this.tasksToDo = res.toDo;
         this.tasksInProgress = res.inProgress;
-        // console.log(this.totalTasks);
       },
       error: (err) => {
-        // console.log(err)
       },
       complete: () => {
         this.chart = new Chart('taskChart', {
