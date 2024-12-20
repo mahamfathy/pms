@@ -70,23 +70,12 @@ export class UsersComponent implements OnInit {
   handlePageEvent(e: PageEvent) {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex + 1;
-    console.log(e);
     this.getAllUsers();
   }
-  updateSearchPlaceholder(): void {
-    if (this.searchBy === 'userName') {
-      this.searchPlaceholder = 'Search by User Name';
-      this.searchIcon = 'person';
-      this.searchLabel = 'User Name';
-    } else if (this.searchBy === 'email') {
-      this.searchPlaceholder = 'Search by Email';
-      this.searchIcon = 'email';
-      this.searchLabel = 'Email';
-    } else if (this.searchBy === 'country') {
-      this.searchPlaceholder = 'Search by Country';
-      this.searchIcon = 'public';
-      this.searchLabel = 'Country';
-    }
+  updateSearchPlaceholder(searchTerm: string): void {
+    this.searchPlaceholder = `Search by ${searchTerm}`;
+    this.searchIcon = searchTerm === 'country' ? 'public' : searchTerm;
+    this.searchLabel = `${searchTerm}`;
   }
   viewUser(user: IUser): void {
     const userCopy = JSON.parse(JSON.stringify(user));
