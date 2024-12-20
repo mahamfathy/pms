@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { IUser } from './interfaces/IUser';
-import { UsersService } from './services/users.service';
+import { UsersService } from './services/users services/users.service';
 
 @Component({
   selector: 'app-users',

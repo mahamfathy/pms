@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TasksService } from '../../services/tasks.service';
+import { TasksService } from '../../services/tasks service/tasks.service';
 import { IUser } from '../../../users/interfaces/IUser';
 import { IProject } from '../../../manager-projects/interfaces/iproject';
 import { ITaskUsers } from '../../interfaces/itask-users';

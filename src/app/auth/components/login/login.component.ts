@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
+import { routes } from 'src/app/shared/interfaces/routes.model';
 
 @Component({
   selector: 'app-login',
@@ -45,7 +46,6 @@ export class LoginComponent implements OnInit {
     if (data.valid) {
       this._AuthService.onLogin(data.value).subscribe({
         next: (res) => {
-          // console.log(res);
           localStorage.setItem('userToken', res.token);
           this._AuthService.getProfile();
         },
@@ -73,7 +73,9 @@ export class LoginComponent implements OnInit {
           }
         },
       });
-      // loginForm.reset();
     }
+  }
+  public get getRoutes(): typeof routes {
+    return routes
   }
 }

@@ -7,10 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class EmployeeService {
   constructor(private _HttpClient: HttpClient) {}
-
-  getAllProjects(parms: any): Observable<any> {
+  onGetAllProjects(parms: any): Observable<any> {
     return this._HttpClient.get(`Project/employee`, {
       params: parms,
     });
+  }
+  onTasksCount(): Observable<any> {
+    return this._HttpClient.get('Task/count');
   }
 }

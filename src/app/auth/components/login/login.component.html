@@ -99,12 +99,12 @@
                       class="form__links d-flex justify-content-between align-items-center mb-4 w-100"
                     >
                       <a
-                        routerLink="/auth/register"
+                      [routerLink]="getRoutes.register"
                         class="link form__paragraph"
                         >Register now ?</a
                       >
                       <a
-                        routerLink="/auth/reset-request"
+                      [routerLink]="getRoutes.forgotPassword"
                         class="link form__paragraph"
                         >Forgot Password ?</a
                       >

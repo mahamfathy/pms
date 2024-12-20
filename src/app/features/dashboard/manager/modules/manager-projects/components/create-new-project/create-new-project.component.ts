@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ManagerProjectsService } from '../../services/manager-projects.service';
+import { ManagerProjectsService } from '../../services/manager-project-service/manager-projects.service';
 import { IProject } from '../../interfaces/iproject';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';

@@ -4,7 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { IProjectslist } from 'src/app/features/dashboard/manager/modules/manager-projects/interfaces/iproject';
 import { Itasks } from 'src/app/features/dashboard/manager/modules/tasks/interfaces/itasks';
-import { TasksService } from 'src/app/features/dashboard/manager/modules/tasks/services/tasks.service';
+import { TasksService } from 'src/app/features/dashboard/manager/modules/tasks/services/tasks service/tasks.service';
 import { BlockUserComponent } from 'src/app/features/dashboard/manager/modules/users/components/block-user/block-user.component';
 import { IUser } from 'src/app/features/dashboard/manager/modules/users/interfaces/IUser';
 

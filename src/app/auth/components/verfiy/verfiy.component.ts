@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
-
 @Component({
   selector: 'app-verfiy',
   templateUrl: './verfiy.component.html',
@@ -24,7 +23,6 @@ export class VerfiyComponent {
     const email = localStorage.getItem('email');
     this.verifyAccountForm.get('email')!.setValue(email || '');
   }
-
   onVerify(verifyAccountForm: FormGroup): void {
     if (verifyAccountForm.valid) {
       this._AuthService.onVerifyAccount(verifyAccountForm.value).subscribe({

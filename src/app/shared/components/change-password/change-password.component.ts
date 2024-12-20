@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators, FormControlOptions, AbstractControl
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { HelperService } from '../../services/helper.service';
+import { HelperService } from '../../services/helper service/helper.service';
 
 @Component({
   selector: 'app-change-password',
@@ -49,7 +49,6 @@ export class ChangePasswordComponent {
     }
   }
   changePassword(data: FormGroup): void {
-    console.log(data.value);
     if (this.changePasswordForm.valid) {
       this._HelperService.onChangePassword(data.value).subscribe({
         next: (res) => {

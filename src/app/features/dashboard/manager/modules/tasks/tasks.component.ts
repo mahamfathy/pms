@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Itasks } from './interfaces/itasks';
-import { TasksService } from './services/tasks.service';
+import { TasksService } from './services/tasks service/tasks.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewTaskComponent } from './components/view-task/view-task.component';
 import { PageEvent } from '@angular/material/paginator';

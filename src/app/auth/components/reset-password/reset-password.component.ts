@@ -9,7 +9,6 @@ import {
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
-
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',

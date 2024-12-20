@@ -7,8 +7,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GlobalInterceptor } from './core/interceptors/global.interceptor';
-import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { GlobalInterceptor } from './core/interceptors/global interceptor/global.interceptor';
+import { LoadingInterceptor } from './core/interceptors/loading interceptor/loading.interceptor';
 import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({

@@ -37,7 +37,6 @@ export class UsersTasksComponent {
         event.currentIndex
       );
     }
-    // console.log(event.container.id);
     let status = '';
     if (event.container.id === 'toDo') {
       status = 'ToDo';
@@ -47,8 +46,6 @@ export class UsersTasksComponent {
       status = 'Done';
     }
     const movedTask = event.container.data[event.container.data.length-1];
-    // console.log(movedTask);
-    // console.log(status);
     this.changeTaskStatus(movedTask.id, status);
   }
   getAllUserTasks() {
@@ -61,7 +58,6 @@ export class UsersTasksComponent {
     this._UserTasksService.onGetUserTasks(myParams).subscribe({
       next: (res) => {
         this.taskList = res.data;
-        // console.log(this.taskList);
       },
       error: (err) => {
         console.log(err);
@@ -76,10 +72,8 @@ export class UsersTasksComponent {
     });
   }
   changeTaskStatus(taskId: number, taskStatus: any) {
-    // console.log(taskId, taskStatus);
     this._UserTasksService.onChangeStatusTask(taskId, taskStatus).subscribe({
       next: (res) => {
-        // console.log(res);
       },
       error: (err) => {
         console.log(err);

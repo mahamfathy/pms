@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UsersService } from '../../services/users.service';
+import { UsersService } from '../../services/users services/users.service';
 
 @Component({
   selector: 'app-add-manager',
