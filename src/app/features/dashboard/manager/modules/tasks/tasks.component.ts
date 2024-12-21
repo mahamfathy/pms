@@ -1,12 +1,12 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { DeleteItemComponent } from 'src/app/shared/components/delete-item/delete-item.component';
+import { ViewTaskComponent } from './components/view-task/view-task.component';
 import { Itasks } from './interfaces/itasks';
 import { TasksService } from './services/tasks service/tasks.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ViewTaskComponent } from './components/view-task/view-task.component';
-import { PageEvent } from '@angular/material/paginator';
-import { DeleteItemComponent } from 'src/app/shared/components/delete-item/delete-item.component';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tasks',

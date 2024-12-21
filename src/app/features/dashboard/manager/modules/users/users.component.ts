@@ -47,7 +47,6 @@ export class UsersComponent implements OnInit {
   constructor(private _UsersService: UsersService) {}
   ngOnInit(): void {
     this.getAllUsers();
-    this.getMyUsers();
   }
   getAllUsers(): void {
     let tableParams = {
