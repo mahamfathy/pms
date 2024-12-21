@@ -67,7 +67,6 @@ export class TasksComponent implements OnInit {
 
     this._TasksService.getAllTasks(myparms).subscribe({
       next: (res) => {
-        // console.log(res);
         this.dataSource = res.data;
         this.numRows = res.totalNumberOfRecords;
       },

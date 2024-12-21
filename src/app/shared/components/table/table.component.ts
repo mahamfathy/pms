@@ -1,20 +1,27 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IProjectslist } from 'src/app/features/dashboard/manager/modules/manager-projects/interfaces/iproject';
 import { Itasks } from 'src/app/features/dashboard/manager/modules/tasks/interfaces/itasks';
 import { TasksService } from 'src/app/features/dashboard/manager/modules/tasks/services/tasks service/tasks.service';
 import { BlockUserComponent } from 'src/app/features/dashboard/manager/modules/users/components/block-user/block-user.component';
 import { IUser } from 'src/app/features/dashboard/manager/modules/users/interfaces/IUser';
-
+export interface Dessert {
+  calories: number;
+  carbs: number;
+  fat: number;
+  name: string;
+  protein: number;
+}
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
-  @Input() dataSource!: any[];
+  @Input() dataSource: any[] = [];
   @Input() displayedColumns: string[] = [];
   @Input() actions: any[] = [];
   @Input() moduleName: string = '';
@@ -26,15 +33,19 @@ export class TableComponent {
   @Output() projectEdited = new EventEmitter<any>();
   @Output() userBlocked = new EventEmitter<any>();
   @Output() viewedTask = new EventEmitter<any>();
-  data!: any;
+  data: any = '';
+  sortedData: any[] = [];
+  constructor(private _TasksService: TasksService, private dialog: MatDialog) {
+    this.sortedData = this.dataSource;
+    console.log(this.sortedData);
+    console.log(this.dataSource);
+  }
 
-  constructor(private _TasksService: TasksService, private dialog: MatDialog) {}
-
-  viewTask(task: Itasks) {
+  onViewTask(task: Itasks) {
     this.viewedTask.emit(task);
     console.log(task);
   }
-  sendEditId(task: Itasks) {
+  onEditTask(task: Itasks) {
     this.editId.emit(task.id);
   }
 
@@ -76,7 +87,34 @@ export class TableComponent {
   editProject(project: IProjectslist): void {
     this.projectEdited.emit(project);
   }
-  // ngOnChanges(): void {
-  //   this.data = new MatTableDataSource(this.dataSource);
-  // }
+sortData(sort: Sort) {
+    const data = this.dataSource
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'title':
+          return compare(a.title, b.title, isAsc);
+        case 'status':
+          return compare(a.status, b.status, isAsc);
+        case 'userName':
+          return compare(a.userName, b.userName, isAsc);
+        case 'project':
+          return compare(a.project, b.project, isAsc);
+        case 'creationDate':
+          return compare(a.creationDate, b.creationDate, isAsc);
+          case 'description':
+          return compare(a.description, b.description, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

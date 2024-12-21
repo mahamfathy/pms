@@ -58,7 +58,6 @@ export class UsersComponent implements OnInit {
     };
     this._UsersService.getAllUsers(tableParams).subscribe({
       next: (res) => {
-        console.log(res);
         this.tableRes = res;
         this.dataSource = res.data;
       },
