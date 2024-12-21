@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { HelperService } from '../../services/helper service/helper.service';
 
 @Component({
@@ -36,13 +37,13 @@ export class ProfileComponent implements OnInit {
   constructor(
     private _HelperService: HelperService,
     private _ToastrService: ToastrService,
-    private _Router: Router
+    private _Router: Router,
+    private _AuthService: AuthService
   ) {}
   ngOnInit(): void {
     this._HelperService.onGetCurrentUser().subscribe({
       next: (res) => {
-        console.log(res);
-        // this.profileForm.
+        this.profileForm.patchValue(res);
       },
     });
   }
@@ -79,7 +80,11 @@ export class ProfileComponent implements OnInit {
       },
       complete: () => {
         this._ToastrService.success(this.resMessage, 'Success');
-        this._Router.navigateByUrl('/dashboard/home');
+        if (this._AuthService.role === 'Manager') {
+          this._Router.navigateByUrl('/dashboard/manager');
+        } else {
+          this._Router.navigateByUrl('/dashboard/employee');
+        }
       },
     });
   }

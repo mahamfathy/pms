@@ -1,18 +1,27 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Itasks } from './interfaces/itasks';
 import { TasksService } from './services/tasks service/tasks.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewTaskComponent } from './components/view-task/view-task.component';
 import { PageEvent } from '@angular/material/paginator';
+import { DeleteItemComponent } from 'src/app/shared/components/delete-item/delete-item.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss'],
 })
-export class TasksComponent {
+export class TasksComponent implements OnInit {
   dataSource!: Itasks[];
+  pageSize: number = 5;
+  pageNumber: number = 1;
+  numRows!: number;
+  moduleName: string = 'tasks';
+  filterName: string = 'title';
+  searchTitle: string = '';
+  searchStatus: string = '';
   displayedColumns: string[] = [
     'title',
     'status',
@@ -40,17 +49,13 @@ export class TasksComponent {
   constructor(
     private _TasksService: TasksService,
     public dialog: MatDialog,
-    private _Router: Router
+    private _Router: Router,
+    private _ToastrService: ToastrService
   ) {}
 
-  pageSize: number = 5;
-  pageNumber: number = 1;
-  numRows!: number;
-  moduleName: string = 'tasks';
-  filterName: string = 'title';
-
-  searchTitle: string = '';
-  searchStatus: string = '';
+  ngOnInit(): void {
+    this.getAllTasks();
+  }
 
   getAllTasks() {
     let myparms = {
@@ -59,7 +64,7 @@ export class TasksComponent {
       title: this.searchTitle,
       status: this.searchStatus,
     };
-    // console.log(myparms);
+
     this._TasksService.getAllTasks(myparms).subscribe({
       next: (res) => {
         this.dataSource = res.data;
@@ -69,10 +74,6 @@ export class TasksComponent {
         console.log(err);
       },
     });
-  }
-
-  ngOnInit(): void {
-    this.getAllTasks();
   }
 
   viewTask(task: Itasks) {
@@ -87,52 +88,33 @@ export class TasksComponent {
   }
 
   editTask(id: any) {
-    // console.log(id);
-    this._Router.navigate(['dashboard/manager/tasks/add-edit-task', id]);
+    this._Router.navigate(['dashboard/manager/tasks/edit-task', id]);
   }
 
-  // fireFilteration() {
-  //   let myparms = {
-  //     status: this.searchName,
-  //     pageNumber: this.pageNumber,
-  //     pageSize: this.pageSize,
-  //   };
+  DeleteItem(Item: Itasks) {
+    const dialogRef = this.dialog.open(DeleteItemComponent, {
+      data: Item,
+    });
 
-  //   this._TasksService.getAllTasks(myparms).subscribe({
-  //     next: (res) => {
-  //       // console.log(res);
-  //       // this.dataSource = res;
-  //       this.dataSource = res.data;
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
-
-  // filterChange(name: string) {
-  //   this.filterName = name;
-  //   this.searchName = '';
-  //   let myparms = {
-  //     pageNumber: this.pageNumber,
-  //     pageSize: this.pageSize,
-  //   };
-
-  //   this._TasksService.getAllTasks(myparms).subscribe({
-  //     next: (res) => {
-  //       // console.log(res);
-  //       // this.dataSource = res;
-  //       this.dataSource = res.data;
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      if (result) {
+        this._TasksService.deleteTask(Item.id).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.getAllTasks();
+            this._ToastrService.success('Deleted Successfully');
+          },
+          error: (err) => {
+            console.log(err);
+            this._ToastrService.error('Error On Delete');
+          },
+        });
+      }
+    });
+  }
 
   handlePageEvent(e: PageEvent) {
-    console.log(e);
-
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex + 1;
     this.getAllTasks();
