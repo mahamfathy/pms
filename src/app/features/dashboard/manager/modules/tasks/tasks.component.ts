@@ -14,7 +14,7 @@ import { TasksService } from './services/tasks service/tasks.service';
   styleUrls: ['./tasks.component.scss'],
 })
 export class TasksComponent implements OnInit {
-  dataSource!: Itasks[];
+ public dataSource: Itasks[] = [];
   pageSize: number = 5;
   pageNumber: number = 1;
   numRows!: number;
