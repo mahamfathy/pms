@@ -54,7 +54,6 @@ export class ManagerProjectsComponent {
   handlePageEvent(e: PageEvent) {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex;
-    // console.log(e);
     this.getMyProjectsForManager();
   }
   ngOnInit(): void {
@@ -65,8 +64,6 @@ export class ManagerProjectsComponent {
       width: '50%',
       data: projectDetails,
     });
-    // console.log(projectDetails);
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log(result);
@@ -83,11 +80,8 @@ export class ManagerProjectsComponent {
     };
     this._ManagerProjectsService.onGetMyProjectsForManager(param).subscribe({
       next: (res) => {
-        // console.log(res);
-        // this.projectsList = res.data;
         this.dataSource = res.data;
         this.finalResponce = res;
-        // console.log(this.projectsList);
       },
       error: (err) => {
         console.log(err);
@@ -95,10 +89,8 @@ export class ManagerProjectsComponent {
     });
   }
   deleteProject(projectId: number): void {
-    // console.log(projectId);
     this._ManagerProjectsService.onDeleteProjects(projectId).subscribe({
       next: (res) => {
-        // console.log(res);
       },
       error: (err) => {
         console.log(err);
@@ -116,7 +108,6 @@ export class ManagerProjectsComponent {
     });
     this._ManagerProjectsService.onGetProjectById(project.id).subscribe({
       next: (res) => {
-        // console.log(res)
       },
       error: (err) => {
         console.log(err);
@@ -131,34 +122,4 @@ export class ManagerProjectsComponent {
     console.log(projectDetails);
     console.log(projectDetails.id);
   }
-
-  sortProjects(sort: Sort) {
-    const data = this.dataSource.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'title':
-          return compareProjects(a.title, b.title, isAsc);
-        case 'creationDate':
-          return compareProjects(a.creationDate, b.creationDate, isAsc);
-        case 'task':
-          return compareProjects(a.task.length, b.task.length, isAsc);
-        case 'modificationDate':
-          return compareProjects(a.modificationDate, b.modificationDate, isAsc);
-        default:
-          return 0;
-      }
-    });
-  }
-}
-function compareProjects(
-  a: number | string,
-  b: number | string,
-  isAsc: boolean
-) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
