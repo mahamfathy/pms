@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
   moduleName: string = 'users';
 
   readonly dialog = inject(MatDialog);
-  defaultImage: string = 'assets/images/def-avatar.avif';
+  filterType: string = 'All';
   pageSize: number = 10;
   pageNumber: number = 1;
   tableRes: any;
@@ -23,7 +23,7 @@ export class UsersComponent implements OnInit {
   country: string = '';
   searchBy: string = 'userName';
   searchPlaceholder: string = 'Search by User Name';
-  searchLabel: string = 'user name';
+  searchLabel: string = 'User name';
   searchIcon: string = 'person';
   roleId: number[] = [1, 2];
   displayedColumns: string[] = [
@@ -47,6 +47,7 @@ export class UsersComponent implements OnInit {
   constructor(private _UsersService: UsersService) {}
   ngOnInit(): void {
     this.getAllUsers();
+    this.getMyUsers();
   }
   getAllUsers(): void {
     let tableParams = {
@@ -66,27 +67,34 @@ export class UsersComponent implements OnInit {
       },
     });
   }
-
+  getMyUsers(): void {
+    let tableParams = {
+      pageNumber: this.pageNumber,
+      pageSize: this.pageSize,
+    };
+    this._UsersService.getUsersOfManager(tableParams).subscribe({
+      next: (res) => {
+        this.dataSource = res.data;
+      },
+      error: () => {},
+    });
+  }
+  onFilterTypeChange(): void {
+    if (this.filterType === 'all') {
+      this.getAllUsers();
+    } else if (this.filterType === 'my') {
+      this.getMyUsers();
+    }
+  }
   handlePageEvent(e: PageEvent) {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex + 1;
-    console.log(e);
     this.getAllUsers();
   }
-  updateSearchPlaceholder(): void {
-    if (this.searchBy === 'userName') {
-      this.searchPlaceholder = 'Search by User Name';
-      this.searchIcon = 'person';
-      this.searchLabel = 'User Name';
-    } else if (this.searchBy === 'email') {
-      this.searchPlaceholder = 'Search by Email';
-      this.searchIcon = 'email';
-      this.searchLabel = 'Email';
-    } else if (this.searchBy === 'country') {
-      this.searchPlaceholder = 'Search by Country';
-      this.searchIcon = 'public';
-      this.searchLabel = 'Country';
-    }
+  updateSearchPlaceholder(searchTerm: string): void {
+    this.searchPlaceholder = `Search by ${searchTerm}`;
+    this.searchIcon = searchTerm === 'country' ? 'public' : searchTerm;
+    this.searchLabel = `${searchTerm}`;
   }
   viewUser(user: IUser): void {
     const userCopy = JSON.parse(JSON.stringify(user));
@@ -110,8 +118,9 @@ export class UsersComponent implements OnInit {
     this.roleId = [1, 2];
     this.searchPlaceholder = 'Search by User Name';
     this.searchIcon = 'person';
-    this.searchLabel = 'user name';
+    this.searchLabel = 'User name';
     this.searchBy = 'userName';
+    this.filterType = 'all';
     this.getAllUsers();
   }
 }
