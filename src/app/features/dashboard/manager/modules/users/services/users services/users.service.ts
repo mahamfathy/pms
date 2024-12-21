@@ -10,15 +10,16 @@ export class UsersService {
   getAllUsers(data: any): Observable<any> {
     return this._HttpClient.get('Users', { params: data });
   }
+  getUsersOfManager(data: any): Observable<any> {
+    return this._HttpClient.get('Users/Manager', { params: data });
+  }
   createManager(form: FormData): Observable<any> {
     return this._HttpClient.post('Users/Create', form);
   }
   getUserById(id: number): Observable<any> {
     return this._HttpClient.get(`Users/${id}`);
   }
-  getUsersOfManager(): Observable<any> {
-    return this._HttpClient.get('Users/Manager');
-  }
+
   blockUser(id: number): Observable<any> {
     return this._HttpClient.put(`Users/${id}`, { HttpParams: id });
   }

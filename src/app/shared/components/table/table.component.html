@@ -51,7 +51,7 @@
             [src]="
               row.imagePath
                 ? 'https://upskilling-egypt.com:3003/' + row.imagePath
-                : 'assets/images/def-avatar.avif'
+                : 'assets/images/defaultAvatar.avif'
             "
             alt="avatar"
           />
@@ -134,7 +134,7 @@
               mat-menu-item
               class="justify-content-center"
               *ngIf="action.name === 'Delete'"
-              (click)="deleteProject(row)"
+              (click)="deleteItem(row)"
               style="padding-left: 6px; color: red"
             >
               <mat-icon style="color: red">{{ action.icon }}</mat-icon>

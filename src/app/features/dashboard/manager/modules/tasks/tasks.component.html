@@ -2,7 +2,7 @@
   <div class="bg-white p-4 d-flex justify-content-between align-content-center">
     <h1>Tasks</h1>
 
-    <button class="orange-btn py-2 px-4" [routerLink]="['add-edit-task', ' ']">
+    <button class="orange-btn py-2 px-4" routerLink="add-task">
       <i class="fa-solid fa-plus pe-2"></i>Add New Task
     </button>
   </div>
@@ -12,7 +12,7 @@
       <div>
         <mat-form-field class="" *ngIf="filterName == 'title'; else status">
           <mat-label
-            ><i class="fa-solid fa-magnifying-glass pe-2"></i> Filter</mat-label
+            ><i class="fa-solid fa-magnifying-glass pe-2"></i> Search</mat-label
           >
           <input
             matInput
@@ -61,6 +61,7 @@
 
     <app-table
       class="bg-secondary-subtle"
+      (DeletedItem)="DeleteItem($event)"
       (viewedTask)="viewTask($event)"
       (editId)="editTask($event)"
       [displayedColumns]="displayedColumns"
