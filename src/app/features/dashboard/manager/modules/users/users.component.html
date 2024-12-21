@@ -38,6 +38,17 @@
           <mat-option [value]="2">Employee</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field class="search">
+        <mat-label>Filter users</mat-label>
+        <mat-select
+          [(ngModel)]="filterType"
+          (selectionChange)="onFilterTypeChange()"
+        >
+          <mat-option value="all">All users</mat-option>
+          <mat-option value="my">My users</mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <button type="button" class="orange-btn" (click)="clearFilters()">
         Clear Filters
       </button>
