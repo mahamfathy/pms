@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
-import { HelperService } from '../../services/helper service/helper.service';
-import { ChartData, ChartType } from 'chart.js';
+import { Component, OnInit } from '@angular/core';
+import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { HelperService } from '../../services/helper service/helper.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   constructor(
     private _HelperService: HelperService,
     private _AuthService: AuthService
@@ -23,10 +22,15 @@ export class HomeComponent {
   tasksInProgress: number = 0;
   totalTasks: number = 0;
   chart: any;
-
+  userName: string = '';
   ngOnInit() {
     this.getUserChart();
     this.getTasksChart();
+    this._HelperService.onGetCurrentUser().subscribe({
+      next: (res) => {
+        this.userName = res.userName;
+      },
+    });
   }
 
   isManager(): boolean {
@@ -41,8 +45,7 @@ export class HomeComponent {
         this.actvatedUsers = res.activatedEmployeeCount;
         this.deactvatedUsers = res.deactivatedEmployeeCount;
       },
-      error: (err) => {
-      },
+      error: (err) => {},
       complete: () => {
         this.chart = new Chart('userChart', {
           type: 'doughnut',
@@ -69,8 +72,7 @@ export class HomeComponent {
         this.tasksToDo = res.toDo;
         this.tasksInProgress = res.inProgress;
       },
-      error: (err) => {
-      },
+      error: (err) => {},
       complete: () => {
         this.chart = new Chart('taskChart', {
           type: 'doughnut',
