@@ -19,7 +19,7 @@ export class ProjectsComponent {
   ];
 
   dataSource!: IemployeeProjects[];
-  moduleName: string = 'EmployeeProjects';
+  moduleName: string = 'projects';
   numRows!: number;
   pageSize: number = 5;
   pageNumber: number = 1;

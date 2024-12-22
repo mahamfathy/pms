@@ -35,6 +35,7 @@ export class TableComponent {
   @Output() viewedTask = new EventEmitter<any>();
   data: any = '';
   sortedData: any[] = [];
+  displayedColumns1 : string[] = []
   constructor(private _TasksService: TasksService, private dialog: MatDialog) {
     this.sortedData = this.dataSource;
     console.log(this.sortedData);
@@ -53,7 +54,6 @@ export class TableComponent {
     console.log(data);
     this.DeletedItem.emit(data);
   }
-
   viewUser(user: IUser): void {
     this.userViewed.emit(user);
   }
@@ -81,7 +81,6 @@ export class TableComponent {
 
   viewProject(project: IProjectslist): void {
     this.projectViewed.emit(project);
-    // console.log(project);
   }
 
   editProject(project: IProjectslist): void {
@@ -114,7 +113,6 @@ sortData(sort: Sort) {
     });
   }
 }
-
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
