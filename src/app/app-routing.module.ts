@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth guard/auth.guard';
+import { loginUserGuard } from './core/guards/loginUser/login-user.guard';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
 import { NotfoundComponent } from './shared/components/notfound/notfound.component';
-import { loginUserGuard } from './core/guards/loginUser/login-user.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -32,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
