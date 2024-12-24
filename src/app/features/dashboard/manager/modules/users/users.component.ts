@@ -4,6 +4,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { IUser } from './interfaces/IUser';
 import { UsersService } from './services/users services/users.service';
+import { Sort } from '@angular/material/sort';
+import { BlockUserComponent } from './components/block-user/block-user.component';
 
 @Component({
   selector: 'app-users',
@@ -12,7 +14,6 @@ import { UsersService } from './services/users services/users.service';
 })
 export class UsersComponent implements OnInit {
   moduleName: string = 'users';
-
   readonly dialog = inject(MatDialog);
   filterType: string = 'All';
   pageSize: number = 10;
@@ -26,15 +27,6 @@ export class UsersComponent implements OnInit {
   searchLabel: string = 'User name';
   searchIcon: string = 'person';
   roleId: number[] = [1, 2];
-  displayedColumns: string[] = [
-    'userName',
-    'imagePath',
-    'email',
-    'country',
-    'phoneNumber',
-    'isActivated',
-    'actions',
-  ];
   actions: any[] = [
     {
       name: 'View',
@@ -44,9 +36,13 @@ export class UsersComponent implements OnInit {
     { name: 'Unblock', icon: 'lock_open' },
   ];
   dataSource: IUser[] = [];
+  sortedData: IUser[] = [];
   constructor(private _UsersService: UsersService) {}
   ngOnInit(): void {
     this.getAllUsers();
+  }
+  ngAfterViewInit(): void {
+    this.sortedData = this.dataSource.slice();
   }
   getAllUsers(): void {
     let tableParams = {
@@ -59,6 +55,8 @@ export class UsersComponent implements OnInit {
       next: (res) => {
         this.tableRes = res;
         this.dataSource = res.data;
+    this.sortedData = this.dataSource.slice();
+
       },
       error: (err) => {
         console.error('Error fetching users:', err);
@@ -111,6 +109,18 @@ export class UsersComponent implements OnInit {
       },
     });
   }
+  toggleBlock(user: IUser): void {
+    const dialogRef = this.dialog.open(BlockUserComponent, {
+      width: '400px',
+      data: user,
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.blockUser(user);
+      }
+    });
+  }
   clearFilters(): void {
     this.searchVal = '';
     this.roleId = [1, 2];
@@ -121,4 +131,33 @@ export class UsersComponent implements OnInit {
     this.filterType = 'all';
     this.getAllUsers();
   }
+  sortData(sort: Sort) {
+    const data = this.sortedData.slice();
+    console.log(data);
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'userName':
+          return compare(a.userName, b.userName, isAsc);
+        case 'isActivated':
+          return compare(a.isActivated, b.isActivated, isAsc);
+        case 'phoneNumber':
+          return compare(a.phoneNumber, b.phoneNumber, isAsc);
+        case 'email':
+          return compare(a.email, b.email, isAsc);
+        case 'country':
+          return compare(a.country, b.country, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
 }
+function compare(a: number | string | boolean, b: number | string | boolean, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+

@@ -7,6 +7,7 @@ export interface Itasks {
   modificationDate: string;
   project: Project;
   employee: Employee;
+  userName: string;
 }
 
 export interface Project {

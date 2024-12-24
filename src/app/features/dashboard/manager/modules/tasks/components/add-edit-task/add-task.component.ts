@@ -55,9 +55,6 @@ export class AddTaskComponent {
   getId(): void {
     this.route.paramMap.pipe(take(1)).subscribe((params) => {
       this.id = params.get('id');
-      if (this.id) {
-        console.log('Updated ID:', +this.id);
-      }
     });
   }
   getTaskById() {
@@ -76,7 +73,6 @@ export class AddTaskComponent {
   getAllUsers(myparms: any) {
     this._TasksService.getUsers(myparms).subscribe({
       next: (res) => {
-        // console.log(res);
         this.users = res.data;
       },
       error: (err) => {

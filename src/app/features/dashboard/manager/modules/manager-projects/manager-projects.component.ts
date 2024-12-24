@@ -14,7 +14,7 @@ import { Sort } from '@angular/material/sort';
   styleUrls: ['./manager-projects.component.scss'],
 })
 export class ManagerProjectsComponent {
-  sortedData: IProjectslist[];
+  sortedData: IProjectslist[] = [];
   dataSource: IProjectslist[] = [];
   deletedProject: IProjectslist = {} as IProjectslist;
   finalResponce: any;
@@ -49,7 +49,6 @@ export class ManagerProjectsComponent {
     private _ToastrService: ToastrService,
     private _Router: Router
   ) {
-    this.sortedData = this.dataSource;
   }
   handlePageEvent(e: PageEvent) {
     this.pageSize = e.pageSize;
@@ -82,6 +81,7 @@ export class ManagerProjectsComponent {
       next: (res) => {
         this.dataSource = res.data;
         this.finalResponce = res;
+        this.sortedData = this.dataSource;
       },
       error: (err) => {
         console.log(err);
@@ -120,4 +120,31 @@ export class ManagerProjectsComponent {
       `/dashboard/manager/manager-projects/create-project/${projectDetails.id}`
     );
   }
+  sortData(sort: Sort) {
+    const data = this.sortedData.slice();
+    console.log(data);
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'title':
+          return compare(a.title, b.title, isAsc);
+        case 'creationDate':
+          return compare(a.creationDate, b.creationDate, isAsc);
+        case 'task':
+          return compare(a.task.length, b.task.length, isAsc);
+        case 'modificationDate':
+          return compare(a.modificationDate, b.modificationDate, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
 }
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+

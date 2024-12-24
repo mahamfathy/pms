@@ -26,7 +26,7 @@ import { NgChartsModule } from 'ng2-charts';
       preventDuplicates: true,
     }),
     NgxSpinnerModule,
-    NgChartsModule
+    NgChartsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

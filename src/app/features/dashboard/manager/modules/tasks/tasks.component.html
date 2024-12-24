@@ -6,7 +6,6 @@
       <i class="fa-solid fa-plus pe-2"></i>Add New Task
     </button>
   </div>
-
   <div class="container px-3">
     <div class="d-flex align-items-center gap-4 px-3 py-2">
       <div>
@@ -44,8 +43,7 @@
           >
         </ng-template>
       </div>
-
-      <div class="">
+      <div>
         <mat-form-field>
           <mat-label>
             <span><i class="fa-solid fa-arrow-down-short-wide pe-2"></i></span>
@@ -58,20 +56,90 @@
         </mat-form-field>
       </div>
     </div>
+    <table (matSortChange)="sortData($event)" matSort class="w-100 mat-elevation-z8">
+      <thead>
+        <tr class="header">
+          <th mat-sort-header="title">Title</th>
+          <th mat-sort-header="status">Status</th>
+          <th mat-sort-header="userName">userName</th>
+          <th mat-sort-header="project">project</th>
+          <th mat-sort-header="creationDate">creationDate</th>
+          <th mat-sort-header="description">description</th>
+          <th >actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of sortedData;let i = index" [ngClass]="{'even-row': i % 2 === 0}">
+          <td>{{ item.title }}</td>
 
-    <app-table
-      class="bg-secondary-subtle"
-      (DeletedItem)="DeleteItem($event)"
-      (viewedTask)="viewTask($event)"
-      (editId)="editTask($event)"
-      [displayedColumns]="displayedColumns"
-      [dataSource]="dataSource"
-      [actions]="actions"
-      [numRows]="numRows"
-      [moduleName]="moduleName"
-    ></app-table>
+          <td>
+            <button
+              class="btn px-2 py-1 text-white"
+              [ngClass]="
+                item.status === 'ToDo'
+                  ? 'to-do'
+                  : item.status === 'Done'
+                  ? 'bg-success'
+                  : 'in-progress'
+              "
+            >
+              {{ item.status }}
+            </button>
+          </td>
+          <td>{{ item.employee.userName }}</td>
+          <td>{{ item.project.title }}</td>
+          <td>{{ item.creationDate | date : "short" }}</td>
+          <td>{{ item.description }}</td>
+          <td>
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu class="" #menu="matMenu">
+              <ng-container *ngFor="let action of actions">
+                <ng-container>
+                  <button
+                    mat-menu-item
+                    style="margin-left: -5px; color: gray"
+                    class="justify-content-center"
+                    *ngIf="action.name === 'Edit'"
+                    (click)="editTask(item.id)"
+                  >
+                    <mat-icon style="color: gray">{{ action.icon }}</mat-icon>
+                    <span>{{ action.name }}</span>
+                  </button>
+                </ng-container>
+                <ng-container>
+                  <button
+                    mat-menu-item
+                    class="justify-content-center"
+                    *ngIf="action.name === 'Delete'"
+                    (click)="deleteItem(item)"
+                    style="padding-left: 6px; color: red"
+                  >
+                    <mat-icon style="color: red">{{ action.icon }}</mat-icon>
+                    <span>{{ action.name }}</span>
+                  </button>
+                </ng-container>
+                <ng-container>
+                  <button
+                    class="justify-content-center"
+                    mat-menu-item
+                    *ngIf="action.name === 'View'"
+                    style="color: orange"
+                    (click)="viewTask(item)"
+                  >
+                    <mat-icon style="color: orange">{{ action.icon }}</mat-icon>
+                    <span>{{ action.name }}</span>
+                  </button>
+                </ng-container>
+              </ng-container>
+            </mat-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
   <mat-paginator
     (page)="handlePageEvent($event)"
     [length]="numRows"
