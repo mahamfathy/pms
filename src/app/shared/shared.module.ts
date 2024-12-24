@@ -25,7 +25,6 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { TableComponent } from './components/table/table.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import {NgFor} from '@angular/common';
 import {
@@ -39,7 +38,6 @@ import {Sort} from '@angular/material/sort';
     NavbarComponent,
     SidebarComponent,
     NotfoundComponent,
-    TableComponent,
     HomeComponent,
     DeleteItemComponent,
     ProfileComponent
@@ -67,7 +65,7 @@ import {Sort} from '@angular/material/sort';
     MatPaginatorModule,
     MatSortModule,
     NgChartsModule,
-    CdkDropList, NgFor, CdkDrag
+    CdkDropList, NgFor, CdkDrag, MatSortModule
   ],
   exports: [
     MatInputModule,
@@ -87,9 +85,8 @@ import {Sort} from '@angular/material/sort';
     NavbarComponent,
     SidebarComponent,
     MatSidenavModule,
-    TableComponent,
     NgChartsModule,
-    CdkDropList, NgFor, CdkDrag, MatSortModule
+    CdkDropList, NgFor, CdkDrag, MatSortModule, MatTableModule
   ],
 })
 export class SharedModule {

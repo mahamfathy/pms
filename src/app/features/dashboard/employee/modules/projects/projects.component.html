@@ -2,7 +2,6 @@
   <div class="bg-white p-4">
     <h1>Projects</h1>
   </div>
-
   <div class="container px-3">
     <div class="d-flex align-items-center gap-4 px-3 py-2">
       <div>
@@ -23,12 +22,36 @@
       </div>
     </div>
 
-    <app-table
-      [dataSource]="dataSource"
-      [displayedColumns]="displayedColumns"
-      [moduleName]="moduleName"
+    <table
+      (matSortChange)="sortData($event)"
+      matSort
+      class="w-100 mat-elevation-z8"
     >
-    </app-table>
+      <thead>
+        <tr class="header">
+          <th mat-sort-header="title">Title</th>
+          <th mat-sort-header="description">description</th>
+          <th mat-sort-header="modificationDate">Modification date</th>
+          <th mat-sort-header="Num Tasks">Num Tasks</th>
+          <th mat-sort-header="creationDate">Creation date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of sortedData; let i = index"
+          [ngClass]="{ 'even-row': i % 2 === 0 }"
+        >
+          <td>{{ item.title }}</td>
+
+          <td>
+            {{ item.description }}
+          </td>
+          <td>{{ item.modificationDate | date : "short" }}</td>
+          <td>{{ item.task.length }}</td>
+          <td>{{ item.creationDate | date : "short" }}</td>
+        </tr>
+      </tbody>
+    </table>
 
     <mat-paginator
       (page)="handlePageEvent($event)"

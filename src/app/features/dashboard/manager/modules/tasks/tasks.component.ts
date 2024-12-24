@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
@@ -7,14 +7,15 @@ import { DeleteItemComponent } from 'src/app/shared/components/delete-item/delet
 import { ViewTaskComponent } from './components/view-task/view-task.component';
 import { Itasks } from './interfaces/itasks';
 import { TasksService } from './services/tasks service/tasks.service';
-
+import { Sort } from '@angular/material/sort';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss'],
 })
 export class TasksComponent implements OnInit {
- public dataSource: Itasks[] = [];
+  dataSource: Itasks[] = [];
+  sortedData: Itasks[] = [];
   pageSize: number = 5;
   pageNumber: number = 1;
   numRows!: number;
@@ -22,15 +23,6 @@ export class TasksComponent implements OnInit {
   filterName: string = 'title';
   searchTitle: string = '';
   searchStatus: string = '';
-  displayedColumns: string[] = [
-    'title',
-    'status',
-    'userName',
-    'project',
-    'creationDate',
-    'description',
-    'actions',
-  ];
   actions: any[] = [
     {
       name: 'View',
@@ -45,18 +37,18 @@ export class TasksComponent implements OnInit {
       icon: 'delete',
     },
   ];
-
   constructor(
     private _TasksService: TasksService,
     public dialog: MatDialog,
     private _Router: Router,
-    private _ToastrService: ToastrService
+    private _ToastrService: ToastrService,
   ) {}
-
   ngOnInit(): void {
     this.getAllTasks();
   }
-
+  ngAfterViewInit(): void {
+    this.sortedData = this.dataSource.slice();
+  }
   getAllTasks() {
     let myparms = {
       pageNumber: this.pageNumber,
@@ -69,6 +61,7 @@ export class TasksComponent implements OnInit {
       next: (res) => {
         this.dataSource = res.data;
         this.numRows = res.totalNumberOfRecords;
+        this.sortedData = this.dataSource;
       },
       error: (err) => {
         console.log(err);
@@ -87,11 +80,10 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  editTask(id: any) {
+  editTask(id: number) {
     this._Router.navigate(['dashboard/manager/tasks/edit-task', id]);
   }
-
-  DeleteItem(Item: Itasks) {
+  deleteItem(Item: Itasks) {
     const dialogRef = this.dialog.open(DeleteItemComponent, {
       data: Item,
     });
@@ -119,4 +111,36 @@ export class TasksComponent implements OnInit {
     this.pageNumber = e.pageIndex + 1;
     this.getAllTasks();
   }
+  sortData(sort: Sort) {
+    const data = this.sortedData.slice();
+    console.log(data);
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'userName':
+          return compare(a.userName, b.userName, isAsc);
+        case 'project':
+          return compare(a.project.title, b.project.title, isAsc);
+        case 'modificationDate':
+          return compare(a.modificationDate, b.modificationDate, isAsc);
+        case 'creationDate':
+          return compare(a.creationDate, b.creationDate, isAsc);
+        case 'title':
+          return compare(a.title, b.title, isAsc);
+        case 'status':
+          return compare(a.status, b.status, isAsc);
+        case 'description':
+          return compare(a.description, b.description, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+}
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

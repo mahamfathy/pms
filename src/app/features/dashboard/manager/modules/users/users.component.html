@@ -7,7 +7,7 @@
       </button>
     </div>
   </div>
-  <div class="container">
+  <div class="container px-3">
     <div class="row column-gap-3 p-2 ms-4 my-4">
       <mat-form-field class="search">
         <mat-label>Search by</mat-label>
@@ -53,19 +53,86 @@
         Clear Filters
       </button>
     </div>
-    <div class="container px-5">
-      <div class="row">
-        <app-table
-          (userViewed)="viewUser($event)"
-          [displayedColumns]="displayedColumns"
-          [dataSource]="dataSource"
-          [actions]="actions"
-          [moduleName]="moduleName"
-          (userBlocked)="blockUser($event)"
-        ></app-table>
-      </div>
-    </div>
+    <table (matSortChange)="sortData($event)" matSort class=" mat-elevation-z8">
+      <thead>
+        <tr class="header">
+          <th mat-sort-header="userName">User name</th>
+          <th mat-sort-header="isActivated">Status</th>
+          <th mat-sort-header="phoneNumber">Phone number</th>
+          <th mat-sort-header="email">Email</th>
+          <th mat-sort-header="country">Country</th>
+          <th mat-sort-header="imagePath">Image</th>
+          <th >actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of sortedData;let i = index" [ngClass]="{'even-row': i % 2 === 0}">
+          <td>{{ item.userName }}</td>
+
+          <td>
+            <button
+              class="btn px-2 py-1 text-white"
+              [ngClass]="item.isActivated ? 'bg-success' : 'bg-danger'"
+            >
+              {{ item.isActivated  ? "Active" : "Inactive"}}
+            </button>
+          </td>
+          <td>{{ item.phoneNumber}}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.country}}</td>
+          <td><img
+            class="my-2"
+            [src]="
+              item.imagePath
+                ? 'https://upskilling-egypt.com:3003/' + item.imagePath
+                : 'assets/images/defaultAvatar.avif'
+            "
+            alt="avatar"
+          /></td>
+          <td>
+
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu class="" #menu="matMenu">
+              <ng-container *ngFor="let action of actions">
+                <button
+                  class="justify-content-center"
+                  mat-menu-item
+                  *ngIf="action.name === 'View'"
+                  style="color: orange"
+                  (click)="viewUser(item)"
+                >
+                  <mat-icon style="color: orange">{{ action.icon }}</mat-icon>
+                  <span>{{ action.name }}</span>
+                </button>
+                <button
+                  *ngIf="action.name === 'Block' && !item.isActivated"
+                  mat-menu-item
+                  (click)="toggleBlock(item)"
+                  class="justify-content-center"
+                >
+                  <mat-icon>lock_open</mat-icon>
+                  <span>Unblock</span>
+                </button>
+
+                <button
+                  *ngIf="action.name === 'Unblock' && item.isActivated"
+                  mat-menu-item
+                  (click)="toggleBlock(item)"
+                  class="justify-content-center"
+                >
+                  <mat-icon style="color: gray">block</mat-icon>
+                  <span style="color: gray">Block</span>
+                </button>
+              </ng-container>
+            </mat-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
 </section>
 <mat-paginator
   [length]="tableRes?.totalNumberOfRecords"
